@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-/* love */
+
 export const useProductStore = defineStore('productStore', {
   state: () => ({
     products: [
