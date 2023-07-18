@@ -1,0 +1,247 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "LEMONGRASS + GINGER",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "16.79",
+      "bestSelling": true,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 2,
+      "name": "DARJEELING SECOND FLUSH",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "17.00",
+      "bestSelling": true,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 3,
+      "name": "ADACAY + GINGER",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "11.99",
+      "bestSelling": true,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 4,
+      "name": "KARADENIZ FLUSH",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "17.00",
+      "bestSelling": true,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 5,
+      "name": "GREEN TEA + GINGER",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "14.59",
+      "bestSelling": true,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 6,
+      "name": "BLACK TEA FLUSH",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "19.59",
+      "bestSelling": true,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 7,
+      "name": "SOLID FLUSH",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "17.59",
+      "bestSelling": false,
+      "photo": [
+        "product_600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 8,
+      "name": "DARJEELING",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "14.00",
+      "bestSelling": false,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 9,
+      "name": "ASSAM BLACK",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "21.00",
+      "bestSelling": false,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 10,
+      "name": "SWEET FENNEL + MINT",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "27.79",
+      "bestSelling": false,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 11,
+      "name": "HIBISCUS FLOWERS",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "15.79",
+      "bestSelling": false,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 12,
+      "name": "FRESH MINT",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "14.89",
+      "bestSelling": false,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 13,
+      "name": "CHAMOMILE FLOWERS",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "23.00",
+      "bestSelling": false,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 14,
+      "name": "TULSI (INDIAN BASIL)",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "33.00",
+      "bestSelling": true,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    },
+    {
+      "id": 15,
+      "name": "MORNING MUG",
+      "description": "A tangy, lemony, and spicy herbal tea that is sourced from organic farms focused on regenerative farming practices in India. The organic ginger is grown in the gardens of the women who pluck our tea to provide them surplus revenue. This delightful, caffeine-free combo is best had on its own, without milk or sweeteners. Brew over the stovetop for 5 minutes to let the flavors fully develop, and then strain into your cup.",
+      "price": "33.59",
+      "bestSelling": true,
+      "photo": [
+        "assam-black-600x600.webp",
+        "secondary_product_600x600.jpeg",
+        "1.webp",
+        "2.webp"
+      ],
+      "quantity": 1,
+      "totalPrice": null
+    }
+  ],
+  "cartProducts": [
+    {
+      "id": 5,
+      "name": "GREEN TEA + GINGER",
+      "price": "14.59",
+      "photo": "product_600x600.webp",
+      "quantity": 2,
+      "totalPrice": "29.18"
+    },
+    {
+      "id": 1,
+      "name": "LEMONGRASS + GINGER",
+      "price": "16.79",
+      "photo": "product_600x600.webp",
+      "quantity": 2,
+      "totalPrice": "33.58"
+    }
+  ]
+}
