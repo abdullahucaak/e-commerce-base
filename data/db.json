@@ -234,14 +234,6 @@
       "photo": "product_600x600.webp",
       "quantity": 2,
       "totalPrice": "29.18"
-    },
-    {
-      "id": 1,
-      "name": "LEMONGRASS + GINGER",
-      "price": "16.79",
-      "photo": "product_600x600.webp",
-      "quantity": 2,
-      "totalPrice": "33.58"
     }
   ]
 }
