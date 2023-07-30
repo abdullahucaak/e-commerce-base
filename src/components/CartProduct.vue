@@ -35,8 +35,6 @@
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 
-console.log("cartProduct id: " + props.cartProduct.id + " ||| cartProduct id TypeOf: " + typeof(props.cartProduct.id))
-
 const props = defineProps({
     cartProduct:{
         type: Object,

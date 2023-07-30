@@ -6,7 +6,7 @@
                 <h1>Your Cart</h1>
                 <RouterLink class="continue-shopping" :to="{name:'shop'}">Continue Shopping</RouterLink>
             </div>
-            <form action="/cart" method="post" novalidate>
+            <form @submit="postCheckedCartProducts" method="post">
                 <table class="cart-table">
                     <thead class="t-heading">
                         <tr>
@@ -25,7 +25,7 @@
                     <div class="cart-footer-inner">
                         <div class="f-left">
                             <label style="display: block; margin-bottom: 20px; font-weight: 300;" for="">Add a note to your order</label>
-                            <textarea name="" id="" cols="40" rows="3"></textarea>
+                            <textarea name="userNote" v-model="userNote" cols="40" rows="3"></textarea>
                         </div>
                         <div class="f-right">
                             <div class="f-right-inner">
@@ -66,36 +66,65 @@
                         </div>
                     </div>
                 </div>
-            </form>
-            <div class="how-did-you-hear">
-                <p>How did you hear about us?</p>
-                <div class="options">
-                    <select>
-                        <option>Please Make a Selection</option>
-                        <option value="Facebook">Facebook</option>
-                        <option value="Google">Google</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Influencer">Influencer</option>
-                        <option value="Friend">Friend</option>
-                        <option value="Other">Other</option>
-                    </select>
+                <div class="how-did-you-hear">
+                    <p>How did you hear about us?</p>
+                    <div class="options">
+                        <select v-model="howDidYouHear">
+                            <option>Please Make a Selection</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Google">Google</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Influencer">Influencer</option>
+                            <option value="Friend">Friend</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <Footer/>
     </div>
 </template>
 <script setup>
+import { ref } from 'vue'
 /* components */
 import Footer from '../components/Footer.vue'
 import Navigation from '../components/Navigation.vue'
 import CartProduct from '../components/CartProduct.vue';
+/* import router */
+import router from '../router'
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
+/* import axios */
+import axios from 'axios';
 /* get cartProducts with JSON */
 productStore.getCartProducts()
 
+const userNote = ref("")
+const howDidYouHear = ref("Please Make a Selection")
+
+/* submit cart */
+const postCheckedCartProducts = (e) =>{
+    /* adding cartProducts to checkedCartProducts */
+    const checkedCartProducts = productStore.cartProducts.map((item)=>{
+        return{
+            ...item, /* preserving the existing features. */
+            usernote: userNote.value,
+            howDidYouHear: howDidYouHear.value
+        }
+    })
+    productStore.checkedCartProducts.push(checkedCartProducts)
+    /* adding backend */
+    axios.post("http://localhost:3000/checkedCartProducts", productStore.checkedCartProducts) /* productStore.checkedCartProducts were added to the address "http://localhost:3000/checkedCartProducts". */
+    .then((result)=>{
+        console.log(result)
+    })
+    e.preventDefault()
+    /* routing */
+    router.push({ name: 'checkouts' })
+}
+console.log(productStore.checkedCartProducts)
 
 </script>
 <style scoped>

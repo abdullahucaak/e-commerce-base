@@ -8,6 +8,9 @@ export const useProductStore = defineStore('productStore', {
     cartProducts:[
 
     ],
+    checkedCartProducts:[
+
+    ],
     loading:false
   }),
   getters: { /* computed */

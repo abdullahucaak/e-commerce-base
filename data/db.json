@@ -228,12 +228,92 @@
   ],
   "cartProducts": [
     {
-      "id": 5,
-      "name": "GREEN TEA + GINGER",
-      "price": "14.59",
-      "photo": "product_600x600.webp",
+      "id": 14,
+      "name": "TULSI (INDIAN BASIL)",
+      "price": "33.00",
+      "photo": "assam-black-600x600.webp",
       "quantity": 2,
-      "totalPrice": "29.18"
+      "totalPrice": "66.00"
+    },
+    {
+      "id": 1,
+      "name": "LEMONGRASS + GINGER",
+      "price": "16.79",
+      "photo": "product_600x600.webp",
+      "quantity": 1,
+      "totalPrice": "16.79"
     }
+  ],
+  "checkedCartProducts": [
+    [
+      [
+        {
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "66.00",
+          "usernote": "Ürünü adam gibi paketleyin amk.",
+          "howDidYouHear": "Influencer"
+        },
+        {
+          "id": 1,
+          "name": "LEMONGRASS + GINGER",
+          "price": "16.79",
+          "photo": "product_600x600.webp",
+          "quantity": 1,
+          "totalPrice": "16.79",
+          "usernote": "Ürünü adam gibi paketleyin amk.",
+          "howDidYouHear": "Influencer"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "66.00",
+          "usernote": "Ürünü adam gibi paketleyin amk.",
+          "howDidYouHear": "Influencer"
+        },
+        {
+          "id": 1,
+          "name": "LEMONGRASS + GINGER",
+          "price": "16.79",
+          "photo": "product_600x600.webp",
+          "quantity": 1,
+          "totalPrice": "16.79",
+          "usernote": "Ürünü adam gibi paketleyin amk.",
+          "howDidYouHear": "Influencer"
+        }
+      ],
+      [
+        {
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "66.00",
+          "usernote": "",
+          "howDidYouHear": "Please Make a Selection"
+        },
+        {
+          "id": 1,
+          "name": "LEMONGRASS + GINGER",
+          "price": "16.79",
+          "photo": "product_600x600.webp",
+          "quantity": 1,
+          "totalPrice": "16.79",
+          "usernote": "",
+          "howDidYouHear": "Please Make a Selection"
+        }
+      ]
+    ]
   ]
 }
