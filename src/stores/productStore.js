@@ -69,37 +69,39 @@ export const useProductStore = defineStore('productStore', {
       if(existingProduct){
          existingProduct.quantity += cartProduct.quantity
          existingProduct.totalPrice = Number(existingProduct.price * existingProduct.quantity).toFixed(2);
+
+         try{
+          const patchRes = await fetch('http://localhost:3000/cartProducts/' + cartProduct.id, {
+            method: 'PATCH',
+            body: JSON.stringify(
+              {
+                quantity: existingProduct.quantity,
+                totalPrice: existingProduct.totalPrice
+              }),
+            headers: { 'Content-Type' : 'application/json' }
+         })
+         if(!patchRes.ok){
+          throw new Error('Failed to add update cart product.')
+         }
+        }catch(error){
+          console.log(error)
+        }
       }else{
         // Add it as a new item
         this.cartProducts.push(cartProduct);
-      } /* add to cart dediğinde post işlemini de yapmaya çalıştığından hata alıyorsun. */
-      try{
-        const res = await fetch('http://localhost:3000/cartProducts', {
-          method: 'POST',
-          body: JSON.stringify(cartProduct),
-          headers: { 'Content-Type' : 'application/json'}
-        })
-        if(!res.ok){
-          throw new Error('Failed to add product to cart.')
+
+        try{
+          const res = await fetch('http://localhost:3000/cartProducts', {
+            method: 'POST',
+            body: JSON.stringify(cartProduct),
+            headers: { 'Content-Type' : 'application/json'}
+          })
+          if(!res.ok){
+            throw new Error('Failed to add product to cart.')
+          }
+        } catch(error){
+          console.log(error)
         }
-      } catch(error){
-        console.log(error)
-      }
-      try{
-        const patchRes = await fetch('http://localhost:3000/cartProducts/' + cartProduct.id, {
-          method: 'PATCH',
-          body: JSON.stringify(
-            {
-              quantity: existingProduct.quantity,
-              totalPrice: existingProduct.totalPrice
-            }),
-          headers: { 'Content-Type' : 'application/json' }
-       })
-       if(!patchRes.ok){
-        throw new Error('Failed to add update cart product.')
-       }
-      }catch(error){
-        console.log(error)
       }
       console.log(existingProduct)
     },
