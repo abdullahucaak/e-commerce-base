@@ -6,7 +6,7 @@
                 <h1>Your Cart</h1>
                 <RouterLink class="continue-shopping" :to="{name:'shop'}">Continue Shopping</RouterLink>
             </div>
-            <form @submit="postCheckedCartProducts" method="post">
+            <form @submit="postOrders">
                 <table class="cart-table">
                     <thead class="t-heading">
                         <tr>
@@ -103,28 +103,33 @@ productStore.getCartProducts()
 
 const userNote = ref("")
 const howDidYouHear = ref("Please Make a Selection")
+const orders = ref([])
 
 /* submit cart */
-const postCheckedCartProducts = (e) =>{
-    /* adding cartProducts to checkedCartProducts */
-    const checkedCartProducts = productStore.cartProducts.map((item)=>{
-        return{
-            ...item, /* preserving the existing features. */
-            usernote: userNote.value,
-            howDidYouHear: howDidYouHear.value
-        }
-    })
-    productStore.checkedCartProducts.push(checkedCartProducts)
-    /* adding backend */
-    axios.post("http://localhost:3000/checkedCartProducts", productStore.checkedCartProducts) /* productStore.checkedCartProducts were added to the address "http://localhost:3000/checkedCartProducts". */
-    .then((result)=>{
-        console.log(result)
-    })
+const postOrders = (e) =>{
+    const newOrder = {
+        userNote: userNote.value,
+        howDidYouHear: howDidYouHear.value,
+        cartProducts: productStore.cartProducts
+    }
+    const orderId = 1
+    if(orders.value){
+        orders.value = []
+        axios.delete(`http://localhost:3000/orders/${orderId}`)
+        .then(()=>{
+            orders.value = newOrder
+            axios.post("http://localhost:3000/orders", orders.value) /* orders were added to the address "http://localhost:3000/orders". */
+            .then((result)=>{
+                console.log(result)
+            })
+        })
+    }
+    console.log("orders:", JSON.stringify(orders.value, null, 2))
+        /* adding backend */
     e.preventDefault()
     /* routing */
-    router.push({ name: 'checkouts' })
+    /* router.push({ name: 'checkouts' }) */
 }
-console.log(productStore.checkedCartProducts)
 
 </script>
 <style scoped>
