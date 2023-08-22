@@ -1,7 +1,14 @@
 <template>
     <Navigation/>
     <div class="main">
-        <div class="main-inner">
+        <div v-if="productStore.cartProducts.length === 0" class="main-inner-cart-empty">
+            <div class="mice-inner">
+                <h1>Your Cart</h1>
+                <div>Your Cart is Currently Empty</div>
+                <RouterLink :to="{name:'shop'}"><button> CONTINUE SHOPPING </button></RouterLink>
+            </div>
+        </div>
+        <div v-if="productStore.cartProducts.length > 0" class="main-inner">
             <div class="cart-header">
                 <h1>Your Cart</h1>
                 <RouterLink class="continue-shopping" :to="{name:'shop'}">Continue Shopping</RouterLink>
@@ -98,43 +105,102 @@ import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 /* import axios */
 import axios from 'axios';
-/* get cartProducts with JSON */
+/* getCartProducts with JSON */
 productStore.getCartProducts()
+/* getOrders with JSON */
+productStore.getOrders()
 
 const userNote = ref("")
 const howDidYouHear = ref("Please Make a Selection")
-const orders = ref([])
 
 /* submit cart */
 const postOrders = (e) =>{
+    
     const newOrder = {
+        id: 1,
         userNote: userNote.value,
         howDidYouHear: howDidYouHear.value,
         cartProducts: productStore.cartProducts
     }
-    const orderId = 1
-    if(orders.value){
-        orders.value = []
-        axios.delete(`http://localhost:3000/orders/${orderId}`)
-        .then(()=>{
-            orders.value = newOrder
-            axios.post("http://localhost:3000/orders", orders.value) /* orders were added to the address "http://localhost:3000/orders". */
-            .then((result)=>{
-                console.log(result)
-            })
+    
+    productStore.orders.push(newOrder)
+    /* posting to json */
+    const post = async () =>{
+        await axios.post("http://localhost:3000/orders", newOrder) /* newOrder were added to the address "http://localhost:3000/orders". */
+        .then((result)=>{
+            console.log(result)
         })
+        .catch((error) => {
+            console.error(error);
+        });
     }
-    console.log("orders:", JSON.stringify(orders.value, null, 2))
-        /* adding backend */
-    e.preventDefault()
+    /* delete from json and post to json */
+    const deleteAndPost = async () =>{
+        await axios.delete(`http://localhost:3000/orders/1`)
+        .then(()=>{
+            post()
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+    
+    if(productStore.orders.length > 1){
+        productStore.orders.splice(0,1) /* We deleted an element starting from index zero. */
+        deleteAndPost()
+        console.log("axios.delete then axios.post worked")
+    } else{
+        post()
+        console.log("axios.post worked")
+    }
     /* routing */
-    /* router.push({ name: 'checkouts' }) */
+    router.push({ name: 'checkouts' })
+    
+    e.preventDefault()
+    
+    console.log("productStore.orders AFTER submit:" + JSON.stringify(productStore.orders, null, 2))
+    console.log("productStore.orders.length AFTER submit:" + productStore.orders.length)
 }
+console.log("productStore.orders BEFORE submit:" + JSON.stringify(productStore.orders, null, 2))
+console.log("productStore.orders.length BEFORE submit:" + productStore.orders.length)
 
 </script>
 <style scoped>
 .main{
     display: grid;
+}
+.main .main-inner-cart-empty{
+    margin: 100px auto;
+    width: 60%;
+    text-align: center;
+}
+.main .main-inner-cart-empty .mice-inner{
+    padding: 100px 0;
+}
+.main .main-inner-cart-empty .mice-inner div{
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+.main .main-inner-cart-empty .mice-inner button{
+    background-color: whitesmoke;
+    color: #1b9c85;
+    border: 1px solid #1b9c85;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 15px 35px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: 0.5s;
+}
+.main .main-inner-cart-empty .mice-inner button:hover{
+    background-color: #1b9c85;
+    color: whitesmoke;
+    font-size: 0.8rem;
+    letter-spacing: 0.1px;
+    padding: 15px 55px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: 0.5s;
 }
 .main .main-inner{
     width: 1197px;
@@ -248,6 +314,11 @@ const postOrders = (e) =>{
     color: white;
     font-size: 1em;
     border-radius: 3px;
+    transition: 0.4s;
+}
+.main .main-inner form .cart-footer .cart-footer-inner .f-right .f-right-inner .cart-buttons-container .submit-control input:hover{
+    padding: 10px 45px;
+    transition: 0.4s;
 }
 .main .main-inner form .cart-footer .cart-footer-inner .f-right .f-right-inner .cart-buttons-container .additional-checkout-buttons ul li.icons{
     display: inline-block;

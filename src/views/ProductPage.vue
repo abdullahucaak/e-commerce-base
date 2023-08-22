@@ -170,6 +170,7 @@ const hideToCart = () =>{
 }
 
 
+
 </script>
 
 <style scoped>
@@ -360,12 +361,13 @@ const hideToCart = () =>{
         background-color: white;
         border: solid #1B9C85 0.5px;
         color: #1B9c85;
+        transition: 0.6s;
     }
     .main .main-inner .main-inner-right .payout .purchase-buttons .add-to-card:hover{
         background-color: #1B9C85;
         border: solid #1B9C85 0.5px;
         color: white;
-        transition: 1s;
+        transition: 0.6s;
     }
     .main .main-inner .main-inner-right .payout .purchase-buttons .apple-pay{
         background-color: #5A31F4;
@@ -401,10 +403,11 @@ const hideToCart = () =>{
         background-color: white;
         border: solid #1B9C85 0.5px;
         color: #1B9c85;
+        transition: 0.6s;
     }
     .main .main-inner-bottom .back-btn:hover{
         padding: 20px 50px;
-        transition: 1s;
+        transition: 0.5s;
     }
 
     @media (min-width:805px) and (max-width:1205px){

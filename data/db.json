@@ -226,63 +226,30 @@
       "totalPrice": null
     }
   ],
-  "cartProducts": [
-    {
-      "id": 3,
-      "name": "ADACAY + GINGER",
-      "price": "11.99",
-      "photo": "product_600x600.webp",
-      "quantity": 4,
-      "totalPrice": "47.96"
-    },
-    {
-      "id": 15,
-      "name": "MORNING MUG",
-      "price": "33.59",
-      "photo": "assam-black-600x600.webp",
-      "quantity": 3,
-      "totalPrice": "100.77"
-    },
-    {
-      "id": 10,
-      "name": "SWEET FENNEL + MINT",
-      "price": "27.79",
-      "photo": "assam-black-600x600.webp",
-      "quantity": 7,
-      "totalPrice": "194.53"
-    }
-  ],
+  "cartProducts": [],
   "orders": [
     {
-      "userNote": "Please be careful.",
-      "howDidYouHear": "Google",
+      "id": 1,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
-        {
-          "id": 3,
-          "name": "ADACAY + GINGER",
-          "price": "11.99",
-          "photo": "product_600x600.webp",
-          "quantity": 4,
-          "totalPrice": "47.96"
-        },
-        {
-          "id": 15,
-          "name": "MORNING MUG",
-          "price": "33.59",
-          "photo": "assam-black-600x600.webp",
-          "quantity": 3,
-          "totalPrice": "100.77"
-        },
         {
           "id": 10,
           "name": "SWEET FENNEL + MINT",
           "price": "27.79",
           "photo": "assam-black-600x600.webp",
-          "quantity": 7,
-          "totalPrice": "194.53"
+          "quantity": 2,
+          "totalPrice": "55.58"
+        },
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 4,
+          "totalPrice": "63.16"
         }
-      ],
-      "id": 1
+      ]
     }
   ]
 }

@@ -3,7 +3,7 @@
         <td class="cart-product-information">
             <div 
             class="cart-product-img"
-            :style="{ 'background-image':`url(../../public/images/${cartProduct.photo})`}"
+            :style="{ 'background-image':`url(../../public/images/${cartProduct.photo}`}"
             >
                 
             </div>
@@ -34,6 +34,7 @@
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
+
 
 const props = defineProps({
     cartProduct:{

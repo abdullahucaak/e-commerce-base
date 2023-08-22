@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 
+
 export const useProductStore = defineStore('productStore', {
   state: () => ({
     products: [
@@ -7,6 +8,9 @@ export const useProductStore = defineStore('productStore', {
     ],
     cartProducts:[
 
+    ],
+    orders:[
+      
     ],
     loading:false
   }),
@@ -58,7 +62,21 @@ export const useProductStore = defineStore('productStore', {
       }catch(error){
         console.log(error)
       }
-      
+    },
+    /* get orders with JSON */
+    async getOrders(){
+      this.loading = true
+      try{
+        const res = await fetch('http://localhost:3000/orders')
+        if(!res.ok){
+          throw new Error('Failed to fetch orders.')
+        }
+        const data = await res.json()
+        this.orders = data
+        this.loading = false
+      }catch(error){
+        console.log(error)
+      }
     },
     /* add product to cart */
     async addCartProduct(cartProduct){

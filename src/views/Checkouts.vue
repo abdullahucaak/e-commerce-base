@@ -35,28 +35,10 @@
             </div>
             <div class="inner-right">
                 <div class="inner-right-wrapper">
-                  <div class="chosen-product">
-                    <div class="cp-img">
-
-                    </div>
-                    <div class="cp-name">
-                      Fresh Mint
-                    </div>
-                    <div class="cp price">
-                      $14.00
-                    </div>
+                  <div v-for="chosenProduct in productStore.cartProducts" class="chosen-product">
+                    <ChosenProduct :chosenProduct="chosenProduct"/>
                   </div>
-                  <div class="chosen-product">
-                    <div class="cp-img">
 
-                    </div>
-                    <div class="cp-name">
-                      Fresh Mint
-                    </div>
-                    <div class="cp price">
-                      $14.00
-                    </div>
-                  </div>
                   <div class="gift-card-wrapper">
                     <div class="fields fields--2">
                         <label class="field">
@@ -69,7 +51,7 @@
                   </div>
                   <div class="total-price-wrapper">
                     <div class="tp-item">Subtotal</div>
-                    <div class="tp-item tp-right">$32.00</div>
+                    <div  class="tp-item tp-right">$32.33</div>
                     <div class="tp-item">Shipping</div>
                     <div class="tp-item tp-right">$5.32</div>
                     <div class="tp-item">Total</div>
@@ -88,20 +70,30 @@ import CartPaymentNav from '../components/CartPaymentNav.vue'
 import Information from '../components/checkouts/Information.vue';
 import ShippingC from '../components/checkouts/ShippingC.vue';
 import PaymentC from '../components/checkouts/PaymentC.vue';
+import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* Imports */
 import { ref } from 'vue';
+/* pinia */
+import { useProductStore } from '../stores/productStore'
+const productStore = useProductStore()
+/* get cartProducts with JSON */
+productStore.getCartProducts()
+/* get Orders with JSON */
+productStore.getOrders()
 
 /* Component Toggle */
-  const componentIndex = ref(1);
+const componentIndex = ref(1);
 
-  const showNextComponent = () =>{
-    componentIndex.value++;
-    console.log(componentIndex.value)
-  }
-  const previousComponent = () =>{
-    componentIndex.value--;
-    console.log(componentIndex.value)
-  }
+const showNextComponent = () =>{
+  componentIndex.value++;
+  console.log(componentIndex.value)
+}
+const previousComponent = () =>{
+  componentIndex.value--;
+  console.log(componentIndex.value)
+}
+
+
 </script>
 <style scoped>
 
