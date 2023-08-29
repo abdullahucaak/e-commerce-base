@@ -2,6 +2,11 @@
     <div class="cp-img"
     :style="{ 'background-image':`url(../../public/images/${chosenProduct.photo}`}">
 
+        <div class="cp-count">
+            <div class="cp-count-inner">
+                {{ chosenProduct.quantity }}
+            </div>
+        </div>
     </div>
     <div class="cp-name">
         {{ chosenProduct.name }}
@@ -11,6 +16,8 @@
     </div>
 </template>
 <script setup>
+/* computed */
+
     const props = defineProps({
         chosenProduct:{
             type: Object,
@@ -18,6 +25,7 @@
         }
     })
 console.log(typeof(props.chosenProduct))
+
 </script>
 <style scoped>
 .cp-img{
@@ -28,7 +36,25 @@ console.log(typeof(props.chosenProduct))
       background-size: contain;
       background-repeat: no-repeat;
       border-radius: 10px;
-}
+      position: relative;
+    }
+    .cp-count{
+        width: 19px;
+        height: 19px;
+        background-color: #4c4cad;
+        border-radius: 50%;
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        z-index: 1;
+    }
+    .cp-count-inner{
+        position: absolute;
+        color: rgb(245, 245, 245);
+        left: 5.5px;
+        top: 1px;
+        font-size: 0.8rem;
+    }
 .cp-name{
   margin-left: 20px;
   text-transform: uppercase;

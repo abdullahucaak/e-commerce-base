@@ -124,7 +124,7 @@ const postOrders = (e) =>{
     }
     
     productStore.orders.push(newOrder)
-    /* posting to json */
+    /* posting to json function */
     const post = async () =>{
         await axios.post("http://localhost:3000/orders", newOrder) /* newOrder were added to the address "http://localhost:3000/orders". */
         .then((result)=>{
@@ -134,7 +134,7 @@ const postOrders = (e) =>{
             console.error(error);
         });
     }
-    /* delete from json and post to json */
+    /* delete from json and post to json function */
     const deleteAndPost = async () =>{
         await axios.delete(`http://localhost:3000/orders/1`)
         .then(()=>{
@@ -182,7 +182,7 @@ console.log("productStore.orders.length BEFORE submit:" + productStore.orders.le
     letter-spacing: 1px;
 }
 .main .main-inner-cart-empty .mice-inner button{
-    background-color: whitesmoke;
+    background-color: white;
     color: #1b9c85;
     border: 1px solid #1b9c85;
     font-size: 0.8rem;

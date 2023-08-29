@@ -226,7 +226,16 @@
       "totalPrice": null
     }
   ],
-  "cartProducts": [],
+  "cartProducts": [
+    {
+      "id": 10,
+      "name": "SWEET FENNEL + MINT",
+      "price": "27.79",
+      "photo": "assam-black-600x600.webp",
+      "quantity": 3,
+      "totalPrice": "83.37"
+    }
+  ],
   "orders": [
     {
       "id": 1,
@@ -238,16 +247,8 @@
           "name": "SWEET FENNEL + MINT",
           "price": "27.79",
           "photo": "assam-black-600x600.webp",
-          "quantity": 2,
-          "totalPrice": "55.58"
-        },
-        {
-          "id": 11,
-          "name": "HIBISCUS FLOWERS",
-          "price": "15.79",
-          "photo": "assam-black-600x600.webp",
-          "quantity": 4,
-          "totalPrice": "63.16"
+          "quantity": 3,
+          "totalPrice": "83.37"
         }
       ]
     }

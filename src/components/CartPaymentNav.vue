@@ -1,23 +1,23 @@
 <template>
       <div class="inner-navbar">
-        <ul>
-          <li>
-            <RouterLink :to="{name:'cart'}">Cart</RouterLink>
-            <span></span>
-          </li>
-          <li>
-            <RouterLink :to="{name:'checkouts'}">Information</RouterLink>
-            <span></span>
-          </li>
-          <li>
-            Shipping
-            <span></span>
-          </li>
-          <li>
-            Payment
-            <span></span>
-          </li>
-        </ul>
+          <ul>
+            <li>
+              <RouterLink :to="{name:'cart'}">Cart</RouterLink>
+              <span></span>
+            </li>
+            <li>
+              <RouterLink :to="{name:'checkouts'}">Information</RouterLink>
+              <span></span>
+            </li>
+            <li>
+              Shipping
+              <span></span>
+            </li>
+            <li>
+              Payment
+              <span></span>
+            </li>
+          </ul>
       </div>
 </template>
 
@@ -30,7 +30,7 @@
   display: inline-block;
   padding: 0 10px;
   margin-bottom: 20px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 .main-checkouts .inner-navbar ul li span{
   display: inline-block;

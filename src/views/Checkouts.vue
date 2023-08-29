@@ -1,8 +1,11 @@
 <template>
     <CheckoutsHeader/>
     <div class="main-checkouts">
+
       <CartPaymentNav/>
+
         <div class="main-inner">
+
           <div class="inner-left">
                 <div class="e-c">Express Checkout</div>
                 <div class="icons-content">
@@ -24,17 +27,22 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="form-wrapper">
                   <Information v-if="componentIndex === 1" @complete="showNextComponent"/>
                   <ShippingC v-if="componentIndex === 2" @complete="showNextComponent" @previousComponent="previousComponent"/>
                   <PaymentC v-if="componentIndex === 3" @previousComponent="previousComponent"/>
                 </div>
+
                 <div class="all-rights">
                     <p><small>All rights rezerved Alaya Tea</small></p>
                 </div>
             </div>
+
             <div class="inner-right">
+
                 <div class="inner-right-wrapper">
+
                   <div v-for="chosenProduct in productStore.cartProducts" class="chosen-product">
                     <ChosenProduct :chosenProduct="chosenProduct"/>
                   </div>
@@ -47,15 +55,15 @@
                         </label>
                         <input class="button" type="submit" value="Apply">
                     </div>
-                    
                   </div>
+
                   <div class="total-price-wrapper">
                     <div class="tp-item">Subtotal</div>
-                    <div  class="tp-item tp-right">$32.33</div>
+                    <div  class="tp-item tp-right">$ {{ totalCartPrice }}</div>
                     <div class="tp-item">Shipping</div>
-                    <div class="tp-item tp-right">$5.32</div>
+                    <div class="tp-item tp-right"><small>Enter shipping address</small></div>
                     <div class="tp-item">Total</div>
-                    <div class="tp-item tp-right">$32.33</div>
+                    <div class="tp-item tp-right">$ {{ totalCartPrice }}</div>
                   </div>
                 </div>
             </div>
@@ -72,7 +80,7 @@ import ShippingC from '../components/checkouts/ShippingC.vue';
 import PaymentC from '../components/checkouts/PaymentC.vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* Imports */
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
@@ -92,6 +100,13 @@ const previousComponent = () =>{
   componentIndex.value--;
   console.log(componentIndex.value)
 }
+
+//total cart price calculating
+const totalCartPrice = computed(() => {
+  return productStore.cartProducts.reduce((total, product) => {
+    return total + parseFloat(product.totalPrice);
+  }, 0).toFixed(2);
+});
 
 
 </script>
