@@ -1,5 +1,5 @@
+import axios from 'axios';
 import { defineStore } from 'pinia'
-
 
 export const useProductStore = defineStore('productStore', {
   state: () => ({
@@ -12,7 +12,8 @@ export const useProductStore = defineStore('productStore', {
     orders:[
       
     ],
-    loading:false
+    loading:false,
+    shippingMethodView: false
   }),
   getters: { /* computed */
     /* shop-page | how many products are */
@@ -33,49 +34,51 @@ export const useProductStore = defineStore('productStore', {
   },
   actions:{
     /* get Products with JSON */
-    async getProducts(){
-      this.loading = true
-
-      try{
-        const res = await fetch('http://localhost:3000/products')
-        if(!res.ok){
-          throw new Error('Failed to fetch products.')
+    async getProducts() {
+      this.loading = true;
+      try {
+        const response = await axios.get('http://localhost:3000/products');
+    
+        if (response.status !== 200) {
+          throw new Error('Failed to fetch products.');
         }
-        const data = await res.json()
-        this.products = data
-        this.loading = false
-      } catch(error){
-        console.log(error)
+    
+        this.products = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error(error);
       }
     },
     /* get cartProducts with JSON */
-    async getCartProducts(){
-      this.loading = true
-      try{
-        const res = await fetch('http://localhost:3000/cartProducts')
-        if(!res.ok){
-          throw new Error('Failed to fetch cart products.')
+    async getCartProducts() {
+      this.loading = true;
+      try {
+        const response = await axios.get('http://localhost:3000/cartProducts');
+    
+        if (response.status !== 200) {
+          throw new Error('Failed to fetch cart products.');
         }
-        const data = await res.json()
-        this.cartProducts = data
-        this.loading = false
-      }catch(error){
-        console.log(error)
+    
+        this.cartProducts = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error(error);
       }
     },
     /* get orders with JSON */
-    async getOrders(){
-      this.loading = true
-      try{
-        const res = await fetch('http://localhost:3000/orders')
-        if(!res.ok){
-          throw new Error('Failed to fetch orders.')
+    async getOrders() {
+      this.loading = true;
+      try {
+        const response = await axios.get('http://localhost:3000/orders');
+    
+        if (response.status !== 200) {
+          throw new Error('Failed to fetch orders.');
         }
-        const data = await res.json()
-        this.orders = data
-        this.loading = false
-      }catch(error){
-        console.log(error)
+    
+        this.orders = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error(error);
       }
     },
     /* add product to cart */
@@ -104,7 +107,7 @@ export const useProductStore = defineStore('productStore', {
       }else{
         // Add it as a new item
         this.cartProducts.push(cartProduct);
-
+        
         try{
           const res = await fetch('http://localhost:3000/cartProducts', {
             method: 'POST',
@@ -118,7 +121,7 @@ export const useProductStore = defineStore('productStore', {
           console.log(error)
         }
       }
-      console.log(existingProduct)
+      console.log("existingProduct:" + existingProduct)
     },
    /* delete product from cart */
     async deleteProduct(id){

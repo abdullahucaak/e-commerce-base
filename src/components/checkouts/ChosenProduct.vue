@@ -24,7 +24,6 @@
             required: false
         }
     })
-console.log(typeof(props.chosenProduct))
 
 </script>
 <style scoped>

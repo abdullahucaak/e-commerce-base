@@ -228,29 +228,82 @@
   ],
   "cartProducts": [
     {
-      "id": 10,
-      "name": "SWEET FENNEL + MINT",
-      "price": "27.79",
+      "id": 14,
+      "name": "TULSI (INDIAN BASIL)",
+      "price": "33.00",
       "photo": "assam-black-600x600.webp",
       "quantity": 3,
-      "totalPrice": "83.37"
+      "totalPrice": "99.00"
+    },
+    {
+      "id": 15,
+      "name": "MORNING MUG",
+      "price": "33.59",
+      "photo": "assam-black-600x600.webp",
+      "quantity": 7,
+      "totalPrice": "235.13"
+    },
+    {
+      "id": 3,
+      "name": "ADACAY + GINGER",
+      "price": "11.99",
+      "photo": "product_600x600.webp",
+      "quantity": 3,
+      "totalPrice": "35.97"
     }
   ],
   "orders": [
     {
       "id": 1,
-      "userNote": "",
-      "howDidYouHear": "Please Make a Selection",
+      "userNote": "Love me.",
+      "howDidYouHear": "Influencer",
       "cartProducts": [
         {
-          "id": 10,
-          "name": "SWEET FENNEL + MINT",
-          "price": "27.79",
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
           "photo": "assam-black-600x600.webp",
           "quantity": 3,
-          "totalPrice": "83.37"
+          "totalPrice": "99.00"
+        },
+        {
+          "id": 15,
+          "name": "MORNING MUG",
+          "price": "33.59",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 7,
+          "totalPrice": "235.13"
+        },
+        {
+          "id": 3,
+          "name": "ADACAY + GINGER",
+          "price": "11.99",
+          "photo": "product_600x600.webp",
+          "quantity": 3,
+          "totalPrice": "35.97"
         }
-      ]
+      ],
+      "shippingInfo": {
+        "email": "abdullahucaak@gmail.com",
+        "firstName": "Abdullah",
+        "lastName": "Uçak",
+        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Ankara",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "cartInformation": {
+        "cartNumber": "5282 0816 9274 5657",
+        "nameOnCart": "Necdet Uçak",
+        "expirationDate": "2023-09-28",
+        "securityCode": "533"
+      },
+      "orderUniqueCode": "073f51e9-32f7-4ee9-857e-8dc81af2a4f5"
     }
   ]
 }

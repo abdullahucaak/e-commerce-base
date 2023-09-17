@@ -6,6 +6,7 @@ const productStore = useProductStore()
 
 /* getProducts */
 productStore.getProducts() 
+
 </script>
 
 <template>

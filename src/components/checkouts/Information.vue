@@ -27,6 +27,7 @@
         <h2>Shipping address</h2>
         <p><small>Please enter your shipping details.</small></p>
         <div class="fields fields--2">
+          <div>
             <label 
              class="field"
              :class="{ invalid: !isValidFirstName}"
@@ -40,6 +41,13 @@
               required  
             />
           </label>
+          <span 
+              v-if="!isValidFirstName"
+              class="invalid-message"
+              ><small>Enter a name.</small>
+            </span>
+          </div>
+          <div>
             <label 
             class="field"
             :class="{ invalid: !isValidLastName}"
@@ -54,15 +62,11 @@
             />
             </label>
             <span 
-              v-if="!isValidFirstName"
-              class="invalid-message"
-              ><small>Enter a name.</small>
-            </span>
-            <span 
               v-if="!isValidLastName"
               class="invalid-message"
               ><small>Enter a last name.</small>
             </span>
+          </div>
         </div>
         <label 
           class="field"
@@ -167,7 +171,7 @@
             <div class="submit-button">
                 <input 
                   type="submit"
-                  :disabled="!isValidPhoneNumber"  
+                  :disabled="!isValidEmail || !isValidFirstName || !isValidLastName || !isValidShippingAddress || !isValidZipCode || !isValidCity || !isValidCountry || !isValidPhoneNumber"
                   class="button" 
                   value="Continue to Shipping"
                 >
@@ -178,24 +182,30 @@
 </template>
 <script setup>
 /* imports */
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import axios from 'axios';
+
+/* When the user refreshes the page, fetch the orders array from the database using the getOrders() function. */
+onMounted(()=>{
+  if(productStore.orders[0] == undefined){
+    productStore.getOrders()
+  }
+})
+
 
 /* pinia */
 import { useProductStore } from '../../stores/productStore'
 const productStore = useProductStore()
 
-/* get Orders with JSON */
-productStore.getOrders()
-
-const email = ref("abdullah@icloud.com")
+const email = ref("abdullahucaak@gmail.com")
 const firstName = ref("Abdullah")
 const lastName = ref("Uçak")
-const shippingAddress = ref("29 Ekim mah.")
+const shippingAddress = ref("29 Ekim Mah. Kıbrıs Caddesi")
 const zipCode = ref("06930")
-const city = ref("")
+const city = ref("Ankara")
 const country = ref("Turkiye")
-const phoneNumber = ref("+905458168797")
+const phoneNumber = ref("+90 545 816 87 97")
+
 
 
 /* valid email controller */
@@ -270,17 +280,16 @@ const isValidPhoneNumber = computed (() => {
 })
 
 
-
-
 /* changing component */
 const emit = defineEmits(['complete'])
 
+console.log('after completeForm productStore.orders[0]:', JSON.stringify(productStore.orders[0], null, 2));
 const completeForm = () => {
   /* changing component */
   emit('complete')
 
   /* shipping Info */
-  const shippingInfo = {
+  const shippingInfo = ref({
     email: email.value,
     firstName: firstName.value,
     lastName: lastName.value,
@@ -289,45 +298,38 @@ const completeForm = () => {
     zipCode: zipCode.value,
     city: city.value,
     phoneNumber: phoneNumber.value
-  }
-  console.log('after completeForm shippingInfo:', JSON.stringify(shippingInfo, null, 2));
+  })
+  console.log('after completeForm shippingInfo:', JSON.stringify(shippingInfo.value, null, 2));
   
-  productStore.orders[0].shippingInfo = shippingInfo; /*!!!ERROR -eğer önceki sayfaya geri gelirsem, productStore.orders içerisine tekrar dizi şeklinde atamaya yapıyor, yani dizi içinde dizi şeklinde. (json'da hata yok.)- add shippintInfo to productStore.orders */
+  /*add shippintInfo to productStore.orders */
+  productStore.orders[0].shippingInfo = shippingInfo.value; 
   console.log('after completeForm productStore.orders:', JSON.stringify(productStore.orders, null, 2));
 
-    /* posting to json function */
-    const post = async () =>{
-          await axios.post("http://localhost:3000/orders", productStore.orders[0])
-          .then((result)=>{
-              console.log(result)
-          })
-          .catch((error) => {
-              console.error(error);
-          });
-      }
-  
-    /* delete from json and post to json function */
-    const deleteAndPost = async () =>{
-      await axios.delete(`http://localhost:3000/orders/1`)
-      .then(()=>{
-          post()
-      })
-      .catch((error) => {
-          console.error(error);
-      });
+  /* posting to json function */
+  const post = async () =>{
+        await axios.post("http://localhost:3000/orders", productStore.orders[0])
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
+  /* delete from json and post to json function */
+  const deleteAndPost = async () =>{
+    await axios.delete(`http://localhost:3000/orders/1`)
+    .then(()=>{
+        post()
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+  }
 
-    if(productStore.orders.every(order => !order.hasOwnProperty('shippingInfo'))){
-      deleteAndPost()
-      console.log("if worked")
-    } else{
-      delete productStore.orders[0].shippingInfo;
-      productStore.orders[0].shippingInfo = shippingInfo;
-      deleteAndPost()
-      console.log("else worked")
-    } 
+  deleteAndPost()
 }
 
+console.log("crypto id: " + crypto.randomUUID())
 </script>
 
 <style scoped>

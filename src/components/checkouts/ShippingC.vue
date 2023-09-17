@@ -1,28 +1,42 @@
 <template>
     <div class="form-container">
-        <form class="form">
+        <form @submit.prevent="completeForm" class="form">
             <InfoToChange/>
             <h2>Shipping Method</h2>
             <div class="shipping-method">
                 <label class="shipping-grid" for="option1">
-                    <input type="radio" id="option1" name="options" value="option1">
+                    <input 
+                        v-model="selectedShipping"
+                        type="radio" 
+                        id="option1" 
+                        name="options" 
+                        value="USPS First Class Package"
+                        required
+                    >
                     <div class="shipping-option">
-                        <p>USPS First Class Package</p>
+                        <p>{{ shippingMethods[0].name }}</p>
                         <p>Estimated delivery Wednesday, Jun 7</p>
                     </div>
                     <div class="shipping-price">
-                        $4.44
+                        ${{ shippingMethods[0].price }}
                     </div>
                 </label>
                 
                 <label class="shipping-grid" for="option2">
-                    <input type="radio" id="option2" name="options" value="option2">
+                    <input 
+                        v-model="selectedShipping"
+                        type="radio" 
+                        id="option2" 
+                        name="options" 
+                        value="USPS Ground"
+                        required
+                    >
                     <div class="shipping-option">
-                        <p>USPS Ground</p>
+                        <p>{{ shippingMethods[1].name }}</p>
                         <p>Estimated delivery Thursday, Jun 8</p>
                     </div>
                     <div class="shipping-price">
-                        $9.44
+                        ${{ shippingMethods[1].price }}
                     </div>
                 </label>
             </div>
@@ -32,19 +46,76 @@
                     <button class="r-btn" @click="previousComponent">Return to Information</button>
                 </div>
                 <div class="submit-button">
-                    <input @click="completeForm" class="button" type="submit" value="Continue to Payment">
+                    <input 
+                        class="button" 
+                        type="submit" 
+                        value="Continue to Payment"
+                    >
                 </div>
             </div>
         </form>
     </div>
 </template>
 <script setup>
+/* imports */
+import { ref } from 'vue'
+import axios from 'axios';
+/* components */
 import InfoToChange from './InfoToChange.vue' 
+/* pinia */
+import { useProductStore } from '../../stores/productStore'
+const productStore = useProductStore()
+
+const selectedShipping = ref("") 
+const shippingMethods = [
+    {
+        name: "USPS First Class Package",
+        price: "4.44"
+    },
+    {
+        name: "USPS Ground",
+        price: "9.44"
+    }
+]
 
 const emit = defineEmits(['complete','previousComponent'])
 const completeForm = () => {
   emit('complete')
+  
+  productStore.shippingMethodView = true
+
+  if(selectedShipping.value == "USPS First Class Package"){
+    productStore.orders[0].shippingMethod = shippingMethods[0]; 
+  }else{
+    productStore.orders[0].shippingMethod = shippingMethods[1]; 
+  }
+  console.log(JSON.stringify(productStore.orders[0], null, 2))
+  console.log("selectedShipping: " + selectedShipping.value)
+
+    /* posting to json function */
+    const post = async () =>{
+        await axios.post("http://localhost:3000/orders", productStore.orders[0])
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+  /* delete from json and post to json function */
+  const deleteAndPost = async () =>{
+    await axios.delete(`http://localhost:3000/orders/1`)
+    .then(()=>{
+        post()
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+  }
+
+  deleteAndPost()
 }
+
 const previousComponent = () => {
   emit('previousComponent')
 }

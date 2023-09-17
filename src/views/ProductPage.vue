@@ -128,6 +128,7 @@ const currentRoute = parseInt(route.params.id)
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
 
+
 /* currentProduct */
 const currentProduct = ref(null)
 

@@ -1,38 +1,97 @@
 <template>
     <div class="form-container">
-        <form class="form">
+        <form @submit.prevent="payNow" class="form">
             <InfoToChange/>
             <h2>Payment</h2>
             <p class="payment-info">All transactions are secure and encrypted.</p>
             <div class="shipping-method">
-                <label class="shipping-grid" for="option1">
-                    <input type="radio" id="option1" name="options" value="option1">
+                <label class="shipping-grid">
                     <div class="shipping-option">
                         <p>Credit Cart</p>
-                    </div>
-                    <div class="shipping-price">
-                        $4.44
                     </div>
                 </label>
 
                 <div class="payment-info-inner">
-                    <label class="field">
-                        <span class="field__label" for="cart-number">Cart Number</span>
-                        <input class="field__input" type="text" id="cart-number" />
-                    </label>
-                    <label class="field">
-                        <span class="field__label" for="name-on-cart">Name On Cart</span>
-                        <input class="field__input" type="text" id="name-on-cart" />
-                    </label>
+                    <div class="mb-20">
+                      <label 
+                        class="field"
+                        :class="{ invalid: !validateCartNumber}"
+                      >
+                          <span class="field__label" for="cart-number">Cart Number</span>
+                          <input 
+                            v-model="cartNumber" 
+                            class="field__input" 
+                            type="text" 
+                            id="cart-number"
+                          />
+                        </label>
+                        <span 
+                          class="invalid-message"
+                          v-if="!validateCartNumber"
+                        >
+                          <small>Enter a valid cart number.</small>
+                        </span>
+                      </div>
+                    <div class="mb-20">
+                      <label 
+                        class="field"
+                        :class="{ invalid: !validateNameOnCart}"
+                      >
+                          <span class="field__label" for="name-on-cart">Name On Cart</span>
+                          <input 
+                            v-model="nameOnCart" 
+                            class="field__input" 
+                            type="text" 
+                            id="name-on-cart" 
+                          />
+                      </label>
+                      <span 
+                          class="invalid-message"
+                          v-if="!validateNameOnCart"
+                        >
+                          <small>Enter a valid name.</small>
+                        </span>
+                    </div>
                     <div class="fields fields--2">
-                        <label class="field">
+                      <div>
+                        <label 
+                          class="field"
+                          :class="{ invalid: !validateExpirationDate}"
+                        >
                         <span class="field__label" for="expiration-date">Expiration Date ( MM / YY)</span>
-                        <input class="field__input" type="date" id="expiration-date" />
+                        <input 
+                          v-model="expirationDate"
+                          class="field__input" 
+                          type="date" 
+                          id="expiration-date" 
+                        />
                         </label>
-                        <label class="field">
+                        <span 
+                          class="invalid-message"
+                          v-if="!validateExpirationDate"
+                        >
+                          <small>Enter a valid expiration date.</small>
+                        </span>
+                      </div>
+                      <div>
+                        <label 
+                        class="field"
+                        :class="{ invalid: !validateSecurityCode}">
                         <span class="field__label" for="security-code">Security Code</span>
-                        <input class="field__input" type="text" id="security-code" />
+                        <input 
+                          v-model="securityCode" 
+                          class="field__input" 
+                          type="text" 
+                          id="security-code" 
+                        />
                         </label>
+                        <span 
+                          class="invalid-message"
+                          v-if="!validateSecurityCode"
+                        >
+                          <small>Enter a valid security code.</small>
+                        </span>
+                      </div>
                     </div>
 
                 </div>
@@ -43,7 +102,12 @@
                     <button class="r-btn" @click="previousComponent">Return to Shipping</button>
                 </div>
                 <div class="submit-button">
-                    <input class="button" type="submit" value="Pay now">
+                    <input 
+                      :disabled="!validateSecurityCode || !validateExpirationDate || !validateNameOnCart || !validateCartNumber"
+                      type="submit" 
+                      class="button" 
+                      value="Pay now"
+                    >
                 </div>
             </div>
         </form>
@@ -51,15 +115,100 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+/* components */
 import InfoToChange from './InfoToChange.vue'
+/* pinia */
+import { useProductStore } from '../../stores/productStore'
+const productStore = useProductStore()
+/* import axios */
+import axios from 'axios';
 
 const emit = defineEmits(['previousComponent'])
 const previousComponent = () => {
   emit('previousComponent')
+  productStore.shippingMethodView = false
 }
+
+
+/* carNumber */
+const cartNumber = ref('5282 0816 9274 5657')
+
+const validateCartNumber = computed (()=>{
+  const regex = /^(\d{4}\s?){4}$/
+  return regex.test(cartNumber.value)
+})
+
+/* nameOnCart */
+const nameOnCart = ref('Necdet Uçak')
+const validateNameOnCart = computed (()=>{
+  const regex = /^[\p{L}ÇçĞğİıÖöŞşÜü\s]{2,} [\p{L}ÇçĞğİıÖöŞşÜü\s]{2,}$/u
+  return regex.test(nameOnCart.value)
+})
+
+/* expirationDate */
+const expirationDate = ref(null)
+
+const validateExpirationDate = computed (()=>{
+ const regex = /^(20\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
+ return regex.test(expirationDate.value)
+})
+
+/* securityCode */
+const securityCode = ref('533')
+
+const validateSecurityCode = computed (()=>{
+  const regex = /^[0-9]{3}$/
+  return regex.test(securityCode.value)
+})
+
+const payNow = () =>{
+  /* cartInformation */
+  const cartInformation = ref({
+    cartNumber: cartNumber.value,
+    nameOnCart: nameOnCart.value,
+    expirationDate: expirationDate.value,
+    securityCode: securityCode.value
+  })
+  /* add cartInformation to productStore.orders */
+  productStore.orders[0].cartInformation = cartInformation.value; 
+
+
+  /* unique Order Code */
+  const orderUniqueCode = ref(crypto.randomUUID())
+  /* add unique Order Code to productStore.orders */
+  productStore.orders[0].orderUniqueCode = orderUniqueCode.value
+
+  console.log(JSON.stringify (productStore.orders[0].cartInformation))
+
+  /* posting to json function */
+  const post = async () =>{
+      await axios.post("http://localhost:3000/orders", productStore.orders[0])
+      .then((result)=>{
+          console.log(result)
+      })
+      .catch((error) => {
+          console.error(error);
+      });
+  }
+  /* delete from json and post to json function */
+  const deleteAndPost = async () =>{
+    await axios.delete(`http://localhost:3000/orders/1`)
+    .then(()=>{
+        post()
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+  }
+
+  deleteAndPost()
+}
+
 </script>
 
 <style scoped>
+
 /* SHIPPING METHOD */
 form .shipping-method{
     border: solid black 1px;
@@ -67,8 +216,7 @@ form .shipping-method{
     font-size: 0.9rem;
 }
 form .shipping-method .shipping-grid{
-    display: grid;
-    grid-template-columns: 1fr 10fr 2fr;
+    display: block;
     padding: 20px;
     align-items: center;
 }
@@ -105,67 +253,6 @@ p.payment-info{
   padding: 40px 2rem 0;
   margin: 0 auto;
 }
-.form {
-  display: grid;
-  grid-gap: 1rem;
-}
-
-.field {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: .5rem;
-  border-radius: .25rem;
-}
-
-.field__label {
-  font-size: 0.6rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem
-}
-
-.field__input {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  outline: 0;
-  font-weight: bold;
-  font-size: 1rem;
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
-}
-.field:focus-within {
-  border-color: #000;
-}
-
-.fields {
-  display: grid;
-  grid-gap: 1rem;
-}
-.fields--2 {
-  grid-template-columns: 1fr 1fr;
-}
-
-.button {
-  background-color: #000;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: block;
-  color: #fff;
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.25rem;
-  border: 0;
-  cursor: pointer;
-  outline: 0;
-}
-.button:focus-visible {
-  background-color: #333;
-}
 
 .form {
   display: grid;
@@ -179,7 +266,15 @@ p.payment-info{
   border: 0.5px solid rgb(67, 67, 67);
   padding: .5rem;
   border-radius: .25rem;
-  margin-bottom: 20px ;
+}
+.mb-20{
+  margin-bottom: 20px;
+}
+.invalid{
+  border: solid 2px rgb(228, 59, 59);
+}
+.invalid-message{
+  color: rgb(228,59,59);
 }
 
 .field__label {
@@ -202,9 +297,7 @@ p.payment-info{
   appearance: none;
   background-color: transparent;
 }
-.field:focus-within {
-  border-color: #000;
-}
+
 
 .fields {
   display: grid;

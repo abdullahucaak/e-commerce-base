@@ -100,6 +100,7 @@ import Navigation from '../components/Navigation.vue'
 import CartProduct from '../components/CartProduct.vue';
 /* import router */
 import router from '../router'
+
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
@@ -120,7 +121,7 @@ const postOrders = (e) =>{
         id: 1,
         userNote: userNote.value,
         howDidYouHear: howDidYouHear.value,
-        cartProducts: productStore.cartProducts
+        cartProducts: productStore.cartProducts,
     }
     
     productStore.orders.push(newOrder)
@@ -158,9 +159,11 @@ const postOrders = (e) =>{
     
     e.preventDefault()
     
+    console.log("productStore.cartProducts AFTER submit:" + JSON.stringify(productStore.cartProducts,null,2))
     console.log("productStore.orders AFTER submit:" + JSON.stringify(productStore.orders, null, 2))
     console.log("productStore.orders.length AFTER submit:" + productStore.orders.length)
 }
+console.log("productStore.cartProducts BEFORE submit:" + JSON.stringify(productStore.cartProducts,null,2))
 console.log("productStore.orders BEFORE submit:" + JSON.stringify(productStore.orders, null, 2))
 console.log("productStore.orders.length BEFORE submit:" + productStore.orders.length)
 

@@ -61,9 +61,11 @@
                     <div class="tp-item">Subtotal</div>
                     <div  class="tp-item tp-right">$ {{ totalCartPrice }}</div>
                     <div class="tp-item">Shipping</div>
-                    <div class="tp-item tp-right"><small>Enter shipping address</small></div>
+                    <div v-if="!productStore.shippingMethodView" class="tp-item tp-right"><small>Enter shipping method</small></div>
+                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right"><small>${{ productStore.orders[0].shippingMethod.price }}</small></div>
                     <div class="tp-item">Total</div>
-                    <div class="tp-item tp-right">$ {{ totalCartPrice }}</div>
+                    <div v-if="!productStore.shippingMethodView" class="tp-item tp-right">$ {{ totalCartPrice  }}</div>
+                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right">$ {{ parseFloat(totalCartPrice) + parseFloat(productStore.orders[0].shippingMethod.price) }}</div>
                   </div>
                 </div>
             </div>
@@ -86,19 +88,17 @@ import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 /* get cartProducts with JSON */
 productStore.getCartProducts()
-/* get Orders with JSON */
-productStore.getOrders()
 
 /* Component Toggle */
 const componentIndex = ref(1);
 
 const showNextComponent = () =>{
   componentIndex.value++;
-  console.log(componentIndex.value)
+  console.log("componentIndex:" + componentIndex.value)
 }
 const previousComponent = () =>{
   componentIndex.value--;
-  console.log(componentIndex.value)
+  console.log("componentIndex:" + componentIndex.value)
 }
 
 //total cart price calculating
@@ -107,6 +107,9 @@ const totalCartPrice = computed(() => {
     return total + parseFloat(product.totalPrice);
   }, 0).toFixed(2);
 });
+
+
+
 
 
 </script>

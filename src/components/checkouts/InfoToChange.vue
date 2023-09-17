@@ -3,22 +3,33 @@
         <div class="itc-inner">
             <div class="itc-grid contact">
                 <div>Contact</div>
-                <div>abdullahucaak@gmail.com</div>
-                <div>Change</div>
+                <div>{{ email }}</div>
+                <div></div>
             </div>
             <div class="itc-grid ship-to">
                 <div>Ship to</div>
-                <div>Eryaman mah. 1.meşrutiyet cad. Atakent-1 88/22 Etimesgut/Ankara</div>
-                <div>Change</div>
+                <div> {{ shippingAddress }} </div>
+                <div></div>
             </div>
-            <div class="itc-grid payment">
+            <div v-if="productStore.shippingMethodView" class="itc-grid payment">
                 <div>Method</div>
-                <div>First Class Package - $4.44</div>
-                <div>Change</div>
+                <div>{{ productStore.orders[0].shippingMethod.name }} - {{ productStore.orders[0].shippingMethod.price }}</div>
+                <div></div>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+/* pinia */
+import { useProductStore } from '../../stores/productStore'
+const productStore = useProductStore()
+
+
+const email = productStore.orders[0].shippingInfo.email
+const shippingAddress = productStore.orders[0].shippingInfo.shippingAddress
+</script>
+
 <style scoped>
 
 form .information-to-change{
