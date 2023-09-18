@@ -15,7 +15,7 @@
                     <div class="mb-20">
                       <label 
                         class="field"
-                        :class="{ invalid: !validateCartNumber}"
+                        :class="{ invalid: !validateCartNumber && submitted }"
                       >
                           <span class="field__label" for="cart-number">Cart Number</span>
                           <input 
@@ -27,7 +27,7 @@
                         </label>
                         <span 
                           class="invalid-message"
-                          v-if="!validateCartNumber"
+                          v-if="!validateCartNumber && submitted"
                         >
                           <small>Enter a valid cart number.</small>
                         </span>
@@ -35,7 +35,7 @@
                     <div class="mb-20">
                       <label 
                         class="field"
-                        :class="{ invalid: !validateNameOnCart}"
+                        :class="{ invalid: !validateNameOnCart && submitted}"
                       >
                           <span class="field__label" for="name-on-cart">Name On Cart</span>
                           <input 
@@ -47,7 +47,7 @@
                       </label>
                       <span 
                           class="invalid-message"
-                          v-if="!validateNameOnCart"
+                          v-if="!validateNameOnCart && submitted"
                         >
                           <small>Enter a valid name.</small>
                         </span>
@@ -56,7 +56,7 @@
                       <div>
                         <label 
                           class="field"
-                          :class="{ invalid: !validateExpirationDate}"
+                          :class="{ invalid: !validateExpirationDate && submitted}"
                         >
                         <span class="field__label" for="expiration-date">Expiration Date ( MM / YY)</span>
                         <input 
@@ -68,7 +68,7 @@
                         </label>
                         <span 
                           class="invalid-message"
-                          v-if="!validateExpirationDate"
+                          v-if="!validateExpirationDate && submitted"
                         >
                           <small>Enter a valid expiration date.</small>
                         </span>
@@ -76,7 +76,7 @@
                       <div>
                         <label 
                         class="field"
-                        :class="{ invalid: !validateSecurityCode}">
+                        :class="{ invalid: !validateSecurityCode && submitted}">
                         <span class="field__label" for="security-code">Security Code</span>
                         <input 
                           v-model="securityCode" 
@@ -87,7 +87,7 @@
                         </label>
                         <span 
                           class="invalid-message"
-                          v-if="!validateSecurityCode"
+                          v-if="!validateSecurityCode && submitted"
                         >
                           <small>Enter a valid security code.</small>
                         </span>
@@ -103,7 +103,6 @@
                 </div>
                 <div class="submit-button">
                     <input 
-                      :disabled="!validateSecurityCode || !validateExpirationDate || !validateNameOnCart || !validateCartNumber"
                       type="submit" 
                       class="button" 
                       value="Pay now"
@@ -131,8 +130,11 @@ const previousComponent = () => {
 }
 
 
+/* submission control for validity check */
+const submitted = ref(false)
+
 /* carNumber */
-const cartNumber = ref('5282 0816 9274 5657')
+const cartNumber = ref('')
 
 const validateCartNumber = computed (()=>{
   const regex = /^(\d{4}\s?){4}$/
@@ -140,7 +142,7 @@ const validateCartNumber = computed (()=>{
 })
 
 /* nameOnCart */
-const nameOnCart = ref('Necdet Uçak')
+const nameOnCart = ref('')
 const validateNameOnCart = computed (()=>{
   const regex = /^[\p{L}ÇçĞğİıÖöŞşÜü\s]{2,} [\p{L}ÇçĞğİıÖöŞşÜü\s]{2,}$/u
   return regex.test(nameOnCart.value)
@@ -155,7 +157,7 @@ const validateExpirationDate = computed (()=>{
 })
 
 /* securityCode */
-const securityCode = ref('533')
+const securityCode = ref('')
 
 const validateSecurityCode = computed (()=>{
   const regex = /^[0-9]{3}$/
@@ -163,46 +165,50 @@ const validateSecurityCode = computed (()=>{
 })
 
 const payNow = () =>{
-  /* cartInformation */
-  const cartInformation = ref({
-    cartNumber: cartNumber.value,
-    nameOnCart: nameOnCart.value,
-    expirationDate: expirationDate.value,
-    securityCode: securityCode.value
-  })
-  /* add cartInformation to productStore.orders */
-  productStore.orders[0].cartInformation = cartInformation.value; 
+  submitted.value = true
 
-
-  /* unique Order Code */
-  const orderUniqueCode = ref(crypto.randomUUID())
-  /* add unique Order Code to productStore.orders */
-  productStore.orders[0].orderUniqueCode = orderUniqueCode.value
-
-  console.log(JSON.stringify (productStore.orders[0].cartInformation))
-
-  /* posting to json function */
-  const post = async () =>{
-      await axios.post("http://localhost:3000/orders", productStore.orders[0])
-      .then((result)=>{
-          console.log(result)
+  if(validateSecurityCode.value && validateExpirationDate.value && validateNameOnCart.value && validateCartNumber.value){
+    /* cartInformation */
+    const cartInformation = ref({
+      cartNumber: cartNumber.value,
+      nameOnCart: nameOnCart.value,
+      expirationDate: expirationDate.value,
+      securityCode: securityCode.value
+    })
+    /* add cartInformation to productStore.orders */
+    productStore.orders[0].cartInformation = cartInformation.value; 
+  
+  
+    /* unique Order Code */
+    const orderUniqueCode = ref(crypto.randomUUID())
+    /* add unique Order Code to productStore.orders */
+    productStore.orders[0].orderUniqueCode = orderUniqueCode.value
+  
+    console.log(JSON.stringify (productStore.orders[0].cartInformation))
+  
+    /* posting to json function */
+    const post = async () =>{
+        await axios.post("http://localhost:3000/orders", productStore.orders[0])
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+    /* delete from json and post to json function */
+    const deleteAndPost = async () =>{
+      await axios.delete(`http://localhost:3000/orders/1`)
+      .then(()=>{
+          post()
       })
       .catch((error) => {
           console.error(error);
       });
+    }
+  
+    deleteAndPost()
   }
-  /* delete from json and post to json function */
-  const deleteAndPost = async () =>{
-    await axios.delete(`http://localhost:3000/orders/1`)
-    .then(()=>{
-        post()
-    })
-    .catch((error) => {
-        console.error(error);
-    });
-  }
-
-  deleteAndPost()
 }
 
 </script>

@@ -5,7 +5,7 @@
         <div class="fields">
             <label 
               class="field"
-              :class="{ invalid: !isValidEmail}"
+              :class="{ invalid: !isValidEmail && submitted}"
             >
             <span class="field__label" for="email">Email</span>
             <input 
@@ -14,11 +14,10 @@
               type="text" 
               id="email" 
               autofocus 
-              required 
             />
             </label>
             <p 
-              v-if="!isValidEmail"
+              v-if="!isValidEmail && submitted"
               class="invalid-message"
               ><small>Enter a valid email.</small>
             </p>
@@ -30,7 +29,7 @@
           <div>
             <label 
              class="field"
-             :class="{ invalid: !isValidFirstName}"
+             :class="{ invalid: !isValidFirstName && submitted}"
             >
             <span class="field__label" for="firstname">First name</span>
             <input 
@@ -38,11 +37,10 @@
               class="field__input" 
               type="text" 
               id="firstname" 
-              required  
             />
           </label>
           <span 
-              v-if="!isValidFirstName"
+              v-if="!isValidFirstName && submitted"
               class="invalid-message"
               ><small>Enter a name.</small>
             </span>
@@ -50,7 +48,7 @@
           <div>
             <label 
             class="field"
-            :class="{ invalid: !isValidLastName}"
+            :class="{ invalid: !isValidLastName && submitted}"
           >
             <span class="field__label" for="lastname">Last name</span>
             <input 
@@ -58,39 +56,39 @@
               class="field__input" 
               type="text" 
               id="lastname" 
-              required 
             />
             </label>
             <span 
-              v-if="!isValidLastName"
+              v-if="!isValidLastName && submitted"
               class="invalid-message"
               ><small>Enter a last name.</small>
             </span>
           </div>
         </div>
-        <label 
-          class="field"
-          :class="{ invalid: !isValidShippingAddress}"
-        >
-            <span class="field__label" for="address">Address</span>
-            <input 
-              v-model="shippingAddress" 
-              class="field__input" 
-              type="text" 
-              id="address" 
-              required 
-            />
-        </label>
-        <span 
-          v-if="!isValidShippingAddress"
-          class="invalid-message"
-          ><small>Enter a Address.</small>
-        </span>
+        <div>
+          <label 
+            class="field"
+            :class="{ invalid: !isValidShippingAddress && submitted}"
+          >
+              <span class="field__label" for="address">Address</span>
+              <input 
+                v-model="shippingAddress" 
+                class="field__input" 
+                type="text" 
+                id="address" 
+              />
+          </label>
+          <span 
+            v-if="!isValidShippingAddress && submitted"
+            class="invalid-message"
+            ><small>Enter a Address.</small>
+          </span>
+        </div>
         <div class="fields fields--3">
           <div>
             <label 
               class="field"
-              :class="{ invalid: !isValidZipCode}"            
+              :class="{ invalid: !isValidZipCode && submitted}"            
             >
             <span class="field__label" for="zipcode">Zip code</span>
             <input 
@@ -98,11 +96,10 @@
               class="field__input" 
               type="text" 
               id="zipcode" 
-              required 
             />
             </label>
             <span 
-              v-if="!isValidZipCode"
+              v-if="!isValidZipCode && submitted"
               class="invalid-message"
               ><small>Enter a zip code.</small>
             </span>
@@ -110,7 +107,7 @@
             <div>
               <label 
                 class="field"
-                :class="{ invalid: !isValidCity}"
+                :class="{ invalid: !isValidCity && submitted}"
               >
               <span class="field__label" for="city">City</span>
               <input 
@@ -118,11 +115,10 @@
                 class="field__input" 
                 type="text" 
                 id="city" 
-                required 
               />
               </label>
               <span 
-              v-if="!isValidCity"
+              v-if="!isValidCity && submitted"
               class="invalid-message"
               ><small>Enter a city.</small>
             </span>
@@ -130,39 +126,40 @@
             <div>
               <label 
                   class="field"
-                  :class="{ invalid: !isValidCountry}"
+                  :class="{ invalid: !isValidCountry && submitted}"
                 >
                 <span class="field__label" for="country">Country</span>
-                <select v-model="country" class="field__input" id="country" required>
+                <select v-model="country" class="field__input" id="country">
                 <option value="turkiye" > Turkiye </option>
                 <option value="greece" disabled>Greece</option>
                 </select>
               </label>
               <span 
-                v-if="!isValidCountry"
+                v-if="!isValidCountry && submitted"
                 class="invalid-message"
                 ><small>Enter a country.</small>
               </span>
             </div>
         </div>
-        <label 
-          class="field"
-          :class="{ invalid: !isValidPhoneNumber}"
-        >
-          <span class="field__label" for="phone-number">Phone Number</span>
-          <input 
-            v-model="phoneNumber" 
-            class="field__input" 
-            type="tel" 
-            id="phone-number" 
-            required
-          />
-        </label>
-        <span 
-              v-if="!isValidPhoneNumber"
-              class="invalid-message"
-              ><small>Enter a valid phone number.</small>
-            </span>
+        <div>
+          <label 
+            class="field"
+            :class="{ invalid: !isValidPhoneNumber && submitted}"
+          >
+            <span class="field__label" for="phone-number">Phone Number</span>
+            <input 
+              v-model="phoneNumber" 
+              class="field__input" 
+              type="tel" 
+              id="phone-number" 
+            />
+          </label>
+          <span 
+            v-if="!isValidPhoneNumber && submitted"
+            class="invalid-message"
+            ><small>Enter a valid phone number.</small>
+          </span>
+        </div>
         <div class="form-footer">
             <div class="return-to-cart">
                 <span class="back-icon"></span>
@@ -171,7 +168,6 @@
             <div class="submit-button">
                 <input 
                   type="submit"
-                  :disabled="!isValidEmail || !isValidFirstName || !isValidLastName || !isValidShippingAddress || !isValidZipCode || !isValidCity || !isValidCountry || !isValidPhoneNumber"
                   class="button" 
                   value="Continue to Shipping"
                 >
@@ -197,14 +193,14 @@ onMounted(()=>{
 import { useProductStore } from '../../stores/productStore'
 const productStore = useProductStore()
 
-const email = ref("abdullahucaak@gmail.com")
-const firstName = ref("Abdullah")
-const lastName = ref("Uçak")
-const shippingAddress = ref("29 Ekim Mah. Kıbrıs Caddesi")
-const zipCode = ref("06930")
-const city = ref("Ankara")
-const country = ref("Turkiye")
-const phoneNumber = ref("+90 545 816 87 97")
+const email = ref("")
+const firstName = ref("")
+const lastName = ref("")
+const shippingAddress = ref("")
+const zipCode = ref("")
+const city = ref("")
+const country = ref("")
+const phoneNumber = ref("")
 
 
 
@@ -217,7 +213,7 @@ const isValidEmail = computed (()=>{
 const isValidFirstName = computed (()=>{
   return firstName.value.length > 0
 })
-if(firstName.value.length === 0){
+if(firstName.value.length){
   !isValidFirstName
 } else {
   isValidFirstName
@@ -227,7 +223,7 @@ if(firstName.value.length === 0){
 const isValidLastName = computed (()=>{
   return lastName.value.length > 0
 })
-if(lastName.value.length === 0){
+if(lastName.value.length){
   !isValidLastName
 } else {
   isValidLastName
@@ -237,7 +233,7 @@ if(lastName.value.length === 0){
 const isValidShippingAddress = computed (()=>{
   return shippingAddress.value.length > 0
 })
-if(shippingAddress.value.length === 0){
+if(shippingAddress.value.length){
   !isValidShippingAddress
 } else {
   isValidShippingAddress
@@ -247,7 +243,7 @@ if(shippingAddress.value.length === 0){
 const isValidZipCode = computed (()=>{
   return zipCode.value.length > 0
 })
-if(zipCode.value.length === 0){
+if(zipCode.value.length){
   !isValidZipCode
 } else {
   isValidZipCode
@@ -257,7 +253,7 @@ if(zipCode.value.length === 0){
 const isValidCity = computed (()=>{
   return city.value.length > 0
 })
-if(city.value.length === 0){
+if(city.value.length ){
   !isValidCity
 } else {
   isValidCity
@@ -267,7 +263,7 @@ if(city.value.length === 0){
 const isValidCountry = computed (()=>{
   return country.value.length > 0
 })
-if(country.value.length === 0){
+if(country.value.length){
   !isValidCountry
 } else {
   isValidCountry
@@ -276,7 +272,6 @@ if(country.value.length === 0){
 /* Enter a phoneNumber controller */
 const isValidPhoneNumber = computed (() => {
   return /^(\+90)?\s?[0-9]{3}\s?[0-9]{3}\s?[0-9]{2}\s?[0-9]{2}$/.test(phoneNumber.value)
-
 })
 
 
@@ -284,52 +279,61 @@ const isValidPhoneNumber = computed (() => {
 const emit = defineEmits(['complete'])
 
 console.log('after completeForm productStore.orders[0]:', JSON.stringify(productStore.orders[0], null, 2));
+
+/* submission control for validity check */
+const submitted = ref(false)
+
 const completeForm = () => {
-  /* changing component */
-  emit('complete')
-
-  /* shipping Info */
-  const shippingInfo = ref({
-    email: email.value,
-    firstName: firstName.value,
-    lastName: lastName.value,
-    shippingAddress: shippingAddress.value,
-    country: country.value,
-    zipCode: zipCode.value,
-    city: city.value,
-    phoneNumber: phoneNumber.value
-  })
-  console.log('after completeForm shippingInfo:', JSON.stringify(shippingInfo.value, null, 2));
+  /* submission control for validity check */
+  submitted.value = true
   
-  /*add shippintInfo to productStore.orders */
-  productStore.orders[0].shippingInfo = shippingInfo.value; 
-  console.log('after completeForm productStore.orders:', JSON.stringify(productStore.orders, null, 2));
+  /* Validity check before submitting the form... */
+  if(isValidEmail.value && isValidFirstName.value && isValidLastName.value && isValidShippingAddress.value && isValidZipCode.value && isValidCity.value && isValidCountry.value && isValidPhoneNumber.value){
+    /* changing component */
+    emit('complete')
 
-  /* posting to json function */
-  const post = async () =>{
-        await axios.post("http://localhost:3000/orders", productStore.orders[0])
-        .then((result)=>{
-            console.log(result)
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
-  /* delete from json and post to json function */
-  const deleteAndPost = async () =>{
-    await axios.delete(`http://localhost:3000/orders/1`)
-    .then(()=>{
-        post()
+    /* shipping Info */
+    const shippingInfo = ref({
+      email: email.value,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      shippingAddress: shippingAddress.value,
+      country: country.value,
+      zipCode: zipCode.value,
+      city: city.value,
+      phoneNumber: phoneNumber.value
     })
-    .catch((error) => {
-        console.error(error);
-    });
-  }
+    console.log('after completeForm shippingInfo:', JSON.stringify(shippingInfo.value, null, 2));
+    
+    /*add shippintInfo to productStore.orders */
+    productStore.orders[0].shippingInfo = shippingInfo.value; 
+    console.log('after completeForm productStore.orders:', JSON.stringify(productStore.orders, null, 2));
 
-  deleteAndPost()
+    /* posting to json function */
+    const post = async () =>{
+          await axios.post("http://localhost:3000/orders", productStore.orders[0])
+          .then((result)=>{
+              console.log(result)
+          })
+          .catch((error) => {
+              console.error(error);
+          });
+      }
+    /* delete from json and post to json function */
+    const deleteAndPost = async () =>{
+      await axios.delete(`http://localhost:3000/orders/1`)
+      .then(()=>{
+          post()
+      })
+      .catch((error) => {
+          console.error(error);
+      });
+    }
+
+    deleteAndPost()
+  }
 }
 
-console.log("crypto id: " + crypto.randomUUID())
 </script>
 
 <style scoped>
@@ -377,7 +381,7 @@ h1, h2{
 
 .fields {
   display: grid;
-  grid-gap: 0.5rem;
+  grid-column-gap: 0.5rem;
 }
 .fields--2 {
   grid-template-columns: 1fr 1fr;

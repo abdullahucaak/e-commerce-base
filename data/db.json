@@ -255,8 +255,8 @@
   "orders": [
     {
       "id": 1,
-      "userNote": "Love me.",
-      "howDidYouHear": "Influencer",
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
         {
           "id": 14,
@@ -287,7 +287,7 @@
         "email": "abdullahucaak@gmail.com",
         "firstName": "Abdullah",
         "lastName": "Uçak",
-        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi",
+        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
         "country": "turkiye",
         "zipCode": "06930",
         "city": "Ankara",
@@ -298,12 +298,12 @@
         "price": "9.44"
       },
       "cartInformation": {
-        "cartNumber": "5282 0816 9274 5657",
+        "cartNumber": "5282 6787 9809 9999",
         "nameOnCart": "Necdet Uçak",
-        "expirationDate": "2023-09-28",
-        "securityCode": "533"
+        "expirationDate": "2023-09-21",
+        "securityCode": "563"
       },
-      "orderUniqueCode": "073f51e9-32f7-4ee9-857e-8dc81af2a4f5"
+      "orderUniqueCode": "ee08f7ce-b6f9-47d6-bb73-fe4c35c95352"
     }
   ]
 }
