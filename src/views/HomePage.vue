@@ -1,6 +1,8 @@
 <template>
     <Navigation/>
-    <div class="home-container">
+    <div 
+        class="home-container"
+    >
         <div class="content c-banner">
             <!-- Picture -->
             <div class="banner-message">
@@ -39,6 +41,11 @@ import Product from '../components/Product.vue'
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
+
+
+console.log(productStore.isBarsAnimationWorked)
+
+
 </script>
 
 <style scoped>
@@ -96,7 +103,7 @@ body{
 }
 .home-container .c-best-selling{
     display: grid;
-    grid-template-rows: 1fr 13fr 3fr;
+    grid-template-rows: 1fr 11fr 2.5fr;
     grid-template-columns: 1fr;
 }
 .home-container .c-best-selling .bs-title{
@@ -117,12 +124,26 @@ body{
 } 
 .home-container .c-best-selling .bs-item-container .bs-item{
     width: 100%;
-    height: auto;
     margin-top: 10px;
 }
 .home-container .c-best-selling .bs-footer{
     justify-self: center;
     align-self: center;
+}
+.bs-btn{
+    color: #1B9C85;
+    background-color: white;
+    padding: 13px 70px;
+    border: 0.5px #1B9C85 solid;
+    border-radius: 0px;
+    transition: 0.3s;
+}
+.bs-btn:hover{
+    color: #1B9C85;
+    background-color: white;
+    padding: 13px 75px;
+    border: 0.5px #1B9C85 solid;
+    transition: 0.3s;
 }
 /* responsive | banner-message */
 @media (min-width: 1171px) and (max-width: 1543px){
@@ -156,7 +177,7 @@ body{
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 10px;
-        width: 90%;
+        width: 95%;
         margin: 0 auto;
         overflow: hidden;
     } 

@@ -228,28 +228,20 @@
   ],
   "cartProducts": [
     {
-      "id": 14,
-      "name": "TULSI (INDIAN BASIL)",
-      "price": "33.00",
+      "id": 13,
+      "name": "CHAMOMILE FLOWERS",
+      "price": "23.00",
       "photo": "assam-black-600x600.webp",
-      "quantity": 3,
-      "totalPrice": "99.00"
+      "quantity": 2,
+      "totalPrice": "46.00"
     },
     {
-      "id": 15,
-      "name": "MORNING MUG",
-      "price": "33.59",
-      "photo": "assam-black-600x600.webp",
-      "quantity": 7,
-      "totalPrice": "235.13"
-    },
-    {
-      "id": 3,
-      "name": "ADACAY + GINGER",
-      "price": "11.99",
+      "id": 2,
+      "name": "DARJEELING SECOND FLUSH",
+      "price": "17.00",
       "photo": "product_600x600.webp",
-      "quantity": 3,
-      "totalPrice": "35.97"
+      "quantity": 4,
+      "totalPrice": "68.00"
     }
   ],
   "orders": [
@@ -259,51 +251,36 @@
       "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
         {
-          "id": 14,
-          "name": "TULSI (INDIAN BASIL)",
-          "price": "33.00",
+          "id": 13,
+          "name": "CHAMOMILE FLOWERS",
+          "price": "23.00",
           "photo": "assam-black-600x600.webp",
-          "quantity": 3,
-          "totalPrice": "99.00"
+          "quantity": 2,
+          "totalPrice": "46.00"
         },
         {
-          "id": 15,
-          "name": "MORNING MUG",
-          "price": "33.59",
-          "photo": "assam-black-600x600.webp",
-          "quantity": 7,
-          "totalPrice": "235.13"
-        },
-        {
-          "id": 3,
-          "name": "ADACAY + GINGER",
-          "price": "11.99",
+          "id": 2,
+          "name": "DARJEELING SECOND FLUSH",
+          "price": "17.00",
           "photo": "product_600x600.webp",
-          "quantity": 3,
-          "totalPrice": "35.97"
+          "quantity": 4,
+          "totalPrice": "68.00"
         }
       ],
       "shippingInfo": {
         "email": "abdullahucaak@gmail.com",
         "firstName": "Abdullah",
         "lastName": "Uçak",
-        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
+        "shippingAddress": "29 ekim mah.",
         "country": "turkiye",
         "zipCode": "06930",
         "city": "Ankara",
-        "phoneNumber": "+90 545 816 87 97"
+        "phoneNumber": "545 816 87 97"
       },
       "shippingMethod": {
         "name": "USPS Ground",
         "price": "9.44"
-      },
-      "cartInformation": {
-        "cartNumber": "5282 6787 9809 9999",
-        "nameOnCart": "Necdet Uçak",
-        "expirationDate": "2023-09-21",
-        "securityCode": "563"
-      },
-      "orderUniqueCode": "ee08f7ce-b6f9-47d6-bb73-fe4c35c95352"
+      }
     }
   ]
 }

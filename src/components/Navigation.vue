@@ -25,12 +25,68 @@
         <RouterLink :to="{name:'cart'}">
           <i class="fa fa-cart-shopping"></i>
         </RouterLink>
-        <i class="fa-solid fa-bars"></i>
+        <i @click="openBars" v-if="!isBarsOpen" class="fa-solid fa-bars"></i>
+        <i @click="hideToBars" v-if="isBarsOpen" class="fa-solid fa-xmark"></i>
       </div>
     </nav>
+    <div 
+      v-if="isBarsOpen" 
+      class="bars"
+      :class="{'slide-in': isAnimationWorked, 'slide-out': !isAnimationWorked}"
+    >
+      <div>
+        <ul>
+          <li>
+            <RouterLink :to="{name:'home'}">Home</RouterLink>
+          </li>
+          <li>
+            <RouterLink :to="{name:'shop'}">Shop <span class="dropdown-icon"></span></RouterLink>
+          </li>
+          <li>
+            <RouterLink :to="{name:'about-us'}">About Us</RouterLink>
+          </li>
+        </ul>
+      </div>
+  </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+
+  const isBarsOpen = ref(false)
+  const isAnimationWorked = ref(false)
+
+
+/* open to vertical bars */
+  const openBars = () =>{
+    isBarsOpen.value = true
+    isAnimationWorked.value = true
+
+  }
+  /* hide to vertical bars */
+  const hideToBars = () =>{
+    setTimeout(() => {             
+      isBarsOpen.value = false
+    }, 100);                    /* code works 0.3 second after */
+    isAnimationWorked.value = false
+    
+}
+/* "If the page is above 700 pixels, do not display the vertical navbar." */
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 700) {
+        isBarsOpen.value = false;
+    }
+});
+
+
+
+</script>
 <style scoped>
+  body{
+    z-index: 0;
+  }
   .announce-nav-container{
     display: grid;
     grid-template-rows: 46px 147px;
@@ -43,12 +99,15 @@
     text-align: center;
     line-height: 46px;
     color: whitesmoke;
+    z-index: +2;
   }
   .announce-nav-container nav{
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     justify-items: center;
     align-items: center;
+    background-color: white;
+    z-index: +2;
   }
 /* nav-inner */
   .announce-nav-container nav .logo > img{
@@ -78,7 +137,8 @@
     transition: transform 0.3s;
   }
   .announce-nav-container nav .shop-search i {
-    padding: 0 10px ;
+    padding: 0 8px ;
+    font-size: 1.1rem;
   }
 
 
@@ -100,9 +160,46 @@
     .announce-nav-container nav .main-nav{
       display: none;
     }
+    .bars li{
+      padding: 20px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 0.5px solid rgba(0,0,0, 0.2);
+      user-select: none;
+    }
+    .bars li:first-child{
+      border-top: 0.5px solid rgba(0,0,0, 0.2);
+    }
+    .bars li:last-child{
+      border-bottom: none;
+    }
+    @keyframes slide-in {
+        from {
+            transform: translateY(-100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+    @keyframes slide-out {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(-100%);
+        }
+    }
+    .slide-in{
+        animation: slide-in 0.3s ease;
+        z-index: +1;
+      }
+      .slide-out{
+        animation: slide-out 0.3s ease;
+        z-index: +1;
+    }
   }
   @media (min-width: 700px){
-    .announce-nav-container nav .shop-search .fa-bars{
+    .announce-nav-container nav .shop-search .fa-bars, .fa-xmark{
       display: none;
     }
   }

@@ -45,26 +45,29 @@
     <div class="main">
         <div class="main-inner">
             <div class="main-inner-left">
-                <div 
-                class="big-img" 
-                :style="{ 'background-image':`url(../../public/images/${currentProduct.photo[0]})`}"
-                >
-
-                </div>
-                <div class="other-images"> <!-- important slice(1, 4) -->
+                <div>
                     <div 
-                    v-for="(photo, index) in currentProduct.photo.slice(1, 4)" 
-                    :key="index"
-                    class="other-images-product" 
-                    :style="{ 'background-image':`url(../../public/images/${photo})`}"
-                    @mouseover="handleImage(photo)"
-                    @mouseout="leaveImage(photo)"
+                    class="big-img" 
+                    :style="{ 'background-image':`url(../../public/images/${currentProduct.photo[0]})`}"
                     >
-                        
+
+                    </div>
+                    <div class="other-images"> <!-- important slice(1, 4) -->
+                        <div 
+                        v-for="(photo, index) in currentProduct.photo.slice(1, 4)" 
+                        :key="index"
+                        class="other-images-product" 
+                        :style="{ 'background-image':`url(../../public/images/${photo})`}"
+                        @mouseover="handleImage(photo)"
+                        @mouseout="leaveImage(photo)"
+                        >
+                            
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="main-inner-right">
+                <div>
                     <div class="payout">
                         <!-- index starts from zero. route starts from one. because:[currentRoute-1] -->
                         <h1>
@@ -102,6 +105,7 @@
                             <li>100% compostable packaging, including the label and zipper</li>
                         </ul>
                     </div>
+                </div>
             </div>
         </div>
         <div class="main-inner-bottom">
@@ -182,6 +186,7 @@ const hideToCart = () =>{
         position: fixed;
         right: 0;
         box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.1);
+        z-index: 5;
     }
     .view-cart-inner{
         padding: 0 20px;
@@ -278,11 +283,11 @@ const hideToCart = () =>{
         margin-top: 50px;
     }
     .main .main-inner{
+        width: 1200px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 30px;
         margin: 0 auto;
-        width: 1200px;
         padding: 20px;
     }
     .main .main-inner .main-inner-left{
@@ -379,7 +384,7 @@ const hideToCart = () =>{
         display: block;
         text-decoration: underline;
         font-size: 0.9rem;
-        margin: 0 auto;
+        margin: 0 auto 20px;
         color: rgb(63, 63, 63);
         background-color: white;
     }
@@ -411,23 +416,37 @@ const hideToCart = () =>{
         transition: 0.5s;
     }
 
-    @media (min-width:805px) and (max-width:1205px){
+    @media (min-width:700px) and (max-width:1205px){
         .main .main-inner{
-            width: 95%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
         .main .main-inner .main-inner-left{
             display: grid;
+            grid-template-rows: 2.5fr;
+            grid-gap: 10px;
         }
+
         .main .main-inner .main-inner-right{
             display: grid;
-            grid-template-rows: auto auto;
+            grid-template-rows: auto;
         }
         .main .main-inner .main-inner-right .payout .purchase-buttons{
             margin-top: 10px;
-            width: 100%;
+            width: 90%;
         }
+        .main .main-inner .main-inner-right .payout .purchase-buttons .more-payment-options{
+        margin: 0 auto 20px;
     }
-    @media (max-width:805px){
+        .main .main-inner .main-inner-right .description{
+            width: 90%;
+            color: rgba(0,0,0, 0.7);
+            line-height: 22px;
+            font-size: 0.8rem;
+    }
+    }
+    @media (max-width:700px){
         .main{
             display: grid;
         }
@@ -438,7 +457,7 @@ const hideToCart = () =>{
             grid-column-gap: 0px ;
             margin: 0 auto;
             width: 95%;
-            padding: 20px 0px;
+            padding: 0px 0px 20px 0px;
         }
         .main .main-inner .main-inner-left{
             display: grid;
@@ -446,13 +465,13 @@ const hideToCart = () =>{
         }
         .main .main-inner .main-inner-left .big-img{
             aspect-ratio: 1/1;
-            background-image: url(../assets/products/product_600x600.webp);
+            /* background-image: url(../assets/products/product_600x600.webp); */
             background-size: contain;
             background-repeat: no-repeat;
         }
         .main .main-inner .main-inner-left .other-images .other-images-product{
             aspect-ratio: 1/1;
-            background-image: url(../assets/products/product_600x600.webp);
+            /* background-image: url(../assets/products/product_600x600.webp); */
             background-size: contain;
             background-repeat: no-repeat;
             border: solid #1B9C85 0.5px;
@@ -460,7 +479,7 @@ const hideToCart = () =>{
         }
         .main .main-inner .main-inner-right{
             display: grid;
-            grid-template-rows: 2.5fr 2fr;
+            grid-template-rows: 2.5fr;
             margin-top: 20px;
         }
 
