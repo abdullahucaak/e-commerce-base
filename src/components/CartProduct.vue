@@ -8,7 +8,12 @@
                 
             </div>
             <div class="cart-product-name-wrapper">
-                <div class="cart-product-name"> {{ cartProduct.name }}</div>
+                <RouterLink 
+                    class="searched-product" 
+                    :to="{name:'product-page', params: { id: cartProduct.id} }"
+                >
+                    <div class="cart-product-name"> {{ cartProduct.name }}</div>
+                </RouterLink>
                 <p @click="productStore.deleteProduct(cartProduct.id)">Remove</p>
             </div>
         </td>
@@ -108,6 +113,13 @@ const props = defineProps({
 .main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper p:hover{
     font-weight: 400;
     color: rgb(218, 75, 75);
+}
+.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name{
+    user-select: none;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
 }
 .main .main-inner form .cart-table tbody tr .cart-quantity .cart-quantity-input{
     width: 100px;
@@ -218,7 +230,7 @@ const props = defineProps({
         aspect-ratio: 1/1;
         width: 95%;
         height: auto;
-        background-image: url(../assets/products/assam-black-600x600.webp);
+        /* background-image: url(../assets/products/assam-black-600x600.webp); */
         background-size: contain;
         background-repeat: no-repeat;
     }

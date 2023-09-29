@@ -140,6 +140,7 @@ watchEffect(()=>{
     currentProduct.value = productStore.products.find(item => item.id === currentRoute)
     console.log(currentProduct.value)
 })
+
 /* image-hover */
 const handleImage = (photo) =>{
     currentProduct.value.photo[4] = currentProduct.value.photo[0]

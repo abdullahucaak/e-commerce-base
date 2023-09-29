@@ -43,6 +43,8 @@ import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
 
 
+
+
 console.log(productStore.isBarsAnimationWorked)
 
 

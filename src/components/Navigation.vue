@@ -21,12 +21,55 @@
         </ul>
       </div>
       <div class="shop-search">
-        <i class="fa fa-light fa-search"></i>
+        <i @click="searchButtonOn" class="fa fa-light fa-search"></i>
         <RouterLink :to="{name:'cart'}">
           <i class="fa fa-cart-shopping"></i>
         </RouterLink>
         <i @click="openBars" v-if="!isBarsOpen" class="fa-solid fa-bars"></i>
-        <i @click="hideToBars" v-if="isBarsOpen" class="fa-solid fa-xmark"></i>
+        <i @click="hideToBars" v-if="isBarsOpen" class="fa-solid fa-xmark xmark-vertical-bars"></i>
+      </div>
+      <div 
+        class="searching-div-wrapper"
+        ref="isSearchButtonOn"
+        v-if="isSearchButtonOn" 
+      >
+        <div class="searching-div">
+          <div class="sd-inner">
+            <input 
+              v-model="search" 
+              type="text" 
+              ref="input" 
+              :autofocus="isSearchButtonOn"
+            >
+            <i @click="searchButtonOff" class="fa-solid fa-xmark xmark-search"></i>
+          </div>
+          <div
+           v-if="search.length > 0"
+           class="results-wrapper">
+            <div class="results-inner">
+              <div class="searched-products">
+                <p class="product-header">Products</p>
+                <div v-for="product in productsFound" :key="product.id">
+                  <RouterLink 
+                    class="searched-product" 
+                    :to="{name:'product-page', params: { id: product.id} }"
+                  >
+                    <div 
+                      class="sp-product-img"
+                      :style="{ 'background-image':`url(../../public/images/${product.photo[0]}`}"
+                    >
+
+                    </div>
+                    <div class="sp-content">
+                      <div class="sp-product-name">{{ product.name }}</div>
+                      <div class="sp-product-price"><small><bold> ${{ product.price }} </bold></small></div>
+                    </div>
+                  </RouterLink>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
     <div 
@@ -52,9 +95,45 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+/* pinia */
+import { useProductStore } from '../stores/productStore'
+const productStore = useProductStore()
+
+console.log(this.$route.params)
 
 
+
+  /* search button */
+  const isSearchButtonOn = ref(false)
+
+  const searchButtonOn = () =>{
+    isSearchButtonOn.value = true
+    isBarsOpen.value = false
+  }
+  const searchButtonOff = () =>{
+    isSearchButtonOn.value = false
+  }
+
+  onClickOutside(isSearchButtonOn, searchButtonOff)
+
+  /* search button - searching */
+  
+  const search = ref('')
+
+  const productsFound = computed(()=>{
+    if (search.value.length === 0) {
+      return [];
+    } else {
+      return productStore.products.filter((product) => {
+          return product.name.toLowerCase().includes(search.value.toLowerCase());
+      }).slice(0, 5);
+    }
+  })
+  
+
+/* vertical navbar */
   const isBarsOpen = ref(false)
   const isAnimationWorked = ref(false)
 
@@ -108,6 +187,7 @@ window.addEventListener("resize", () => {
     align-items: center;
     background-color: white;
     z-index: +2;
+    position: relative;
   }
 /* nav-inner */
   .announce-nav-container nav .logo > img{
@@ -139,7 +219,87 @@ window.addEventListener("resize", () => {
   .announce-nav-container nav .shop-search i {
     padding: 0 8px ;
     font-size: 1.1rem;
+    cursor: pointer;
   }
+  .announce-nav-container nav .searching-div-wrapper{
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  .announce-nav-container nav .searching-div{
+    width: 60%; 
+    height: auto;
+    margin: 50px auto 0;
+    position: relative;
+  }
+  .announce-nav-container nav .sd-inner{
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .announce-nav-container nav .sd-inner input{
+    width: 90%;
+    height: 40px;
+    border: 0.5px solid #4C4C6D;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 5px;
+    &:focus{
+      border: 2px solid #4C4C6D;
+    }
+  }
+  .announce-nav-container nav .sd-inner .xmark-search{
+    font-size: 1.5rem;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .announce-nav-container nav .results-wrapper{
+    width: 90%;
+    background-color: white;
+    border: 0.5px solid gray;
+    position: absolute;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner{
+    width: 100%; 
+    height: auto;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products{
+    margin: 20px;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products .product-header{
+    width: 100%;
+    font-size: 1.1rem;
+    border-bottom: 0.5px solid gray;
+    padding-bottom: 20px;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    padding: 10px 0;
+    height: auto;
+    border-bottom: 0.5px solid gray;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-product-img{
+    aspect-ratio: 1/1;
+    width: 50px;
+    height: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content{
+    margin-left: 20px;
+  }
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content .sp-product-name{
+    &:hover{
+      text-decoration: underline;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+
 
 
   /* Nav Responsive */
@@ -197,9 +357,15 @@ window.addEventListener("resize", () => {
         animation: slide-out 0.3s ease;
         z-index: +1;
     }
+    .announce-nav-container nav .searching-div{
+      width: 90%; 
+      height: auto;
+      margin: 50px auto 0;
+      position: relative;
+    }
   }
   @media (min-width: 700px){
-    .announce-nav-container nav .shop-search .fa-bars, .fa-xmark{
+    .announce-nav-container nav .shop-search .fa-bars, .xmark-vertical-bars{
       display: none;
     }
   }

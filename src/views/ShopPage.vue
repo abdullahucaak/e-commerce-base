@@ -37,6 +37,8 @@ import Product from '../components/Product.vue'
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
 
+
+
 /* sortBy */
 let sortBy = ref('featured');
 

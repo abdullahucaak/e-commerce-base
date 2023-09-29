@@ -228,59 +228,82 @@
   ],
   "cartProducts": [
     {
-      "id": 13,
-      "name": "CHAMOMILE FLOWERS",
-      "price": "23.00",
+      "id": 9,
+      "name": "ASSAM BLACK",
+      "price": "21.00",
       "photo": "assam-black-600x600.webp",
-      "quantity": 2,
-      "totalPrice": "46.00"
+      "quantity": 7,
+      "totalPrice": "147.00"
     },
     {
-      "id": 2,
-      "name": "DARJEELING SECOND FLUSH",
+      "id": 4,
+      "name": "KARADENIZ FLUSH",
       "price": "17.00",
       "photo": "product_600x600.webp",
-      "quantity": 4,
-      "totalPrice": "68.00"
+      "quantity": 1,
+      "totalPrice": "17.00"
+    },
+    {
+      "id": 15,
+      "name": "MORNING MUG",
+      "price": "33.59",
+      "photo": "assam-black-600x600.webp",
+      "quantity": 1,
+      "totalPrice": "33.59"
     }
   ],
   "orders": [
     {
       "id": 1,
-      "userNote": "",
-      "howDidYouHear": "Please Make a Selection",
+      "userNote": "Love me.",
+      "howDidYouHear": "Google",
       "cartProducts": [
         {
-          "id": 13,
-          "name": "CHAMOMILE FLOWERS",
-          "price": "23.00",
+          "id": 9,
+          "name": "ASSAM BLACK",
+          "price": "21.00",
           "photo": "assam-black-600x600.webp",
-          "quantity": 2,
-          "totalPrice": "46.00"
+          "quantity": 7,
+          "totalPrice": "147.00"
         },
         {
-          "id": 2,
-          "name": "DARJEELING SECOND FLUSH",
+          "id": 3,
+          "name": "ADACAY + GINGER",
+          "price": "11.99",
+          "photo": "product_600x600.webp",
+          "quantity": 3,
+          "totalPrice": "35.97"
+        },
+        {
+          "id": 4,
+          "name": "KARADENIZ FLUSH",
           "price": "17.00",
           "photo": "product_600x600.webp",
-          "quantity": 4,
-          "totalPrice": "68.00"
+          "quantity": 1,
+          "totalPrice": "17.00"
         }
       ],
       "shippingInfo": {
         "email": "abdullahucaak@gmail.com",
         "firstName": "Abdullah",
         "lastName": "Uçak",
-        "shippingAddress": "29 ekim mah.",
+        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
         "country": "turkiye",
         "zipCode": "06930",
         "city": "Ankara",
-        "phoneNumber": "545 816 87 97"
+        "phoneNumber": "+90 545 816 87 97"
       },
       "shippingMethod": {
         "name": "USPS Ground",
         "price": "9.44"
-      }
+      },
+      "cartInformation": {
+        "cartNumber": "5566 9999 9999 9999",
+        "nameOnCart": "Yasin Uçak",
+        "expirationDate": "2023-09-27",
+        "securityCode": "563"
+      },
+      "orderUniqueCode": "657242bf-62a0-48c1-90ea-a2ac8567c082"
     }
   ]
 }
