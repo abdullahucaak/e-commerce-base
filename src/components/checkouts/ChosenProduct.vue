@@ -50,9 +50,11 @@
     .cp-count-inner{
         position: absolute;
         color: rgb(245, 245, 245);
-        left: 5.5px;
         top: 1px;
         font-size: 0.8rem;
+        width: 100%;
+        height: 100%;
+        text-align: center;
     }
 .cp-name{
   margin-left: 20px;

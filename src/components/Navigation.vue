@@ -23,7 +23,15 @@
       <div class="shop-search">
         <i @click="searchButtonOn" class="fa fa-light fa-search"></i>
         <RouterLink :to="{name:'cart'}">
-          <i class="fa fa-cart-shopping"></i>
+          <i class="fa fa-cart-shopping">
+            <div
+             v-if="totalProductNumberOnCart > 0"
+             class="cp-count">
+                <div class="cp-count-inner">
+                    {{ totalProductNumberOnCart }}
+                </div>
+            </div>
+          </i>
         </RouterLink>
         <i @click="openBars" v-if="!isBarsOpen" class="fa-solid fa-bars"></i>
         <i @click="hideToBars" v-if="isBarsOpen" class="fa-solid fa-xmark xmark-vertical-bars"></i>
@@ -101,7 +109,8 @@ import { onClickOutside } from '@vueuse/core'
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 
-console.log(this.$route.params)
+productStore.getCartProducts()
+
 
 
 
@@ -159,6 +168,11 @@ window.addEventListener("resize", () => {
     }
 });
 
+/* product number on cart */
+const totalProductNumberOnCart = computed(() => {
+      const sum = productStore.cartProducts.reduce((total, product) => total + product.quantity, 0);
+      return sum;
+    });
 
 
 </script>
@@ -299,6 +313,31 @@ window.addEventListener("resize", () => {
       cursor: pointer;
     }
   }
+
+  /* product number on cart */
+  .fa-cart-shopping{
+    position: relative;
+  }
+  .cp-count{
+        width: 19px;
+        height: 19px;
+        background-color: #1B9C85;
+        border: 1px solid #1B9C85;
+        border-radius: 50%;
+        position: absolute;
+        top: -10px;
+        right: -7px;
+        z-index: 0;
+      }
+      .cp-count-inner{
+        position: absolute;
+        color: white;
+        font-size: 10px;
+        top: 3px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
 
 
 

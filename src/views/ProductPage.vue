@@ -29,7 +29,7 @@
                     <button class="cart-button ">
                             VIEW CART
                             <span>
-                                ( {{ currentProduct.quantity }} )
+                                ( {{ totalProductNumberOnCart }} )
                             </span>
                     </button>
                 </RouterLink>
@@ -120,24 +120,23 @@
     </div>
 </template>
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 /* components */
 import Footer from "../components/Footer.vue";
 import Navigation from '../components/Navigation.vue'
 /* router */
 import { useRoute } from "vue-router";
 const route = useRoute()
-const currentRoute = parseInt(route.params.id)
+const currentRoute = ref(parseInt(route.params.id))
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
-
 
 /* currentProduct */
 const currentProduct = ref(null)
 
 watchEffect(()=>{
-    currentProduct.value = productStore.products.find(item => item.id === currentRoute)
+    currentProduct.value = productStore.products.find(item => item.id === currentRoute.value)
     console.log(currentProduct.value)
 })
 
@@ -174,6 +173,12 @@ const hideToCart = () =>{
     }, 499);                    /* code works half second after */
     isOpenCart.value = false
 }
+
+/* product number on cart */
+const totalProductNumberOnCart = computed(() => {
+      const sum = productStore.cartProducts.reduce((total, product) => total + product.quantity, 0);
+      return sum;
+    });
 
 
 
