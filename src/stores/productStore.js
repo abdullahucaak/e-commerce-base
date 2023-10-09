@@ -13,7 +13,11 @@ export const useProductStore = defineStore('productStore', {
       
     ],
     loading:false,
-    shippingMethodView: false
+    shippingMethodView: false,
+    discountView: false,
+    isSubmitGiftCardCode: false,
+    giftCardCodeInput: "",
+    finalPrice: null
   }),
   getters: { /* computed */
     /* shop-page | how many products are */

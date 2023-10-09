@@ -92,6 +92,8 @@ const completeForm = () => {
   console.log(JSON.stringify(productStore.orders[0], null, 2))
   console.log("selectedShipping: " + selectedShipping.value)
 
+    productStore.discountView = true
+
     /* posting to json function */
     const post = async () =>{
         await axios.post("http://localhost:3000/orders", productStore.orders[0])

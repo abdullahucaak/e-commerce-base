@@ -167,6 +167,7 @@ console.log("productStore.cartProducts BEFORE submit:" + JSON.stringify(productS
 console.log("productStore.orders BEFORE submit:" + JSON.stringify(productStore.orders, null, 2))
 console.log("productStore.orders.length BEFORE submit:" + productStore.orders.length)
 
+console.log("calculateSubtotal: " + (productStore.calculateSubtotal).toFixed(2))
 </script>
 <style scoped>
 .main{

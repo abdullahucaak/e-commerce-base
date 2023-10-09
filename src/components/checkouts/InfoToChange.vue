@@ -4,17 +4,14 @@
             <div class="itc-grid contact">
                 <div>Contact</div>
                 <div>{{ email }}</div>
-                <div></div>
             </div>
             <div class="itc-grid ship-to">
                 <div>Ship to</div>
                 <div> {{ shippingAddress }} </div>
-                <div></div>
             </div>
             <div v-if="productStore.shippingMethodView" class="itc-grid payment">
                 <div>Method</div>
                 <div>{{ productStore.orders[0].shippingMethod.name }} - {{ productStore.orders[0].shippingMethod.price }}</div>
-                <div></div>
             </div>
         </div>
     </div>
@@ -32,38 +29,48 @@ const shippingAddress = productStore.orders[0].shippingInfo.shippingAddress
 
 <style scoped>
 
-form .information-to-change{
+ .information-to-change{
     border: solid 0.5px black;
     border-radius: 10px;
     margin-bottom: 30px;
 }
-form .itc-inner{
+ .itc-inner{
     margin: 10px;
     padding: 10px;
 }
-form .itc-inner .itc-grid{
+ .itc-inner .itc-grid{
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 10px;
     font-size: 0.8rem;
     border-bottom: solid black 0.5px;
     padding: 20px 0;
 }
-form .itc-inner .itc-grid:last-child{
+ .itc-inner .itc-grid:last-child{
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 5fr;
     font-size: 0.8rem;
     border-bottom: none;
     padding: 20px 0 0 0;
 }
-form .itc-inner .contact{
+ .itc-inner .contact{
     padding: 0 0 20px 0;
 }
 
-form .itc-inner .itc-grid div:nth-child(2){
+ .itc-inner .itc-grid div:nth-child(2){
     font-weight: 500;
     font-size: 0.9rem;
 } 
-form .itc-inner .itc-grid div:last-child{
-    text-decoration: underline;
+@media (max-width: 490px) {
+    .itc-inner .itc-grid{
+        font-size: 0.7rem;
+    }
+    .itc-inner .itc-grid:last-child{
+        font-size: 0.7rem;
+    }
+    .itc-inner .itc-grid div:nth-child(2){
+        font-size: 0.7rem;
+    } 
 }
+
 </style>

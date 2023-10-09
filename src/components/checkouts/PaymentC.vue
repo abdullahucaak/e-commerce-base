@@ -127,6 +127,9 @@ const emit = defineEmits(['previousComponent'])
 const previousComponent = () => {
   emit('previousComponent')
   productStore.shippingMethodView = false
+  productStore.discountView = false
+  productStore.isSubmitGiftCardCode = false
+  productStore.giftCardCodeInput = ""
 }
 
 
@@ -134,7 +137,7 @@ const previousComponent = () => {
 const submitted = ref(false)
 
 /* carNumber */
-const cartNumber = ref('')
+const cartNumber = ref('8565 1827 3874 3837')
 
 const validateCartNumber = computed (()=>{
   const regex = /^(\d{4}\s?){4}$/
@@ -142,7 +145,7 @@ const validateCartNumber = computed (()=>{
 })
 
 /* nameOnCart */
-const nameOnCart = ref('')
+const nameOnCart = ref('Abdullah Uçak')
 const validateNameOnCart = computed (()=>{
   const regex = /^[\p{L}ÇçĞğİıÖöŞşÜü\s]{2,} [\p{L}ÇçĞğİıÖöŞşÜü\s]{2,}$/u
   return regex.test(nameOnCart.value)
@@ -157,7 +160,7 @@ const validateExpirationDate = computed (()=>{
 })
 
 /* securityCode */
-const securityCode = ref('')
+const securityCode = ref('654')
 
 const validateSecurityCode = computed (()=>{
   const regex = /^[0-9]{3}$/
@@ -185,6 +188,16 @@ const payNow = () =>{
     productStore.orders[0].orderUniqueCode = orderUniqueCode.value
   
     console.log(JSON.stringify (productStore.orders[0].cartInformation))
+
+    /* control giftcard code for finalPrice */
+    if(productStore.isSubmitGiftCardCode){
+      productStore.orders[0].finalPrice = (parseFloat(productStore.finalPrice) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2)
+      console.log("if çalıştı")
+    }else{
+      productStore.finalPrice = (productStore.cartProducts.reduce((sum, product) => sum + parseFloat(product.totalPrice), 0) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2);
+      productStore.orders[0].finalPrice = productStore.finalPrice
+      console.log("else çalıştı" + productStore.orders[0].finalPrice )
+    }
   
     /* posting to json function */
     const post = async () =>{

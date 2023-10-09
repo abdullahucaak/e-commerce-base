@@ -193,14 +193,14 @@ onMounted(()=>{
 import { useProductStore } from '../../stores/productStore'
 const productStore = useProductStore()
 
-const email = ref("")
-const firstName = ref("")
-const lastName = ref("")
-const shippingAddress = ref("")
-const zipCode = ref("")
-const city = ref("")
+const email = ref("abdullahucaak@gmail.com")
+const firstName = ref("Abdullah")
+const lastName = ref("Uçak")
+const shippingAddress = ref("29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara")
+const zipCode = ref("06930")
+const city = ref("Ankara")
 const country = ref("")
-const phoneNumber = ref("")
+const phoneNumber = ref("+90 545 816 87 97")
 
 
 

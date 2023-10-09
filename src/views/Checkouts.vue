@@ -2,7 +2,7 @@
     <CheckoutsHeader/>
     <div class="main-checkouts">
 
-      <CartPaymentNav/>
+      <CartPaymentNav :componentIndex="componentIndex"/>
 
         <div class="main-inner">
 
@@ -47,25 +47,67 @@
                     <ChosenProduct :chosenProduct="chosenProduct"/>
                   </div>
 
-                  <div class="gift-card-wrapper">
-                    <div class="fields fields--2">
-                        <label class="field">
-                        <span class="field__label" for="discount-code">Gift card or discount code</span>
-                        <input class="field__input" type="text" id="firstname" value="13E5BC6" />
+                  <div @submit.prevent="applyDiscountCode" class="gift-card-wrapper">
+                    <div 
+                      v-if="productStore.discountView"
+                      class="fields fields--2 discount"
+                      >
+                      <label 
+                      class="field"
+                      :class="{ validDiscountCode: (giftCardCode === productStore.giftCardCodeInput)}" 
+                      >
+                      <span 
+                      class="field__label" 
+                      :class="{ validDiscountCodeTextColor : (giftCardCode === productStore.giftCardCodeInput)}"
+                      for="discount-code"
+                      >
+                      Gift card or discount code
+                    </span>
+                    <input 
+                          v-model="productStore.giftCardCodeInput"
+                          class="field__input" 
+                          :class="{ validDiscountCodeTextColor : (giftCardCode === productStore.giftCardCodeInput)}"
+                          type="text" 
+                          id="firstname" 
+                          placeholder="1A18NM"
+                          :disabled="productStore.isSubmitGiftCardCode === true"
+                          />
                         </label>
-                        <input class="button" type="submit" value="Apply">
+                        <input 
+                        @click="applyDiscountCode"
+                        :class="{ validDiscountCodeButton: (giftCardCode === productStore.giftCardCodeInput)}" 
+                        class="button" 
+                        type="submit" 
+                        value="Apply"
+                        >
                     </div>
+                    <div 
+                      v-if="!isGiftCardCodeTrue && productStore.discountView"
+                      class="notValidDiscountCode"
+                    >
+                      Enter a valid discount code.
+                    </div>
+                    <div
+                      v-if="isGiftCardCodeTrue && productStore.isSubmitGiftCardCode"
+                      class="discount-code-applied"
+                    > Discount code applied. </div>
                   </div>
 
                   <div class="total-price-wrapper">
                     <div class="tp-item">Subtotal</div>
-                    <div  class="tp-item tp-right">$ {{ totalCartPrice }}</div>
+                    <div class="tp-item tp-right">
+                      <span
+                      v-if="giftCardCode === productStore.giftCardCodeInput" 
+                      class="old-price"
+                      >${{totalCartPrice}}</span>
+                      $ {{ discountedTotalPrice.toFixed(2) }}
+                    </div>
                     <div class="tp-item">Shipping</div>
                     <div v-if="!productStore.shippingMethodView" class="tp-item tp-right"><small>Enter shipping method</small></div>
                     <div v-if="productStore.shippingMethodView" class="tp-item tp-right"><small>${{ productStore.orders[0].shippingMethod.price }}</small></div>
                     <div class="tp-item">Total</div>
-                    <div v-if="!productStore.shippingMethodView" class="tp-item tp-right">$ {{ totalCartPrice  }}</div>
-                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right">$ {{ parseFloat(totalCartPrice) + parseFloat(productStore.orders[0].shippingMethod.price) }}</div>
+                    <div v-if="!productStore.shippingMethodView" class="tp-item tp-right">$ {{ discountedTotalPrice.toFixed(2)  }}</div>
+                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right">$ {{ (parseFloat(discountedTotalPrice.toFixed(2)) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2) }}</div>
                   </div>
                 </div>
             </div>
@@ -83,6 +125,8 @@ import PaymentC from '../components/checkouts/PaymentC.vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* Imports */
 import { ref, computed } from 'vue';
+/* import axios */
+import axios from 'axios';
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
@@ -109,9 +153,49 @@ const totalCartPrice = computed(() => {
 });
 
 
+/* Gift Card */
+
+const giftCardCode = ref("1A18NM")
+
+const isGiftCardCodeTrue = ref(true)
+
+// Calculate discount
+const discount = computed(() => {
+  return giftCardCode.value === productStore.giftCardCodeInput ? totalCartPrice.value * 0.1 : 0;
+});
+
+// Calculate discounted price
+const discountedTotalPrice = computed(() => {
+  return totalCartPrice.value - discount.value;
+});
 
 
+const applyDiscountCode = () =>{
+  productStore.isSubmitGiftCardCode = true
+  
+  if(productStore.giftCardCodeInput === giftCardCode.value){
 
+    isGiftCardCodeTrue.value = true
+    
+    productStore.finalPrice = discountedTotalPrice.value
+    console.log("with discount: " + productStore.finalPrice)
+
+    productStore.orders[0].finalPrice = productStore.finalPrice
+
+  }else{
+
+    isGiftCardCodeTrue.value = false
+    
+    productStore.finalPrice = totalCartPrice.value
+    console.log("withouts discount: " + productStore.finalPrice)
+    console.log(productStore.giftCardCodeInput)
+    
+    productStore.orders[0].finalPrice = productStore.finalPrice
+
+   }
+}
+
+console.log("calculateSubtotal: " + (productStore.calculateSubtotal).toFixed(2))
 </script>
 <style scoped>
 
@@ -152,70 +236,6 @@ h1, h2{
   padding: 40px 2rem 0;
   margin: 0 auto;
 }
-.form {
-  display: grid;
-  grid-gap: 1rem;
-}
-
-.field {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: .5rem;
-  border-radius: .25rem;
-}
-
-.field__label {
-  font-size: 0.6rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem
-}
-
-.field__input {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  outline: 0;
-  font-weight: bold;
-  font-size: 1rem;
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
-}
-.field:focus-within {
-  border-color: #000;
-}
-
-.fields {
-  display: grid;
-  grid-gap: 1rem;
-}
-.fields--2 {
-  grid-template-columns: 1fr 1fr;
-}
-.fields--3 {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.button {
-  background-color: #000;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: block;
-  color: #fff;
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.25rem;
-  border: 0;
-  cursor: pointer;
-  outline: 0;
-}
-.button:focus-visible {
-  background-color: #333;
-}
 
 .form {
   display: grid;
@@ -251,9 +271,25 @@ h1, h2{
   appearance: none;
   background-color: transparent;
 }
-.field:focus-within {
-  border-color: #000;
+.validDiscountCode{
+  border: 2px solid #1B9C85;
 }
+.validDiscountCodeTextColor{
+  color: #1B9C85;
+  font-weight: bold;
+}
+.notValidDiscountCode{
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: red;
+}
+.discount-code-applied{
+  margin-top: 10px;
+  font-weight: 500;
+  color: #1B9C85;
+}
+
 
 .fields {
   display: grid;
@@ -279,6 +315,23 @@ h1, h2{
   border: 0;
   cursor: pointer;
   outline: 0;
+}
+.validDiscountCodeButton{
+  background-color: white;
+  color: #1B9C85;
+  border: 1px solid #1B9C85;
+  border-left: 25px solid #1B9C85;
+  transition: 0.4s;
+  &:hover{
+    font-size: 0.9rem;
+    border-left: 35px solid #1B9C85;
+    transition: 0.2s;
+  }
+  &:focus{
+    color: rgb(86, 86, 251);
+    border: 1px solid rgb(86, 86, 251);
+    border-left: 35px solid rgb(86, 86, 251);
+  }
 }
 .button:focus-visible {
   background-color: #333;
@@ -326,6 +379,7 @@ h1, h2{
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 20px;
+  border-top: 0.5px solid gray;
 }
 .main-checkouts .main-inner .inner-right .inner-right-wrapper .total-price-wrapper .tp-item{
   margin-top: 10px;
@@ -337,6 +391,12 @@ h1, h2{
 
 .main-checkouts .main-inner .inner-right .inner-right-wrapper .total-price-wrapper .tp-right{
   justify-self: end;
+}
+.main-checkouts .main-inner .inner-right .inner-right-wrapper .total-price-wrapper .tp-right .old-price{
+  color: rgb(230, 69, 69);
+  text-decoration:line-through;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 @media (min-width: 1000px) and (max-width: 1205px){
@@ -361,7 +421,7 @@ h1, h2{
 
   .main-checkouts .main-inner .inner-right .inner-right-wrapper{
     width: 90%;
-    margin: 0 auto 30px;
+    margin: 0 auto 20px;
     padding: 10px 10px 30px 10px;
     border-bottom: solid 0.5px #333;
   }
