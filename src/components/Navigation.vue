@@ -1,7 +1,7 @@
 <template>
   <div class="announce-nav-container">
     <div class="announce-bar">
-      <span> Free Shipping Until 5/14! No code Needed</span>
+      <span> Until October 20th, enjoy a 10% discount on every product with the code '1A18NM'! </span>
     </div>
     <nav>
       <div class="logo">

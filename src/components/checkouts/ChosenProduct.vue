@@ -12,7 +12,7 @@
         {{ chosenProduct.name }}
     </div>
     <div class="cp price">
-        {{ chosenProduct.totalPrice }}
+        ${{ chosenProduct.totalPrice }}
     </div>
 </template>
 <script setup>

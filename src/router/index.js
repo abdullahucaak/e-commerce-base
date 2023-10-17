@@ -4,6 +4,7 @@ import ShopPage from '../views/ShopPage.vue'
 import ProductPage from '../views/ProductPage.vue'
 import CartPage from '../views/CartPage.vue'
 import Checkouts from '../views/Checkouts.vue'
+import FinalPage from '../views/FinalPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/checkouts',
       name: 'checkouts',
       component: Checkouts
+    },
+    {
+      path: '/final-page',
+      name: 'final-page',
+      component: FinalPage
     }
   ],
   /* To open the new page from the top. */

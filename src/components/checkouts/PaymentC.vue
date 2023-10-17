@@ -122,6 +122,8 @@ import { useProductStore } from '../../stores/productStore'
 const productStore = useProductStore()
 /* import axios */
 import axios from 'axios';
+/* import router */
+import router from '../../router'
 
 const emit = defineEmits(['previousComponent'])
 const previousComponent = () => {
@@ -214,6 +216,8 @@ const payNow = () =>{
       await axios.delete(`http://localhost:3000/orders/1`)
       .then(()=>{
           post()
+          /* routing */
+          router.push({ name: 'final-page' })
       })
       .catch((error) => {
           console.error(error);

@@ -359,19 +359,6 @@ h1, h2{
   margin-top: 15px;
   padding: 0 1rem;
 }
-.main-checkouts .main-inner .inner-right .inner-right-wrapper .chosen-product .cp-img{
-      aspect-ratio: 1/1;
-      width: 100%;
-      height: auto;
-      background-image: url(../assets/products/assam-black-600x600.webp);
-      background-size: contain;
-      background-repeat: no-repeat;
-      border-radius: 10px;
-}
-.main-checkouts .main-inner .inner-right .inner-right-wrapper .chosen-product .cp-name{
-  margin-left: 20px;
-  text-transform: uppercase;
-}
 .main-checkouts .main-inner .inner-right .inner-right-wrapper .gift-card-wrapper{
   margin-top: 22px;
 }

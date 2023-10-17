@@ -89,7 +89,7 @@ const sortedProducts = computed(() => {
    }
    .shop-container .sort-by-container .sort-by select{
       margin-left: 10px;
-      font-size: 1.1rem;
+      font-size: 1rem;
    }
 
    .shop-container .s-products-container{

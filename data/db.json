@@ -226,69 +226,7 @@
       "totalPrice": null
     }
   ],
-  "cartProducts": [
-    {
-      "id": 2,
-      "name": "DARJEELING SECOND FLUSH",
-      "price": "17.00",
-      "photo": "product_600x600.webp",
-      "quantity": 2,
-      "totalPrice": "34.00"
-    },
-    {
-      "id": 13,
-      "name": "CHAMOMILE FLOWERS",
-      "price": "23.00",
-      "photo": "assam-black-600x600.webp",
-      "quantity": 1,
-      "totalPrice": "23.00"
-    }
-  ],
-  "orders": [
-    {
-      "id": 1,
-      "userNote": "",
-      "howDidYouHear": "Please Make a Selection",
-      "cartProducts": [
-        {
-          "id": 2,
-          "name": "DARJEELING SECOND FLUSH",
-          "price": "17.00",
-          "photo": "product_600x600.webp",
-          "quantity": 2,
-          "totalPrice": "34.00"
-        },
-        {
-          "id": 13,
-          "name": "CHAMOMILE FLOWERS",
-          "price": "23.00",
-          "photo": "assam-black-600x600.webp",
-          "quantity": 1,
-          "totalPrice": "23.00"
-        }
-      ],
-      "shippingInfo": {
-        "email": "abdullahucaak@gmail.com",
-        "firstName": "Abdullah",
-        "lastName": "Uçak",
-        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
-        "country": "turkiye",
-        "zipCode": "06930",
-        "city": "Ankara",
-        "phoneNumber": "+90 545 816 87 97"
-      },
-      "shippingMethod": {
-        "name": "USPS First Class Package",
-        "price": "4.44"
-      },
-      "finalPrice": "55.74",
-      "cartInformation": {
-        "cartNumber": "8565 1827 3874 3837",
-        "nameOnCart": "Abdullah Uçak",
-        "expirationDate": "2023-10-06",
-        "securityCode": "654"
-      },
-      "orderUniqueCode": "ac5a0d6f-2bc4-4aba-b54c-81a61c07646c"
-    }
-  ]
+  "cartProducts": [],
+  "orders": [],
+  "completedOrders": []
 }
