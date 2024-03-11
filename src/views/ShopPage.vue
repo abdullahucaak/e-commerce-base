@@ -98,7 +98,7 @@ const sortedProducts = computed(() => {
       grid-column-gap: 30px;
       grid-row-gap: 10px;
       align-items: start;
-      width: 1026px;
+      width: 1050px;
       height: auto;
       margin: 50px auto;
       overflow: hidden;
@@ -135,7 +135,7 @@ const sortedProducts = computed(() => {
    }
 
    /* responsive | stop shrinking*/
-   @media (max-width: 1030px){
+   @media (max-width: 1100px){
       .shop-container .s-products-container{
          display: grid;
          grid-template-columns: 1fr 1fr 1fr;

@@ -70,7 +70,7 @@
                           type="text" 
                           id="firstname" 
                           placeholder="1A18NM"
-                          :disabled="productStore.isSubmitGiftCardCode === true"
+                          :disabled="productStore.isSubmitGiftCardCode === true && giftCardCode === productStore.giftCardCodeInput"
                           />
                         </label>
                         <input 
@@ -103,7 +103,7 @@
                       $ {{ discountedTotalPrice.toFixed(2) }}
                     </div>
                     <div class="tp-item">Shipping</div>
-                    <div v-if="!productStore.shippingMethodView" class="tp-item tp-right"><small>Enter shipping method</small></div>
+                    <div v-if="!productStore.shippingMethodView" class="tp-item tp-right small-shipping"><small>Enter shipping method</small></div>
                     <div v-if="productStore.shippingMethodView" class="tp-item tp-right"><small>${{ productStore.orders[0].shippingMethod.price }}</small></div>
                     <div class="tp-item">Total</div>
                     <div v-if="!productStore.shippingMethodView" class="tp-item tp-right">$ {{ discountedTotalPrice.toFixed(2)  }}</div>
@@ -125,8 +125,6 @@ import PaymentC from '../components/checkouts/PaymentC.vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* Imports */
 import { ref, computed } from 'vue';
-/* import axios */
-import axios from 'axios';
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
@@ -177,7 +175,7 @@ const applyDiscountCode = () =>{
 
     isGiftCardCodeTrue.value = true
     
-    productStore.finalPrice = discountedTotalPrice.value
+    productStore.finalPrice = (discountedTotalPrice.value).toFixed(2)
     console.log("with discount: " + productStore.finalPrice)
 
     productStore.orders[0].finalPrice = productStore.finalPrice
@@ -395,6 +393,7 @@ h1, h2{
 } 
 }
 @media (max-width: 1000px){
+
   .main-checkouts .main-inner{
     display: flex;
     flex-direction: column;
@@ -407,7 +406,7 @@ h1, h2{
   }
 
   .main-checkouts .main-inner .inner-right .inner-right-wrapper{
-    width: 90%;
+    width: 575px;
     margin: 0 auto 20px;
     padding: 10px 10px 30px 10px;
     border-bottom: solid 0.5px #333;
@@ -425,6 +424,20 @@ h1, h2{
     padding: 0 10px;
     font-size: 1rem;
   } 
+}
+
+@media (max-width: 679px){
+  .main-checkouts .main-inner .inner-right .inner-right-wrapper{
+    width: 90%;
+    margin: 0 auto 20px;
+    padding: 10px 10px 30px 10px;
+    border-bottom: solid 0.5px #333;
+  }
+}
+@media (max-width: 399px){
+  .small-shipping{
+    font-size: 14px;
+  }
 }
 
 </style>

@@ -12,6 +12,9 @@ export const useProductStore = defineStore('productStore', {
     orders:[
       
     ],
+    completedOrders:[
+
+    ],
     loading:false,
     shippingMethodView: false,
     discountView: false,
@@ -85,44 +88,52 @@ export const useProductStore = defineStore('productStore', {
         console.error(error);
       }
     },
+    /* get orders with JSON */
+    async getCompletedOrders() {
+      this.loading = true;
+      try {
+        const response = await axios.get('http://localhost:3000/completedOrders');
+    
+        if (response.status !== 200) {
+          throw new Error('Failed to fetch completedOrders.');
+        }
+    
+        this.completedOrders = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error(error);
+      }
+    },
     /* add product to cart */
     async addCartProduct(cartProduct){
       const existingProduct = this.cartProducts.find( p => p.id === cartProduct.id)
       if(existingProduct){
          existingProduct.quantity += cartProduct.quantity
          existingProduct.totalPrice = Number(existingProduct.price * existingProduct.quantity).toFixed(2);
-
-         try{
-          const patchRes = await fetch('http://localhost:3000/cartProducts/' + cartProduct.id, {
-            method: 'PATCH',
-            body: JSON.stringify(
-              {
-                quantity: existingProduct.quantity,
-                totalPrice: existingProduct.totalPrice
-              }),
-            headers: { 'Content-Type' : 'application/json' }
-         })
-         if(!patchRes.ok){
-          throw new Error('Failed to add update cart product.')
-         }
-        }catch(error){
-          console.log(error)
+         try {
+          const patchRes = await axios.patch(
+            `http://localhost:3000/cartProducts/${cartProduct.id}`,
+            {
+              quantity: existingProduct.quantity,
+              totalPrice: existingProduct.totalPrice,
+            }
+          );
+          if (!patchRes.ok) {
+            throw new Error('Failed to update cart product.');
+          }
+        } catch (error) {
+          console.log(error);
         }
       }else{
         // Add it as a new item
-        this.cartProducts.push(cartProduct);
-        
-        try{
-          const res = await fetch('http://localhost:3000/cartProducts', {
-            method: 'POST',
-            body: JSON.stringify(cartProduct),
-            headers: { 'Content-Type' : 'application/json'}
-          })
-          if(!res.ok){
-            throw new Error('Failed to add product to cart.')
+        this.cartProducts.push(cartProduct);        
+        try {
+          const res = await axios.post('http://localhost:3000/cartProducts', cartProduct);  
+          if (!res.ok) {
+            throw new Error('Failed to add product to cart.');
           }
-        } catch(error){
-          console.log(error)
+        } catch (error) {
+          console.log(error);
         }
       }
       console.log("existingProduct:" + existingProduct)
@@ -132,12 +143,9 @@ export const useProductStore = defineStore('productStore', {
       this.cartProducts = this.cartProducts.filter( p => {
         return p.id !== id
       })
-
-      const res = await fetch('http://localhost:3000/cartProducts/' + id ,{
-        method: 'DELETE'
-      })
-      if(res.error){
-        console.log(res.error)
+      const res = await axios.delete(`http://localhost:3000/cartProducts/${id}`);
+      if (res.error) {
+        console.log(res.error);
       }
     }
   }

@@ -114,7 +114,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 /* components */
 import InfoToChange from './InfoToChange.vue'
 /* pinia */
@@ -174,14 +174,14 @@ const payNow = () =>{
 
   if(validateSecurityCode.value && validateExpirationDate.value && validateNameOnCart.value && validateCartNumber.value){
     /* cartInformation */
-    const cartInformation = ref({
+    const cartInformation = reactive({
       cartNumber: cartNumber.value,
       nameOnCart: nameOnCart.value,
       expirationDate: expirationDate.value,
       securityCode: securityCode.value
     })
     /* add cartInformation to productStore.orders */
-    productStore.orders[0].cartInformation = cartInformation.value; 
+    productStore.orders[0].cartInformation = cartInformation; 
   
   
     /* unique Order Code */
@@ -189,42 +189,76 @@ const payNow = () =>{
     /* add unique Order Code to productStore.orders */
     productStore.orders[0].orderUniqueCode = orderUniqueCode.value
   
-    console.log(JSON.stringify (productStore.orders[0].cartInformation))
+    console.log(JSON.stringify(productStore.orders[0].cartInformation))
 
     /* control giftcard code for finalPrice */
     if(productStore.isSubmitGiftCardCode){
       productStore.orders[0].finalPrice = (parseFloat(productStore.finalPrice) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2)
-      console.log("if çalıştı")
+      console.log("if worked")
     }else{
       productStore.finalPrice = (productStore.cartProducts.reduce((sum, product) => sum + parseFloat(product.totalPrice), 0) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2);
       productStore.orders[0].finalPrice = productStore.finalPrice
-      console.log("else çalıştı" + productStore.orders[0].finalPrice )
+      console.log("else worked" + productStore.orders[0].finalPrice )
     }
-  
     /* posting to json function */
     const post = async () =>{
-        await axios.post("http://localhost:3000/orders", productStore.orders[0])
+        await axios.post("http://localhost:3000/completedOrders", productStore.orders[0])
         .then((result)=>{
             console.log(result)
         })
         .catch((error) => {
-            console.error(error);
+            console.error(error)
         });
     }
+
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
       await axios.delete(`http://localhost:3000/orders/1`)
-      .then(()=>{
+        .then(() => {
           post()
           /* routing */
           router.push({ name: 'final-page' })
-      })
-      .catch((error) => {
-          console.error(error);
-      });
+        })
+        .catch((error) => {
+          console.error(error)
+        });
     }
-  
     deleteAndPost()
+
+    /* delete cartProduct from json */
+    const deleteCartProducts = async () => {
+      try {
+        // Specify the URL where the JSON file is located
+        const url = 'http://localhost:3000/cartProducts';
+
+        // Send a GET request that fetches all cartProducts
+        const response = await axios.get(url);
+
+        // Send a DELETE request for each cartProduct
+        const deletePromises = response.data.map(async (object) => {
+          try {
+            await axios.delete(`${url}/${object.id}`);
+            console.log(`Object deleted: ${object.id}`);
+          } catch (error) {
+            console.error(`An error occurred while deleting the object: ${object.id}`, error);
+          }
+        });
+
+        // Wait for all DELETE requests
+        await Promise.all(deletePromises);
+
+        console.log('All objects have been deleted.');
+      } catch (error) {
+        console.error('Something went wrong:', error);
+      }
+    };
+    deleteCartProducts()
+
+    /* Shipping and GiftCardCode refreshing after payment */
+    productStore.shippingMethodView = false
+    productStore.discountView = false
+    productStore.isSubmitGiftCardCode = false
+    productStore.giftCardCodeInput = ""
   }
 }
 

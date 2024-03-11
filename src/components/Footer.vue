@@ -161,8 +161,28 @@
         border-bottom: 0.5px solid whitesmoke;
     }
 
+    @media (min-width: 1171px) and (max-width: 2000px){
+        .footer .f-container{
+            width: 85%;
+            margin: 50px auto;
+            display: grid;
+            grid-template-rows: 235px 150px;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-gap: 15px;
+        }
+        .footer .f-container .f-item .f-item-inner .f-content .f-input{
+            width: 60%;
+            padding: 10px 0;
+            margin-right: 5px;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            text-indent: 10px;
+        }
+
+    }
     @media (min-width: 805px) and (max-width: 1170px){
         .footer .f-container{
+            width: 95%;
             grid-template-rows: 235px 200px 150px;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-gap: 15px;

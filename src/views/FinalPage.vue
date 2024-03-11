@@ -14,7 +14,7 @@
                                 <i class="fa-regular fa-circle-check"></i>
                             </div>
                             <div >
-                                Thank you {{ productStore.orders[0].shippingInfo.firstName }}.
+                                Thank you {{ productStore.completedOrders[0].shippingInfo.firstName }}.
                             </div>
                         </div>
                         <div class="c-informing"> 
@@ -25,24 +25,24 @@
                                 Details:
                             </div>
                             <div class="customer-email">
-                                {{ productStore.orders[0].shippingInfo.email }}
+                                {{ productStore.completedOrders[0].shippingInfo.email }}
                             </div>
                             <div class="customer-name">
-                                <span class="capitalize">{{ productStore.orders[0].shippingInfo.firstName }} </span>  <span class="capitalize">{{ productStore.orders[0].shippingInfo.lastName }} </span>
+                                <span class="capitalize">{{ productStore.completedOrders[0].shippingInfo.firstName }} </span>  <span class="capitalize">{{ productStore.completedOrders[0].shippingInfo.lastName }} </span>
                             </div>
                             <div class="customer-shipping-address">
-                                {{ productStore.orders[0].shippingInfo.shippingAddress }}
+                                {{ productStore.completedOrders[0].shippingInfo.shippingAddress }}
                             </div>
                             <div class="customer-city">
-                                <span class="capitalize"> {{ productStore.orders[0].shippingInfo.city }} </span> / <span class="capitalize"> {{ productStore.orders[0].shippingInfo.country }} </span>
+                                <span class="capitalize"> {{ productStore.completedOrders[0].shippingInfo.city }} </span> / <span class="capitalize"> {{ productStore.completedOrders[0].shippingInfo.country }} </span>
                                 
                             </div>
                             <div class="customer-zip-code">
-                                {{ productStore.orders[0].shippingInfo.zipCode }} (Zipcode)
+                                {{ productStore.completedOrders[0].shippingInfo.zipCode }} (Zipcode)
                                 
                             </div>
                             <div class="customer-phone-number">
-                                {{ productStore.orders[0].shippingInfo.phoneNumber }}
+                                {{ productStore.completedOrders[0].shippingInfo.phoneNumber }}
 
                             </div>
                             <div class="customer-order-code">
@@ -50,55 +50,67 @@
                                     Order Number
                                 </h5>
                                 <span class="order-unique-code">
-                                    {{ productStore.orders[0].orderUniqueCode }}
+                                    {{ productStore.completedOrders[0].orderUniqueCode }}
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div 
-                    v-if="productStore.cartProducts.length < 3"
+                    v-if="productStore.completedOrders[0].cartProducts.length < 3"
                     class="card right"
                 >
                     <div class="card-inner">
                         <div class="c-header">
                             Order Summary
                         </div>
-                        <div v-for="chosenProduct in productStore.cartProducts" class="chosen-product">
+                        <div v-for="chosenProduct in productStore.completedOrders[0].cartProducts" class="chosen-product">
                             <ChosenProduct :chosenProduct="chosenProduct"/>
                         </div>
                         <div class="total-price-wrapper">
                             <div class="tp-item">Subtotal</div>
                             <div class="tp-item tp-right">
-                                $ {{ productStore.orders[0].finalPrice - productStore.orders[0].shippingMethod.price }}
+                                <span 
+                                    v-if="productStore.isSubmitGiftCardCode === true" 
+                                    class="old-price"
+                                >
+                                    $ {{ ((parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)) * 10 / 9).toFixed(2) }}
+                                </span>
+                                $ {{ (parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)).toFixed(2) }}
                             </div>
                             <div class="tp-item">Shipping</div>
-                            <div class="tp-item tp-right"><small>${{ productStore.orders[0].shippingMethod.price }}</small></div>
+                            <div class="tp-item tp-right"><small>${{ productStore.completedOrders[0].shippingMethod.price }}</small></div>
                             <div class="tp-item paid">Paid</div>
-                            <div class="tp-item tp-right paid">$ {{ productStore.orders[0].finalPrice }}</div>
+                            <div class="tp-item tp-right paid">$ {{ productStore.completedOrders[0].finalPrice }}</div>
                         </div>
                     </div>    
                 </div>
                 <div 
-                    v-if="productStore.cartProducts.length > 2"
+                    v-if="productStore.completedOrders[0].cartProducts.length > 2"
                     class="card right row-span-4"
                 >
                     <div class="card-inner">
                         <div class="c-header">
                             Order Summary
                         </div>
-                        <div v-for="chosenProduct in productStore.cartProducts" class="chosen-product">
+                        <div v-for="chosenProduct in productStore.completedOrders[0].cartProducts" class="chosen-product">
                             <ChosenProduct :chosenProduct="chosenProduct"/>
                         </div>
                         <div class="total-price-wrapper">
                             <div class="tp-item">Subtotal</div>
                             <div class="tp-item tp-right">
-                                $ {{ productStore.orders[0].finalPrice - productStore.orders[0].shippingMethod.price }}
+                                <span 
+                                    v-if="productStore.isSubmitGiftCardCode === true" 
+                                    class="old-price"
+                                >
+                                    $ {{ ((parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)) * 10 / 9).toFixed(2) }}
+                                </span>
+                                $ {{ (parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)).toFixed(2) }}
                             </div>
                             <div class="tp-item">Shipping</div>
-                            <div class="tp-item tp-right"><small>${{ productStore.orders[0].shippingMethod.price }}</small></div>
+                            <div class="tp-item tp-right"><small>${{ productStore.completedOrders[0].shippingMethod.price }}</small></div>
                             <div class="tp-item paid">Paid</div>
-                            <div class="tp-item tp-right paid">$ {{ productStore.orders[0].finalPrice }}</div>
+                            <div class="tp-item tp-right paid">$ {{ productStore.completedOrders[0].finalPrice }}</div>
                         </div>
                     </div>    
                 </div>
@@ -122,14 +134,15 @@
 
 <script setup>
 /* components */
+import { onBeforeMount } from 'vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
 
-productStore.getOrders()
-productStore.getCartProducts()
-
+onBeforeMount(()=>{
+    productStore.getCompletedOrders()
+})
 </script>
 
 <style scoped>
@@ -243,6 +256,12 @@ productStore.getCartProducts()
 
     .paid{
         color: #1B9C85;
+    }
+    .old-price{
+        color: rgb(230, 69, 69);
+        text-decoration:line-through;
+        font-weight: bold;
+        margin-right: 10px;
     }
 
     div.button{

@@ -93,7 +93,7 @@
     </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 /* components */
 import Footer from '../components/Footer.vue'
 import Navigation from '../components/Navigation.vue'
@@ -117,12 +117,12 @@ const howDidYouHear = ref("Please Make a Selection")
 /* submit cart */
 const postOrders = (e) =>{
     
-    const newOrder = {
+    const newOrder = reactive({
         id: 1,
         userNote: userNote.value,
         howDidYouHear: howDidYouHear.value,
         cartProducts: productStore.cartProducts,
-    }
+    })
     
     productStore.orders.push(newOrder)
     /* posting to json function */

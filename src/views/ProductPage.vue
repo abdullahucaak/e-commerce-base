@@ -137,7 +137,7 @@ const currentProduct = ref(null)
 
 watchEffect(()=>{
     currentProduct.value = productStore.products.find(item => item.id === currentRoute.value)
-    console.log(currentProduct.value)
+    console.log(currentRoute.value)
 })
 
 /* image-hover */

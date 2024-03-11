@@ -408,4 +408,10 @@ const totalProductNumberOnCart = computed(() => {
       display: none;
     }
   }
+  @media (max-width: 700px){
+    .announce-bar{
+      font-size: 10px;
+      font-weight: 600;
+    }
+  }
 </style>

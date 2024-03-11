@@ -178,7 +178,7 @@
 </template>
 <script setup>
 /* imports */
-import { ref, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import axios from 'axios';
 
 /* When the user refreshes the page, fetch the orders array from the database using the getOrders() function. */
@@ -293,7 +293,7 @@ const completeForm = () => {
     emit('complete')
 
     /* shipping Info */
-    const shippingInfo = ref({
+    const shippingInfo = reactive({
       email: email.value,
       firstName: firstName.value,
       lastName: lastName.value,
@@ -306,7 +306,7 @@ const completeForm = () => {
     console.log('after completeForm shippingInfo:', JSON.stringify(shippingInfo.value, null, 2));
     
     /*add shippintInfo to productStore.orders */
-    productStore.orders[0].shippingInfo = shippingInfo.value; 
+    productStore.orders[0].shippingInfo = shippingInfo; 
     console.log('after completeForm productStore.orders:', JSON.stringify(productStore.orders, null, 2));
 
     /* posting to json function */
@@ -468,6 +468,25 @@ h1, h2{
     border-right: 1px solid;
     transform: rotate(225deg);
     transition: transform 0.3s;
+}
+@media (max-width: 399px){
+  .return-to-cart{
+    font-size: 14px;
+  }
+  .button {
+    background-color: #000;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 600;
+    display: block;
+    color: #fff;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+  }
 }
 
 </style>
