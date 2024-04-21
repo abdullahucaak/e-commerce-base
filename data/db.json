@@ -226,46 +226,20 @@
       "totalPrice": null
     }
   ],
-  "cartProducts": [
-    {
-      "id": 2,
-      "name": "DARJEELING SECOND FLUSH",
-      "price": "17.00",
-      "photo": "product_600x600.webp",
-      "quantity": 1,
-      "totalPrice": "17.00"
-    },
-    {
-      "id": 13,
-      "name": "CHAMOMILE FLOWERS",
-      "price": "23.00",
-      "photo": "assam-black-600x600.webp",
-      "quantity": 2,
-      "totalPrice": "46.00"
-    },
-    {
-      "id": 15,
-      "name": "MORNING MUG",
-      "price": "33.59",
-      "photo": "assam-black-600x600.webp",
-      "quantity": 2,
-      "totalPrice": "67.18"
-    }
-  ],
+  "cartProducts": [],
   "orders": [],
   "completedOrders": [
     {
-      "id": 1,
       "userNote": "",
       "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
         {
-          "id": 3,
-          "name": "ADACAY + GINGER",
-          "price": "11.99",
+          "id": 2,
+          "name": "DARJEELING SECOND FLUSH",
+          "price": "17.00",
           "photo": "product_600x600.webp",
           "quantity": 1,
-          "totalPrice": "11.99"
+          "totalPrice": "17.00"
         }
       ],
       "shippingInfo": {
@@ -279,17 +253,55 @@
         "phoneNumber": "+90 545 816 87 97"
       },
       "shippingMethod": {
-        "name": "USPS First Class Package",
-        "price": "4.44"
+        "name": "USPS Ground",
+        "price": "9.44"
       },
-      "finalPrice": "15.23",
       "cartInformation": {
         "cartNumber": "8565 1827 3874 3837",
         "nameOnCart": "Abdullah Uçak",
-        "expirationDate": "2024-03-28",
+        "expirationDate": "2024-04-02",
         "securityCode": "654"
       },
-      "orderUniqueCode": "21d8225d-79ee-484f-b06f-3f1a5451733b"
+      "orderUniqueCode": "fd28cf61-1d61-491d-81fc-88cc503f3497",
+      "finalPrice": "26.44",
+      "id": 1
+    },
+    {
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 1,
+          "totalPrice": "33.00"
+        }
+      ],
+      "shippingInfo": {
+        "email": "abdullahucaak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Ankara",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS First Class Package",
+        "price": "4.44"
+      },
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Abdullah Uçak",
+        "expirationDate": "2024-04-05",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "34fe969b-f7b1-458f-8deb-5fc271f3895e",
+      "finalPrice": "37.44",
+      "id": 2
     }
   ]
 }

@@ -10,10 +10,10 @@
                 <div class="card left">
                     <div class="card-inner">
                         <div class="c-header">
-                            <div class="icon">
+                            <div class="icon paid">
                                 <i class="fa-regular fa-circle-check"></i>
                             </div>
-                            <div >
+                            <div class="paid" >
                                 Thank you {{ productStore.completedOrders[0].shippingInfo.firstName }}.
                             </div>
                         </div>
@@ -133,6 +133,7 @@
 </template>
 
 <script setup>
+console.log("FINAL PAGE ONLINE")
 /* components */
 import { onBeforeMount } from 'vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
@@ -182,11 +183,12 @@ onBeforeMount(()=>{
 
     .left .card-inner .c-header{
         display: grid;
-        grid-template-columns: 1fr 9fr;
+        grid-template-columns: max-content 9fr;
         font-size: 30px;
     }
     .left .card-inner .c-header .icon{
         display: inline-block;
+        margin-right: 10px;
     }
     .left .c-informing{
         margin-top: 20px;

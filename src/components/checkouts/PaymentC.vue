@@ -170,6 +170,7 @@ const validateSecurityCode = computed (()=>{
 })
 
 const payNow = () =>{
+
   submitted.value = true
 
   if(validateSecurityCode.value && validateExpirationDate.value && validateNameOnCart.value && validateCartNumber.value){
@@ -201,7 +202,7 @@ const payNow = () =>{
       console.log("else worked" + productStore.orders[0].finalPrice )
     }
     /* posting to json function */
-    const post = async () =>{
+/*     const post = async () =>{
         await axios.post("http://localhost:3000/completedOrders", productStore.orders[0])
         .then((result)=>{
             console.log(result)
@@ -209,6 +210,19 @@ const payNow = () =>{
         .catch((error) => {
             console.error(error)
         });
+    } */
+    // Axios kullanarak objeyi "completedOrders" dizisine eklemek
+    const post = async () => {
+      await axios.post('http://localhost:3000/completedOrders', productStore.orders[0]) // Tek bir objeyi post ediyoruz
+        .then(response => {
+            // Axios başarıyla tamamlandığında, "completedOrders" dizisine ekleyin
+            productStore.completedOrders.push(response.data); // Yanıtı (response) doğrudan ekleyebilirsiniz, ya da uygun bir şekilde düzenleyebilirsiniz.
+            console.log('Order completed and added to completedOrders array:', response.data);
+        })
+        .catch(error => {
+            // Axios isteği başarısız olduğunda
+            console.error('Error completing order:', error.message);
+      });
     }
 
     /* delete from json and post to json function */

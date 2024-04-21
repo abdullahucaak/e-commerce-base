@@ -110,15 +110,16 @@ import axios from 'axios';
 productStore.getCartProducts()
 /* getOrders with JSON */
 productStore.getOrders()
+/* getOrders with JSON */
+productStore.getCompletedOrders()
 
 const userNote = ref("")
 const howDidYouHear = ref("Please Make a Selection")
 
 /* submit cart */
 const postOrders = (e) =>{
-    
+
     const newOrder = reactive({
-        id: 1,
         userNote: userNote.value,
         howDidYouHear: howDidYouHear.value,
         cartProducts: productStore.cartProducts,
@@ -425,6 +426,12 @@ console.log("calculateSubtotal: " + (productStore.calculateSubtotal).toFixed(2))
     }
     .main .main-inner form .cart-footer .cart-footer-inner .f-right .f-right-inner .cart-buttons-container .submit-control input{
         padding: 10px 100px;
+    }
+    .main .main-inner form .cart-footer .cart-footer-inner .f-right .f-right-inner .cart-buttons-container .submit-control input:hover{
+        padding: 10px 100px;
+        background-color: white;
+        color: #1b9c85;
+        border: #1b9c85 0.5px solid;
     }
     .main .main-inner form .cart-footer .cart-footer-inner .f-right .f-right-inner .cart-buttons-container .additional-checkout-buttons ul li.icons{
         display: inline-block;
