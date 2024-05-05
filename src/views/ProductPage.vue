@@ -42,7 +42,7 @@
         </div>
     </div>
     <Navigation/>
-    <div class="main">
+    <div v-if="currentProduct" class="main">
         <div class="main-inner">
             <div class="main-inner-left">
                 <div>
@@ -118,6 +118,9 @@
         </div>
         <Footer/>
     </div>
+    <div v-else>
+        Please Waiting
+    </div>
 </template>
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
@@ -126,18 +129,25 @@ import Footer from "../components/Footer.vue";
 import Navigation from '../components/Navigation.vue'
 /* router */
 import { useRoute } from "vue-router";
-const route = useRoute()
-const currentRoute = ref(parseInt(route.params.id))
+const route = ref(useRoute())
+const currentRoute = ref(null)
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
 
+productStore.getProducts()
 /* currentProduct */
 const currentProduct = ref(null)
 
 watchEffect(()=>{
-    currentProduct.value = productStore.products.find(item => item.id === currentRoute.value)
-    console.log(currentRoute.value)
+    if(route.value){
+        currentRoute.value = parseInt(route.value.params.id)
+        console.log("currentRoute.value: " + currentRoute.value)
+    }
+    if(currentRoute.value){
+        currentProduct.value = productStore.products.find(item => item.id === currentRoute.value)
+        console.log("currentProduct.value: " + JSON.stringify(currentProduct.value))
+    }
 })
 
 /* image-hover */

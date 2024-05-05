@@ -118,8 +118,19 @@ const howDidYouHear = ref("Please Make a Selection")
 
 /* submit cart */
 const postOrders = (e) =>{
+    let newId;
 
+    if (productStore.completedOrders.length === 0) {
+        // completedOrders dizisi boşsa, newId'e 1 değerini ata
+        newId = 1;
+    } else {
+        // completedOrders dizisi doluysa, dizideki elemanların en büyük id değerini bulup bir sonraki id değerini oluştur.
+        newId = Math.max(...productStore.completedOrders.map(item => item.id)) + 1;
+    }
+    productStore.newId = newId
+    console.log("productStore'daki new Id: " + productStore.newId)
     const newOrder = reactive({
+        id:newId,
         userNote: userNote.value,
         howDidYouHear: howDidYouHear.value,
         cartProducts: productStore.cartProducts,
@@ -138,7 +149,7 @@ const postOrders = (e) =>{
     }
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
-        await axios.delete(`http://localhost:3000/orders/1`)
+        await axios.delete(`http://localhost:3000/orders/${newId}`)
         .then(()=>{
             post()
         })

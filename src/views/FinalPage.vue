@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="cards">
-            <div class="cards-inner">
+            <div v-if="productStore.completedOrders[currentOrderIndex]" class="cards-inner">
                 <div class="card left">
                     <div class="card-inner">
                         <div class="c-header">
@@ -14,7 +14,7 @@
                                 <i class="fa-regular fa-circle-check"></i>
                             </div>
                             <div class="paid" >
-                                Thank you {{ productStore.completedOrders[0].shippingInfo.firstName }}.
+                                Thank you {{productStore.completedOrders[currentOrderIndex]?.shippingInfo?.firstName || 'N/A' }}.
                             </div>
                         </div>
                         <div class="c-informing"> 
@@ -25,24 +25,24 @@
                                 Details:
                             </div>
                             <div class="customer-email">
-                                {{ productStore.completedOrders[0].shippingInfo.email }}
+                                {{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.email || 'N/A' }}
                             </div>
                             <div class="customer-name">
-                                <span class="capitalize">{{ productStore.completedOrders[0].shippingInfo.firstName }} </span>  <span class="capitalize">{{ productStore.completedOrders[0].shippingInfo.lastName }} </span>
+                                <span class="capitalize">{{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.firstName || 'N/A' }} </span>  <span class="capitalize">{{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.lastName || 'N/A' }} </span>
                             </div>
                             <div class="customer-shipping-address">
-                                {{ productStore.completedOrders[0].shippingInfo.shippingAddress }}
+                                {{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.shippingAddress || 'N/A' }}
                             </div>
                             <div class="customer-city">
-                                <span class="capitalize"> {{ productStore.completedOrders[0].shippingInfo.city }} </span> / <span class="capitalize"> {{ productStore.completedOrders[0].shippingInfo.country }} </span>
+                                <span class="capitalize"> {{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.city || 'N/A'  }} </span> / <span class="capitalize"> {{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.country || 'N/A' }} </span>
                                 
                             </div>
                             <div class="customer-zip-code">
-                                {{ productStore.completedOrders[0].shippingInfo.zipCode }} (Zipcode)
+                                {{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.zipCode || 'N/A'  }} (Zipcode)
                                 
                             </div>
                             <div class="customer-phone-number">
-                                {{ productStore.completedOrders[0].shippingInfo.phoneNumber }}
+                                {{ productStore.completedOrders[currentOrderIndex]?.shippingInfo?.phoneNumber || 'N/A'  }}
 
                             </div>
                             <div class="customer-order-code">
@@ -50,67 +50,67 @@
                                     Order Number
                                 </h5>
                                 <span class="order-unique-code">
-                                    {{ productStore.completedOrders[0].orderUniqueCode }}
+                                    {{ productStore.completedOrders[currentOrderIndex]?.orderUniqueCode || 'N/A'  }}
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div 
-                    v-if="productStore.completedOrders[0].cartProducts.length < 3"
+                    v-if="productStore.completedOrders[currentOrderIndex].cartProducts.length <= 2"
                     class="card right"
                 >
                     <div class="card-inner">
                         <div class="c-header">
                             Order Summary
                         </div>
-                        <div v-for="chosenProduct in productStore.completedOrders[0].cartProducts" class="chosen-product">
+                        <div v-for="chosenProduct in productStore.completedOrders[currentOrderIndex]?.cartProducts || 'N/A' " class="chosen-product">
                             <ChosenProduct :chosenProduct="chosenProduct"/>
                         </div>
                         <div class="total-price-wrapper">
                             <div class="tp-item">Subtotal</div>
                             <div class="tp-item tp-right">
                                 <span 
-                                    v-if="productStore.isSubmitGiftCardCode === true" 
+                                    v-if="productStore.completedOrders[currentOrderIndex].priceBeforeDiscount" 
                                     class="old-price"
                                 >
-                                    $ {{ ((parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)) * 10 / 9).toFixed(2) }}
+                                    $ {{ productStore.completedOrders[currentOrderIndex].priceBeforeDiscount }}
                                 </span>
-                                $ {{ (parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)).toFixed(2) }}
+                                $ {{ (parseFloat(productStore.completedOrders[currentOrderIndex]?.finalPrice || 'N/A' ) - parseFloat(productStore.completedOrders[currentOrderIndex]?.shippingMethod?.price || 'N/A' )).toFixed(2) }}
                             </div>
                             <div class="tp-item">Shipping</div>
-                            <div class="tp-item tp-right"><small>${{ productStore.completedOrders[0].shippingMethod.price }}</small></div>
+                            <div class="tp-item tp-right"><small>${{ productStore.completedOrders[currentOrderIndex]?.shippingMethod?.price || 'N/A'  }}</small></div>
                             <div class="tp-item paid">Paid</div>
-                            <div class="tp-item tp-right paid">$ {{ productStore.completedOrders[0].finalPrice }}</div>
+                            <div class="tp-item tp-right paid">$ {{ productStore.completedOrders[currentOrderIndex]?.finalPrice || 'N/A'  }}</div>
                         </div>
                     </div>    
                 </div>
                 <div 
-                    v-if="productStore.completedOrders[0].cartProducts.length > 2"
+                    v-else
                     class="card right row-span-4"
                 >
                     <div class="card-inner">
                         <div class="c-header">
                             Order Summary
                         </div>
-                        <div v-for="chosenProduct in productStore.completedOrders[0].cartProducts" class="chosen-product">
+                        <div v-for="chosenProduct in productStore.completedOrders[currentOrderIndex]?.cartProducts || 'N/A' " class="chosen-product">
                             <ChosenProduct :chosenProduct="chosenProduct"/>
                         </div>
                         <div class="total-price-wrapper">
                             <div class="tp-item">Subtotal</div>
                             <div class="tp-item tp-right">
                                 <span 
-                                    v-if="productStore.isSubmitGiftCardCode === true" 
+                                    v-if="productStore.completedOrders[currentOrderIndex].priceBeforeDiscount" 
                                     class="old-price"
                                 >
-                                    $ {{ ((parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)) * 10 / 9).toFixed(2) }}
+                                    $ {{ productStore.completedOrders[currentOrderIndex].priceBeforeDiscount }}
                                 </span>
-                                $ {{ (parseFloat(productStore.completedOrders[0].finalPrice) - parseFloat(productStore.completedOrders[0].shippingMethod.price)).toFixed(2) }}
+                                $ {{ (parseFloat(productStore.completedOrders[currentOrderIndex]?.finalPrice || 'N/A' ) - parseFloat(productStore.completedOrders[currentOrderIndex]?.shippingMethod?.price || 'N/A' )).toFixed(2) }}
                             </div>
                             <div class="tp-item">Shipping</div>
-                            <div class="tp-item tp-right"><small>${{ productStore.completedOrders[0].shippingMethod.price }}</small></div>
+                            <div class="tp-item tp-right"><small>${{ productStore.completedOrders[currentOrderIndex]?.shippingMethod?.price || 'N/A'  }}</small></div>
                             <div class="tp-item paid">Paid</div>
-                            <div class="tp-item tp-right paid">$ {{ productStore.completedOrders[0].finalPrice }}</div>
+                            <div class="tp-item tp-right paid">$ {{ productStore.completedOrders[currentOrderIndex]?.finalPrice || 'N/A'  }}</div>
                         </div>
                     </div>    
                 </div>
@@ -128,22 +128,46 @@
                     Regarding your order number, you can inquire about your order by calling our customer service number at <bold>'+90 555 395 77 57'</bold>.
                 </div>
             </div>
+            <div v-else>
+                Please Waiting
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 console.log("FINAL PAGE ONLINE")
+import { ref, watchEffect } from 'vue';
 /* components */
-import { onBeforeMount } from 'vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
+
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
 
-onBeforeMount(()=>{
-    productStore.getCompletedOrders()
+/* router */
+import { useRoute } from "vue-router";
+const route = useRoute()
+/* console.log("route.params: " + JSON.stringify(route.params))
+console.log("route.params.id: " + JSON.stringify(parseInt(route.params.orderId))) */
+/* --------------------------------------------------------------------------- */
+
+const currentRoute = ref(parseInt(route.params.orderId))
+/* console.log("currentRoute: " + currentRoute.value) */
+
+productStore.getCompletedOrders()
+
+const currentOrderIndex = ref(null)
+watchEffect(()=>{
+    const currentOrder = ref(null)
+    if(productStore.completedOrders){
+        currentOrder.value = productStore.completedOrders.findIndex(order => order.id === currentRoute.value); 
+        currentOrderIndex.value = currentOrder.value
+        console.log("currentOrderIndex: " + JSON.stringify(currentOrder.value))
+    } 
+    console.log("currentOrderIndex: " + JSON.stringify(currentOrder.value))
 })
+console.log("c.o.Index:" + currentOrderIndex.value)
 </script>
 
 <style scoped>

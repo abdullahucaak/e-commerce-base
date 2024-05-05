@@ -20,7 +20,9 @@ export const useProductStore = defineStore('productStore', {
     discountView: false,
     isSubmitGiftCardCode: false,
     giftCardCodeInput: "",
-    finalPrice: null
+    priceBeforeDiscount: null,
+    finalPrice: null,
+    newId: null
   }),
   getters: { /* computed */
     /* shop-page | how many products are */

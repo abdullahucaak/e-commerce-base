@@ -147,7 +147,7 @@ const validateCartNumber = computed (()=>{
 })
 
 /* nameOnCart */
-const nameOnCart = ref('Abdullah Uçak')
+const nameOnCart = ref('Kaan Uçak')
 const validateNameOnCart = computed (()=>{
   const regex = /^[\p{L}ÇçĞğİıÖöŞşÜü\s]{2,} [\p{L}ÇçĞğİıÖöŞşÜü\s]{2,}$/u
   return regex.test(nameOnCart.value)
@@ -216,7 +216,6 @@ const payNow = () =>{
       await axios.post('http://localhost:3000/completedOrders', productStore.orders[0]) // Tek bir objeyi post ediyoruz
         .then(response => {
             // Axios başarıyla tamamlandığında, "completedOrders" dizisine ekleyin
-            productStore.completedOrders.push(response.data); // Yanıtı (response) doğrudan ekleyebilirsiniz, ya da uygun bir şekilde düzenleyebilirsiniz.
             console.log('Order completed and added to completedOrders array:', response.data);
         })
         .catch(error => {
@@ -227,17 +226,19 @@ const payNow = () =>{
 
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
-      await axios.delete(`http://localhost:3000/orders/1`)
+
+      let newId = productStore.newId
+      await axios.delete(`http://localhost:3000/orders/${newId}`)
         .then(() => {
           post()
-          /* routing */
-          router.push({ name: 'final-page' })
         })
         .catch((error) => {
           console.error(error)
         });
+        /* routing */
+        /* router.push({ name: 'final-page' }) */
+        router.push({ name: 'final-page', params: { orderId: newId }/* , query: { orderId: newId } */ });
     }
-    deleteAndPost()
 
     /* delete cartProduct from json */
     const deleteCartProducts = async () => {
@@ -252,27 +253,29 @@ const payNow = () =>{
         const deletePromises = response.data.map(async (object) => {
           try {
             await axios.delete(`${url}/${object.id}`);
-            console.log(`Object deleted: ${object.id}`);
+            console.log(`Cart Product Object deleted: ${object.id}`);
           } catch (error) {
-            console.error(`An error occurred while deleting the object: ${object.id}`, error);
+            console.error(`An error occurred while deleting the cart product object: ${object.id}`, error);
           }
         });
 
         // Wait for all DELETE requests
         await Promise.all(deletePromises);
 
-        console.log('All objects have been deleted.');
+        console.log('All cart product objects have been deleted.');
       } catch (error) {
         console.error('Something went wrong:', error);
       }
     };
-    deleteCartProducts()
-
+    
     /* Shipping and GiftCardCode refreshing after payment */
     productStore.shippingMethodView = false
     productStore.discountView = false
     productStore.isSubmitGiftCardCode = false
     productStore.giftCardCodeInput = ""
+    
+    deleteCartProducts()
+    deleteAndPost()
   }
 }
 

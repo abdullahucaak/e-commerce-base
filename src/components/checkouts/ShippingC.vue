@@ -106,7 +106,9 @@ const completeForm = () => {
     }
   /* delete from json and post to json function */
   const deleteAndPost = async () =>{
-    await axios.delete(`http://localhost:3000/orders/1`)
+
+    let newId = productStore.newId
+    await axios.delete(`http://localhost:3000/orders/${newId}`)
     .then(()=>{
         post()
     })

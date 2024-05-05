@@ -230,43 +230,7 @@
   "orders": [],
   "completedOrders": [
     {
-      "userNote": "",
-      "howDidYouHear": "Please Make a Selection",
-      "cartProducts": [
-        {
-          "id": 2,
-          "name": "DARJEELING SECOND FLUSH",
-          "price": "17.00",
-          "photo": "product_600x600.webp",
-          "quantity": 1,
-          "totalPrice": "17.00"
-        }
-      ],
-      "shippingInfo": {
-        "email": "abdullahucaak@gmail.com",
-        "firstName": "Abdullah",
-        "lastName": "Uçak",
-        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
-        "country": "turkiye",
-        "zipCode": "06930",
-        "city": "Ankara",
-        "phoneNumber": "+90 545 816 87 97"
-      },
-      "shippingMethod": {
-        "name": "USPS Ground",
-        "price": "9.44"
-      },
-      "cartInformation": {
-        "cartNumber": "8565 1827 3874 3837",
-        "nameOnCart": "Abdullah Uçak",
-        "expirationDate": "2024-04-02",
-        "securityCode": "654"
-      },
-      "orderUniqueCode": "fd28cf61-1d61-491d-81fc-88cc503f3497",
-      "finalPrice": "26.44",
-      "id": 1
-    },
-    {
+      "id": 1,
       "userNote": "",
       "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
@@ -275,33 +239,125 @@
           "name": "TULSI (INDIAN BASIL)",
           "price": "33.00",
           "photo": "assam-black-600x600.webp",
+          "quantity": 3,
+          "totalPrice": "99.00"
+        },
+        {
+          "id": 7,
+          "name": "SOLID FLUSH",
+          "price": "17.59",
+          "photo": "product_600x600.webp",
           "quantity": 1,
-          "totalPrice": "33.00"
+          "totalPrice": "17.59"
         }
       ],
       "shippingInfo": {
-        "email": "abdullahucaak@gmail.com",
+        "email": "kaan.uucak@gmail.com",
         "firstName": "Kaan",
         "lastName": "Uçak",
-        "shippingAddress": "29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
         "country": "turkiye",
         "zipCode": "06930",
-        "city": "Ankara",
+        "city": "Antalya",
         "phoneNumber": "+90 545 816 87 97"
       },
       "shippingMethod": {
-        "name": "USPS First Class Package",
-        "price": "4.44"
+        "name": "USPS Ground",
+        "price": "9.44"
       },
+      "priceBeforeDiscount": "116.59",
+      "finalPrice": "114.37",
       "cartInformation": {
         "cartNumber": "8565 1827 3874 3837",
-        "nameOnCart": "Abdullah Uçak",
-        "expirationDate": "2024-04-05",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-25",
         "securityCode": "654"
       },
-      "orderUniqueCode": "34fe969b-f7b1-458f-8deb-5fc271f3895e",
-      "finalPrice": "37.44",
-      "id": 2
+      "orderUniqueCode": "610af32f-5cd1-4df6-9fa3-995c77a9d810"
+    },
+    {
+      "id": 2,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 1,
+          "totalPrice": "15.79"
+        }
+      ],
+      "shippingInfo": {
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "15.79",
+      "finalPrice": "23.65",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-08",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "b1431923-70e5-47a8-8d0f-04a22a35bfd5"
+    },
+    {
+      "id": 3,
+      "userNote": "Güzel paketleyin lan.",
+      "howDidYouHear": "Google",
+      "cartProducts": [
+        {
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "66.00"
+        },
+        {
+          "id": 4,
+          "name": "KARADENIZ FLUSH",
+          "price": "17.00",
+          "photo": "product_600x600.webp",
+          "quantity": 3,
+          "totalPrice": "51.00"
+        }
+      ],
+      "shippingInfo": {
+        "email": "furkanozel@gmail.com",
+        "firstName": "Furkan",
+        "lastName": "Özel",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "117.00",
+      "finalPrice": "114.74",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Furkan Özel",
+        "expirationDate": "2024-05-31",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "1f38b58e-e333-43c3-829f-65bb29063e01"
     }
   ]
 }

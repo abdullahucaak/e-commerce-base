@@ -22,7 +22,7 @@
         </td>
         <td>
             <div class="cart-quantity">
-                <input v-model="cartProduct.quantity" class="cart-quantity-input" type="number" min="1" step="1">
+                <input disabled v-model="cartProduct.quantity" class="cart-quantity-input" type="number" min="1" step="1">
             </div>
         </td>
         <td>
@@ -30,7 +30,7 @@
                 <span class="cart-item-regular-price">${{ cartProduct.totalPrice }}</span>
             </div>
             <div class="cart-quantity">
-                <input v-model="cartProduct.quantity" class="cart-quantity-input q-input-smart-phone" type="number" min="1" step="1">
+                <input disabled v-model="cartProduct.quantity" class="cart-quantity-input q-input-smart-phone" type="number" min="1" step="1">
             </div>
         </td>
     </tr>

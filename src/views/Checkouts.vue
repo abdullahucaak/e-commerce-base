@@ -99,7 +99,8 @@
                       <span
                       v-if="giftCardCode === productStore.giftCardCodeInput" 
                       class="old-price"
-                      >${{totalCartPrice}}</span>
+                        >${{totalCartPrice}}
+                      </span>
                       $ {{ discountedTotalPrice.toFixed(2) }}
                     </div>
                     <div class="tp-item">Shipping</div>
@@ -130,6 +131,8 @@ import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 /* get cartProducts with JSON */
 productStore.getCartProducts()
+
+console.log("productStore.newId: " + productStore.newId)
 
 /* Component Toggle */
 const componentIndex = ref(1);
@@ -175,9 +178,12 @@ const applyDiscountCode = () =>{
 
     isGiftCardCodeTrue.value = true
     
+    productStore.priceBeforeDiscount = totalCartPrice.value
+
     productStore.finalPrice = (discountedTotalPrice.value).toFixed(2)
     console.log("with discount: " + productStore.finalPrice)
 
+    productStore.orders[0].priceBeforeDiscount = productStore.priceBeforeDiscount
     productStore.orders[0].finalPrice = productStore.finalPrice
 
   }else{

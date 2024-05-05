@@ -193,12 +193,12 @@ onMounted(()=>{
 import { useProductStore } from '../../stores/productStore'
 const productStore = useProductStore()
 
-const email = ref("abdullahucaak@gmail.com")
-const firstName = ref("Abdullah")
+const email = ref("kaan.uucak@gmail.com")
+const firstName = ref("Kaan")
 const lastName = ref("Uçak")
-const shippingAddress = ref("29 Ekim Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Sincan/Ankara")
+const shippingAddress = ref("Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya")
 const zipCode = ref("06930")
-const city = ref("Ankara")
+const city = ref("Antalya")
 const country = ref("")
 const phoneNumber = ref("+90 545 816 87 97")
 
@@ -321,7 +321,9 @@ const completeForm = () => {
       }
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
-      await axios.delete(`http://localhost:3000/orders/1`)
+
+      let newId = productStore.newId
+      await axios.delete(`http://localhost:3000/orders/${newId}`)
       .then(()=>{
           post()
       })

@@ -41,7 +41,7 @@ const router = createRouter({
       component: Checkouts
     },
     {
-      path: '/final-page',
+      path: '/final-page/:orderId',
       name: 'final-page',
       component: FinalPage
     }
