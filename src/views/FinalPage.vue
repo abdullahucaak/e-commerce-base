@@ -144,6 +144,7 @@ import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
+productStore.getCompletedOrders()
 
 /* router */
 import { useRoute } from "vue-router";
@@ -152,22 +153,17 @@ const route = useRoute()
 console.log("route.params.id: " + JSON.stringify(parseInt(route.params.orderId))) */
 /* --------------------------------------------------------------------------- */
 
-const currentRoute = ref(parseInt(route.params.orderId))
-/* console.log("currentRoute: " + currentRoute.value) */
+const currentRoute = ref(route.params.id)
+console.log("currentRoute: " + currentRoute.value)
 
-productStore.getCompletedOrders()
 
 const currentOrderIndex = ref(null)
 watchEffect(()=>{
-    const currentOrder = ref(null)
     if(productStore.completedOrders){
-        currentOrder.value = productStore.completedOrders.findIndex(order => order.id === currentRoute.value); 
-        currentOrderIndex.value = currentOrder.value
-        console.log("currentOrderIndex: " + JSON.stringify(currentOrder.value))
-    } 
-    console.log("currentOrderIndex: " + JSON.stringify(currentOrder.value))
+        currentOrderIndex.value = productStore.completedOrders.findIndex(order => order.orderUniqueCode == currentRoute.value)
+            console.log("currentOrderIndex.value: " + JSON.stringify(currentOrderIndex.value))
+        }
 })
-console.log("c.o.Index:" + currentOrderIndex.value)
 </script>
 
 <style scoped>

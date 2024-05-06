@@ -226,7 +226,7 @@ const payNow = () =>{
 
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
-
+      console.log("DELETE AND POST RUNNNNNNNNN")
       let newId = productStore.newId
       await axios.delete(`http://localhost:3000/orders/${newId}`)
         .then(() => {
@@ -237,7 +237,8 @@ const payNow = () =>{
         });
         /* routing */
         /* router.push({ name: 'final-page' }) */
-        router.push({ name: 'final-page', params: { orderId: newId }/* , query: { orderId: newId } */ });
+        console.log("orderUniqueCode.value: " + orderUniqueCode.value)
+        router.push({ name: 'final-page', params: { id: orderUniqueCode.value }/* , query: { orderId: newId } */ });
     }
 
     /* delete cartProduct from json */

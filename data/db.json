@@ -235,20 +235,12 @@
       "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
         {
-          "id": 14,
-          "name": "TULSI (INDIAN BASIL)",
-          "price": "33.00",
-          "photo": "assam-black-600x600.webp",
-          "quantity": 3,
-          "totalPrice": "99.00"
-        },
-        {
-          "id": 7,
-          "name": "SOLID FLUSH",
-          "price": "17.59",
+          "id": 1,
+          "name": "LEMONGRASS + GINGER",
+          "price": "16.79",
           "photo": "product_600x600.webp",
           "quantity": 1,
-          "totalPrice": "17.59"
+          "totalPrice": "16.79"
         }
       ],
       "shippingInfo": {
@@ -265,15 +257,15 @@
         "name": "USPS Ground",
         "price": "9.44"
       },
-      "priceBeforeDiscount": "116.59",
-      "finalPrice": "114.37",
+      "priceBeforeDiscount": "16.79",
+      "finalPrice": "24.55",
       "cartInformation": {
         "cartNumber": "8565 1827 3874 3837",
         "nameOnCart": "Kaan Uçak",
-        "expirationDate": "2024-05-25",
+        "expirationDate": "2024-05-29",
         "securityCode": "654"
       },
-      "orderUniqueCode": "610af32f-5cd1-4df6-9fa3-995c77a9d810"
+      "orderUniqueCode": "b093b4f2-77fd-43a3-8330-a6bc23f3015f"
     },
     {
       "id": 2,
@@ -281,12 +273,12 @@
       "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
         {
-          "id": 11,
-          "name": "HIBISCUS FLOWERS",
-          "price": "15.79",
-          "photo": "assam-black-600x600.webp",
-          "quantity": 1,
-          "totalPrice": "15.79"
+          "id": 5,
+          "name": "GREEN TEA + GINGER",
+          "price": "14.60",
+          "photo": "product_600x600.webp",
+          "quantity": 2,
+          "totalPrice": "29.20"
         }
       ],
       "shippingInfo": {
@@ -303,20 +295,19 @@
         "name": "USPS Ground",
         "price": "9.44"
       },
-      "priceBeforeDiscount": "15.79",
-      "finalPrice": "23.65",
       "cartInformation": {
         "cartNumber": "8565 1827 3874 3837",
         "nameOnCart": "Kaan Uçak",
-        "expirationDate": "2024-05-08",
+        "expirationDate": "2024-05-31",
         "securityCode": "654"
       },
-      "orderUniqueCode": "b1431923-70e5-47a8-8d0f-04a22a35bfd5"
+      "orderUniqueCode": "ddb45903-1e5e-4e3b-a3cf-4c97d953f7a7",
+      "finalPrice": "38.64"
     },
     {
       "id": 3,
-      "userNote": "Güzel paketleyin lan.",
-      "howDidYouHear": "Google",
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
       "cartProducts": [
         {
           "id": 14,
@@ -327,18 +318,18 @@
           "totalPrice": "66.00"
         },
         {
-          "id": 4,
-          "name": "KARADENIZ FLUSH",
-          "price": "17.00",
-          "photo": "product_600x600.webp",
+          "id": 9,
+          "name": "ASSAM BLACK",
+          "price": "21.00",
+          "photo": "assam-black-600x600.webp",
           "quantity": 3,
-          "totalPrice": "51.00"
+          "totalPrice": "63.00"
         }
       ],
       "shippingInfo": {
-        "email": "furkanozel@gmail.com",
-        "firstName": "Furkan",
-        "lastName": "Özel",
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
         "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
         "country": "turkiye",
         "zipCode": "06930",
@@ -349,15 +340,245 @@
         "name": "USPS Ground",
         "price": "9.44"
       },
-      "priceBeforeDiscount": "117.00",
-      "finalPrice": "114.74",
+      "priceBeforeDiscount": "129.00",
+      "finalPrice": "125.54",
       "cartInformation": {
         "cartNumber": "8565 1827 3874 3837",
-        "nameOnCart": "Furkan Özel",
-        "expirationDate": "2024-05-31",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-22",
         "securityCode": "654"
       },
-      "orderUniqueCode": "1f38b58e-e333-43c3-829f-65bb29063e01"
+      "orderUniqueCode": "35907d41-198c-4e90-8e31-a460629e9a3c"
+    },
+    {
+      "id": 4,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "31.58"
+        },
+        {
+          "id": 15,
+          "name": "MORNING MUG",
+          "price": "33.59",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "67.18"
+        }
+      ],
+      "shippingInfo": {
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "98.76",
+      "finalPrice": "98.32",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-22",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "8b918a76-06f6-4817-9497-1db0dca3f476"
+    },
+    {
+      "id": 5,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "31.58"
+        },
+        {
+          "id": 5,
+          "name": "GREEN TEA + GINGER",
+          "price": "14.60",
+          "photo": "product_600x600.webp",
+          "quantity": 2,
+          "totalPrice": "29.20"
+        }
+      ],
+      "shippingInfo": {
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "60.78",
+      "finalPrice": "64.14",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-24",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "25bcc73c-191c-4d85-b3b9-b53e363d7769"
+    },
+    {
+      "id": 6,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 1,
+          "name": "LEMONGRASS + GINGER",
+          "price": "16.79",
+          "photo": "product_600x600.webp",
+          "quantity": 3,
+          "totalPrice": "50.37"
+        },
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 3,
+          "totalPrice": "47.37"
+        }
+      ],
+      "shippingInfo": {
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS First Class Package",
+        "price": "4.44"
+      },
+      "priceBeforeDiscount": "97.74",
+      "finalPrice": "92.41",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-30",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "28f94a68-e970-4c9f-8e19-fc3aff534916"
+    },
+    {
+      "id": 7,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 2,
+          "name": "DARJEELING SECOND FLUSH",
+          "price": "17.00",
+          "photo": "product_600x600.webp",
+          "quantity": 2,
+          "totalPrice": "34.00"
+        },
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "31.58"
+        }
+      ],
+      "shippingInfo": {
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "65.58",
+      "finalPrice": "68.46",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-30",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "0ce499fe-de89-4da5-ae4c-6f66e64c1873"
+    },
+    {
+      "id": 8,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 11,
+          "name": "HIBISCUS FLOWERS",
+          "price": "15.79",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "31.58"
+        },
+        {
+          "id": 3,
+          "name": "ADACAY + GINGER",
+          "price": "11.99",
+          "photo": "product_600x600.webp",
+          "quantity": 2,
+          "totalPrice": "23.98"
+        }
+      ],
+      "shippingInfo": {
+        "email": "istanbul.bayulgen@gmail.com",
+        "firstName": "Istanbul",
+        "lastName": "Bayülgen",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "55.56",
+      "finalPrice": "59.44",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Istanbul Bayülgen",
+        "expirationDate": "2024-05-30",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "3837a93a-837e-425d-83b3-42a8e4568b91"
     }
   ]
 }
