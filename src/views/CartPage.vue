@@ -23,7 +23,7 @@
                             <th>TOTAL</th>
                         </tr>
                     </thead>
-                    <tbody v-for=" cartProduct in productStore.cartProducts">
+                    <tbody v-for=" cartProduct in productStore.cartProducts" :key="cartProduct.id">
                         <div v-if="productStore.loading">Loading tasks...</div>
                         <CartProduct :cartProduct="cartProduct"/>
                     </tbody>

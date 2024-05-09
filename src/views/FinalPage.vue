@@ -144,13 +144,14 @@ import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* pinia */
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore()
+
 productStore.getCompletedOrders()
 
 /* router */
 import { useRoute } from "vue-router";
 const route = useRoute()
-/* console.log("route.params: " + JSON.stringify(route.params))
-console.log("route.params.id: " + JSON.stringify(parseInt(route.params.orderId))) */
+console.log("route.params: " + JSON.stringify(route.params))
+console.log("route.params.id: " + route.params.id)
 /* --------------------------------------------------------------------------- */
 
 const currentRoute = ref(route.params.id)
@@ -160,7 +161,7 @@ console.log("currentRoute: " + currentRoute.value)
 const currentOrderIndex = ref(null)
 watchEffect(()=>{
     if(productStore.completedOrders){
-        currentOrderIndex.value = productStore.completedOrders.findIndex(order => order.orderUniqueCode == currentRoute.value)
+        currentOrderIndex.value = productStore.completedOrders.findIndex(order => order.orderUniqueCode === currentRoute.value)
             console.log("currentOrderIndex.value: " + JSON.stringify(currentOrderIndex.value))
         }
 })
