@@ -9,8 +9,14 @@ export const useProductStore = defineStore('productStore', {
     cartProducts:[
 
     ],
+    cartProductsLS:[ /* localStorage */
+
+    ],
     orders:[
       
+    ],
+    order:[ /* localStorage */
+
     ],
     completedOrders:[
 
@@ -35,7 +41,7 @@ export const useProductStore = defineStore('productStore', {
     /* calculate subtotal */
     calculateSubtotal:(state) => {
       let subtotal = 0
-      for( const p of state.cartProducts ){
+      for( const p of state.cartProductsLS ){
         subtotal += Number(p.totalPrice)
       }
       return subtotal
@@ -106,8 +112,8 @@ export const useProductStore = defineStore('productStore', {
         console.error(error);
       }
     },
-    /* add product to cart */
-    async addCartProduct(cartProduct){
+    /* add product to cart | CANCELED AFTER LOCALSTORAGE UPDATE  */
+/*     async addCartProduct(cartProduct){
       const existingProduct = this.cartProducts.find( p => p.id === cartProduct.id)
       if(existingProduct){
          existingProduct.quantity += cartProduct.quantity
@@ -139,16 +145,20 @@ export const useProductStore = defineStore('productStore', {
         }
       }
       console.log("existingProduct:" + existingProduct)
-    },
+    } */
+
    /* delete product from cart */
     async deleteProduct(id){
-      this.cartProducts = this.cartProducts.filter( p => {
+      this.cartProductsLS = this.cartProductsLS.filter( p => {
         return p.id !== id
       })
-      const res = await axios.delete(`http://localhost:3000/cartProducts/${id}`);
+      localStorage.setItem('cartProducts', JSON.stringify(this.cartProductsLS));
+
+      
+/*    const res = await axios.delete(`http://localhost:3000/cartProducts/${id}`);
       if (res.error) {
         console.log(res.error);
-      }
+      } | CANCELED AFTER LOCALSTORAGE UPDATE */
     }
   }
 })

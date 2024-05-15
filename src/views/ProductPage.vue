@@ -166,16 +166,38 @@ const addToCart = () =>{
     isAddedToCart.value = true
     isOpenCart.value = true
 
-    /* add product to cart */
-    productStore.addCartProduct({/* this is cartProduct in productStore.js at addCartProduct's parameter */
+    /* add product to cart | CANCELED AFTER LOCALSTORAGE UPDATE */
+/*     productStore.addCartProduct({ this is cartProduct in productStore.js at addCartProduct's parameter
         id:currentProduct.value.id,
         name:currentProduct.value.name,
         price:currentProduct.value.price,
         photo:currentProduct.value.photo[0],
         quantity:currentProduct.value.quantity,
         totalPrice: Number(currentProduct.value.price * currentProduct.value.quantity).toFixed(2)
-    })
+    }) */
+
+    /* localStorage */
+
+    const newCartProduct = {
+        id:currentProduct.value.id,
+        name:currentProduct.value.name,
+        price:currentProduct.value.price,
+        photo:currentProduct.value.photo[0],
+        quantity:currentProduct.value.quantity,
+        totalPrice: Number(currentProduct.value.price * currentProduct.value.quantity).toFixed(2)
+    }
+    const existingProduct = productStore.cartProductsLS.find( p => p.id === newCartProduct.id)
+    if(existingProduct){
+        existingProduct.quantity += newCartProduct.quantity
+        existingProduct.totalPrice = Number(existingProduct.price * existingProduct.quantity).toFixed(2);
+    }else{
+        productStore.cartProductsLS.push(newCartProduct)
+    }
+    localStorage.setItem('cartProducts', JSON.stringify(productStore.cartProductsLS))
+
+    /* localStorage */
 }
+
 /* hide-to-cart */
 const hideToCart = () =>{
     setTimeout(() => {             
@@ -186,7 +208,7 @@ const hideToCart = () =>{
 
 /* product number on cart */
 const totalProductNumberOnCart = computed(() => {
-      const sum = productStore.cartProducts.reduce((total, product) => total + product.quantity, 0);
+      const sum = productStore.cartProductsLS.reduce((total, product) => total + product.quantity, 0);
       return sum;
     });
 

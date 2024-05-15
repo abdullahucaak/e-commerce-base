@@ -1,14 +1,14 @@
 <template>
     <Navigation/>
     <div class="main">
-        <div v-if="productStore.cartProducts.length === 0" class="main-inner-cart-empty">
+        <div v-if="productStore.cartProductsLS.length === 0" class="main-inner-cart-empty">
             <div class="mice-inner">
                 <h1>Your Cart</h1>
                 <div>Your Cart is Currently Empty</div>
                 <RouterLink :to="{name:'shop'}"><button> CONTINUE SHOPPING </button></RouterLink>
             </div>
         </div>
-        <div v-if="productStore.cartProducts.length > 0" class="main-inner">
+        <div v-else class="main-inner">
             <div class="cart-header">
                 <h1>Your Cart</h1>
                 <RouterLink class="continue-shopping" :to="{name:'shop'}">Continue Shopping</RouterLink>
@@ -23,7 +23,7 @@
                             <th>TOTAL</th>
                         </tr>
                     </thead>
-                    <tbody v-for=" cartProduct in productStore.cartProducts" :key="cartProduct.id">
+                    <tbody v-for=" cartProduct in productStore.cartProductsLS" :key="cartProduct.id">
                         <div v-if="productStore.loading">Loading tasks...</div>
                         <CartProduct :cartProduct="cartProduct"/>
                     </tbody>
@@ -93,7 +93,7 @@
     </div>
 </template>
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 /* components */
 import Footer from '../components/Footer.vue'
 import Navigation from '../components/Navigation.vue'
@@ -112,6 +112,17 @@ productStore.getCartProducts()
 productStore.getOrders()
 /* getOrders with JSON */
 productStore.getCompletedOrders()
+
+/* localStorage */
+
+onMounted(()=>{
+ const storedCartProducts = localStorage.getItem('cartProducts')
+    if(storedCartProducts){
+        productStore.cartProductsLS = JSON.parse(storedCartProducts)
+    }
+})
+console.log("productStore.cartProductsLS: " + JSON.stringify(productStore.cartProductsLS))
+/* localStorage */
 
 const userNote = ref("")
 const howDidYouHear = ref("Please Make a Selection")
@@ -137,9 +148,11 @@ const postOrders = (e) =>{
     })
     
     productStore.orders.push(newOrder)
+    
     /* posting to json function */
     const post = async () =>{
         await axios.post("http://localhost:3000/orders", newOrder) /* newOrder were added to the address "http://localhost:3000/orders". */
+
         .then((result)=>{
             console.log(result)
         })
@@ -160,7 +173,9 @@ const postOrders = (e) =>{
     
     if(productStore.orders.length > 1){
         productStore.orders.splice(0,1) /* We deleted an element starting from index zero. */
+        
         deleteAndPost()
+
         console.log("axios.delete then axios.post worked")
     } else{
         post()

@@ -226,17 +226,15 @@
       "totalPrice": null
     }
   ],
-  "cartProducts": [
+  "cartProducts": [],
+  "orders": [
     {
-      "id": 3,
-      "name": "ADACAY + GINGER",
-      "price": "11.99",
-      "photo": "product_600x600.webp",
-      "quantity": 4,
-      "totalPrice": "47.96"
+      "id": 6,
+      "userNote": "HEY",
+      "howDidYouHear": "Google",
+      "cartProducts": []
     }
   ],
-  "orders": [],
   "completedOrders": [
     {
       "id": 1,
@@ -375,6 +373,98 @@
         "securityCode": "654"
       },
       "orderUniqueCode": "b5fb01e9-e58a-4860-80bd-d913de9da02a"
+    },
+    {
+      "id": 4,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 14,
+          "name": "TULSI (INDIAN BASIL)",
+          "price": "33.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 2,
+          "totalPrice": "66.00"
+        },
+        {
+          "id": 2,
+          "name": "DARJEELING SECOND FLUSH",
+          "price": "17.00",
+          "photo": "product_600x600.webp",
+          "quantity": 2,
+          "totalPrice": "34.00"
+        }
+      ],
+      "shippingInfo": {
+        "email": "kaan.uucak@gmail.com",
+        "firstName": "Kaan",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS Ground",
+        "price": "9.44"
+      },
+      "priceBeforeDiscount": "100.00",
+      "finalPrice": "99.44",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Kaan Uçak",
+        "expirationDate": "2024-05-23",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "4ba55e4e-9cf0-4551-85d7-7d3785a2af4d"
+    },
+    {
+      "id": 5,
+      "userNote": "",
+      "howDidYouHear": "Please Make a Selection",
+      "cartProducts": [
+        {
+          "id": 13,
+          "name": "CHAMOMILE FLOWERS",
+          "price": "23.00",
+          "photo": "assam-black-600x600.webp",
+          "quantity": 3,
+          "totalPrice": "69.00"
+        },
+        {
+          "id": 4,
+          "name": "KARADENIZ FLUSH",
+          "price": "17.00",
+          "photo": "product_600x600.webp",
+          "quantity": 4,
+          "totalPrice": "68.00"
+        }
+      ],
+      "shippingInfo": {
+        "email": "alya.uucak@gmail.com",
+        "firstName": "Alya",
+        "lastName": "Uçak",
+        "shippingAddress": "Sarısu Mah. Kıbrıs Caddesi Narin Evleri B/blok No:8 Konyaaltı/Antalya",
+        "country": "turkiye",
+        "zipCode": "06930",
+        "city": "Antalya",
+        "phoneNumber": "+90 545 816 87 97"
+      },
+      "shippingMethod": {
+        "name": "USPS First Class Package",
+        "price": "4.44"
+      },
+      "priceBeforeDiscount": "137.00",
+      "finalPrice": "127.74",
+      "cartInformation": {
+        "cartNumber": "8565 1827 3874 3837",
+        "nameOnCart": "Alya Uçak",
+        "expirationDate": "2024-05-30",
+        "securityCode": "654"
+      },
+      "orderUniqueCode": "e53a66df-8849-472b-9338-448f9a61f4ba"
     }
   ]
 }

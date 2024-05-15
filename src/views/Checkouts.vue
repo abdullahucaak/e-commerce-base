@@ -43,7 +43,7 @@
 
                 <div class="inner-right-wrapper">
 
-                  <div v-for="chosenProduct in productStore.cartProducts" class="chosen-product">
+                  <div v-for="chosenProduct in productStore.cartProductsLS" class="chosen-product">
                     <ChosenProduct :chosenProduct="chosenProduct"/>
                   </div>
 
@@ -125,12 +125,20 @@ import ShippingC from '../components/checkouts/ShippingC.vue';
 import PaymentC from '../components/checkouts/PaymentC.vue';
 import ChosenProduct from '../components/checkouts/ChosenProduct.vue'
 /* Imports */
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 /* pinia */
 import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 /* get cartProducts with JSON */
 productStore.getCartProducts()
+
+onMounted(()=>{
+ const storedCartProducts = localStorage.getItem('cartProducts')
+    if(storedCartProducts){
+        productStore.cartProductsLS = JSON.parse(storedCartProducts)
+    }
+    console.log("storedCartProducts: " + storedCartProducts)
+})
 
 console.log("productStore.newId: " + productStore.newId)
 
@@ -148,7 +156,7 @@ const previousComponent = () =>{
 
 //total cart price calculating
 const totalCartPrice = computed(() => {
-  return productStore.cartProducts.reduce((total, product) => {
+  return productStore.cartProductsLS.reduce((total, product) => {
     return total + parseFloat(product.totalPrice);
   }, 0).toFixed(2);
 });

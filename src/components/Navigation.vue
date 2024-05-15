@@ -103,7 +103,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 /* pinia */
 import { useProductStore } from '../stores/productStore'
@@ -111,8 +111,15 @@ const productStore = useProductStore()
 
 productStore.getCartProducts()
 
-
-
+/* localStorage */
+onMounted(()=>{
+ const storedCartProducts = localStorage.getItem('cartProducts')
+    if(storedCartProducts){
+        productStore.cartProductsLS = JSON.parse(storedCartProducts)
+    }
+    console.log("storedCartProducts: " + storedCartProducts)
+})
+/* localStorage */
 
   /* search button */
   const isSearchButtonOn = ref(false)
@@ -170,7 +177,7 @@ window.addEventListener("resize", () => {
 
 /* product number on cart */
 const totalProductNumberOnCart = computed(() => {
-      const sum = productStore.cartProducts.reduce((total, product) => total + product.quantity, 0);
+      const sum = productStore.cartProductsLS.reduce((total, product) => total + product.quantity, 0);
       return sum;
     });
 

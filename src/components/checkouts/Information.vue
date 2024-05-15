@@ -307,7 +307,7 @@ const completeForm = () => {
     
     /*add shippintInfo to productStore.orders */
     productStore.orders[0].shippingInfo = shippingInfo; 
-    console.log('after completeForm productStore.orders:', JSON.stringify(productStore.orders, null, 2));
+    console.log('after Information.vue productStore.orders:', JSON.stringify(productStore.orders, null, 2));
 
     /* posting to json function */
     const post = async () =>{
