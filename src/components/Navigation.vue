@@ -117,8 +117,8 @@ onMounted(()=>{
     if(storedCartProducts){
         productStore.cartProductsLS = JSON.parse(storedCartProducts)
     }
-    console.log("storedCartProducts: " + storedCartProducts)
 })
+
 /* localStorage */
 
   /* search button */
@@ -177,8 +177,8 @@ window.addEventListener("resize", () => {
 
 /* product number on cart */
 const totalProductNumberOnCart = computed(() => {
-      const sum = productStore.cartProductsLS.reduce((total, product) => total + product.quantity, 0);
-      return sum;
+        const sum = productStore.cartProductsLS.reduce((total, product) => total + product.quantity, 0);
+        return sum;
     });
 
 

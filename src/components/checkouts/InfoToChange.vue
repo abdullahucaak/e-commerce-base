@@ -11,7 +11,7 @@
             </div>
             <div v-if="productStore.shippingMethodView" class="itc-grid payment">
                 <div>Method</div>
-                <div>{{ productStore.orders[0].shippingMethod.name }} - {{ productStore.orders[0].shippingMethod.price }}</div>
+                <div>{{ productStore.order.shippingMethod.name }} - {{ productStore.order.shippingMethod.price }}</div>
             </div>
         </div>
     </div>
@@ -23,8 +23,8 @@ import { useProductStore } from '../../stores/productStore'
 const productStore = useProductStore()
 
 
-const email = productStore.orders[0].shippingInfo.email
-const shippingAddress = productStore.orders[0].shippingInfo.shippingAddress
+const email = productStore.order.shippingInfo.email
+const shippingAddress = productStore.order.shippingInfo.shippingAddress
 </script>
 
 <style scoped>

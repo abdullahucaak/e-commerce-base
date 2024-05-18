@@ -182,91 +182,49 @@ const payNow = () =>{
       securityCode: securityCode.value
     })
     /* add cartInformation to productStore.orders */
-    productStore.orders[0].cartInformation = cartInformation; 
+    productStore.order.cartInformation = cartInformation; 
   
   
     /* unique Order Code */
     const orderUniqueCode = ref(crypto.randomUUID())
     /* add unique Order Code to productStore.orders */
-    productStore.orders[0].orderUniqueCode = orderUniqueCode.value
+    productStore.order.orderUniqueCode = orderUniqueCode.value
   
-    console.log(JSON.stringify(productStore.orders[0].cartInformation))
+    console.log(JSON.stringify(productStore.order.cartInformation))
 
     /* control giftcard code for finalPrice */
     if(productStore.isSubmitGiftCardCode){
-      productStore.orders[0].finalPrice = (parseFloat(productStore.finalPrice) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2)
+      productStore.order.finalPrice = (parseFloat(productStore.finalPrice) + parseFloat(productStore.order.shippingMethod.price)).toFixed(2)
       console.log("if worked")
     }else{
-      productStore.finalPrice = (productStore.cartProducts.reduce((sum, product) => sum + parseFloat(product.totalPrice), 0) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2);
-      productStore.orders[0].finalPrice = productStore.finalPrice
-      console.log("else worked" + productStore.orders[0].finalPrice )
+      productStore.finalPrice = (productStore.cartProductsLS.reduce((sum, product) => sum + parseFloat(product.totalPrice), 0) + parseFloat(productStore.order.shippingMethod.price)).toFixed(2);
+      productStore.order.finalPrice = productStore.finalPrice
+      console.log("else worked" + productStore.order.finalPrice )
     }
-    /* posting to json function */
-/*     const post = async () =>{
-        await axios.post("http://localhost:3000/completedOrders", productStore.orders[0])
-        .then((result)=>{
-            console.log(result)
-        })
-        .catch((error) => {
-            console.error(error)
-        });
-    } */
-    // Axios kullanarak objeyi "completedOrders" dizisine eklemek
+
     const post = async () => {
-      await axios.post('http://localhost:3000/completedOrders', productStore.orders[0]) // Tek bir objeyi post ediyoruz
+      await axios.post('http://localhost:3000/completedOrders', productStore.order)
         .then(response => {
-            // Axios başarıyla tamamlandığında, "completedOrders" dizisine ekleyin
             console.log('Order completed and added to completedOrders array:', response.data);
         })
         .catch(error => {
-            // Axios isteği başarısız olduğunda
             console.error('Error completing order:', error.message);
       });
+
     }
 
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
-      console.log("DELETE AND POST RUNNNNNNNNN")
-      let newId = productStore.newId
-      await axios.delete(`http://localhost:3000/orders/${newId}`)
-        .then(() => {
-          post()
-        })
-        .catch((error) => {
-          console.error(error)
-        });
-        /* routing */
-        /* router.push({ name: 'final-page' }) */
+      localStorage.removeItem('order')
+      post()
         console.log("orderUniqueCode.value: " + orderUniqueCode.value)
         router.push({ name: 'final-page', params: { id: orderUniqueCode.value }/* , query: { orderId: newId } */ });
     }
 
     /* delete cartProduct from json */
     const deleteCartProducts = async () => {
-      try {
-        // Specify the URL where the JSON file is located
-        const url = 'http://localhost:3000/cartProducts';
-
-        // Send a GET request that fetches all cartProducts
-        const response = await axios.get(url);
-
-        // Send a DELETE request for each cartProduct
-        const deletePromises = response.data.map(async (object) => {
-          try {
-            await axios.delete(`${url}/${object.id}`);
-            console.log(`Cart Product Object deleted: ${object.id}`);
-          } catch (error) {
-            console.error(`An error occurred while deleting the cart product object: ${object.id}`, error);
-          }
-        });
-
-        // Wait for all DELETE requests
-        await Promise.all(deletePromises);
-
-        console.log('All cart product objects have been deleted.');
-      } catch (error) {
-        console.error('Something went wrong:', error);
-      }
+      productStore.cartProductsLS = []
+      localStorage.removeItem('cartProducts')
     };
     
     /* Shipping and GiftCardCode refreshing after payment */

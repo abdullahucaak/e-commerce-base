@@ -105,10 +105,10 @@
                     </div>
                     <div class="tp-item">Shipping</div>
                     <div v-if="!productStore.shippingMethodView" class="tp-item tp-right small-shipping"><small>Enter shipping method</small></div>
-                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right"><small>${{ productStore.orders[0].shippingMethod.price }}</small></div>
+                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right"><small>${{ productStore.order.shippingMethod.price }}</small></div>
                     <div class="tp-item">Total</div>
                     <div v-if="!productStore.shippingMethodView" class="tp-item tp-right">$ {{ discountedTotalPrice.toFixed(2)  }}</div>
-                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right">$ {{ (parseFloat(discountedTotalPrice.toFixed(2)) + parseFloat(productStore.orders[0].shippingMethod.price)).toFixed(2) }}</div>
+                    <div v-if="productStore.shippingMethodView" class="tp-item tp-right">$ {{ (parseFloat(discountedTotalPrice.toFixed(2)) + parseFloat(productStore.order.shippingMethod.price)).toFixed(2) }}</div>
                   </div>
                 </div>
             </div>
@@ -137,10 +137,15 @@ onMounted(()=>{
     if(storedCartProducts){
         productStore.cartProductsLS = JSON.parse(storedCartProducts)
     }
-    console.log("storedCartProducts: " + storedCartProducts)
-})
+    console.log("localStorageCartProducts: " + storedCartProducts)
 
-console.log("productStore.newId: " + productStore.newId)
+  const localStorageOrder = localStorage.getItem('order')
+    if(localStorageOrder){
+      productStore.order = JSON.parse(localStorageOrder)
+    }
+  console.log('localStorageOrder: ' + localStorageOrder)
+  console.log('productStore.order: ' + JSON.stringify(productStore.order))
+})
 
 /* Component Toggle */
 const componentIndex = ref(1);
@@ -191,8 +196,8 @@ const applyDiscountCode = () =>{
     productStore.finalPrice = (discountedTotalPrice.value).toFixed(2)
     console.log("with discount: " + productStore.finalPrice)
 
-    productStore.orders[0].priceBeforeDiscount = productStore.priceBeforeDiscount
-    productStore.orders[0].finalPrice = productStore.finalPrice
+    productStore.order.priceBeforeDiscount = productStore.priceBeforeDiscount
+    productStore.order.finalPrice = productStore.finalPrice
 
   }else{
 
@@ -202,12 +207,11 @@ const applyDiscountCode = () =>{
     console.log("withouts discount: " + productStore.finalPrice)
     console.log(productStore.giftCardCodeInput)
     
-    productStore.orders[0].finalPrice = productStore.finalPrice
+    productStore.order.finalPrice = productStore.finalPrice
 
    }
 }
 
-console.log("calculateSubtotal: " + (productStore.calculateSubtotal).toFixed(2))
 </script>
 <style scoped>
 

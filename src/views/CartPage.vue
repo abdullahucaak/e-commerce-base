@@ -106,23 +106,17 @@ import { useProductStore } from '../stores/productStore'
 const productStore = useProductStore()
 /* import axios */
 import axios from 'axios';
-/* getCartProducts with JSON */
-productStore.getCartProducts()
-/* getOrders with JSON */
-productStore.getOrders()
-/* getOrders with JSON */
-productStore.getCompletedOrders()
 
-/* localStorage */
+/* getCompletedOrders with JSON */
+productStore.getCompletedOrders()
 
 onMounted(()=>{
  const storedCartProducts = localStorage.getItem('cartProducts')
     if(storedCartProducts){
         productStore.cartProductsLS = JSON.parse(storedCartProducts)
     }
+    console.log("productStore.cartProductsLS: " + JSON.stringify(productStore.cartProductsLS))
 })
-console.log("productStore.cartProductsLS: " + JSON.stringify(productStore.cartProductsLS))
-/* localStorage */
 
 const userNote = ref("")
 const howDidYouHear = ref("Please Make a Selection")
@@ -132,69 +126,42 @@ const postOrders = (e) =>{
     let newId;
 
     if (productStore.completedOrders.length === 0) {
-        // completedOrders dizisi boşsa, newId'e 1 değerini ata
+        /* if completedOrders array is empty, assign newId to 1 */
         newId = 1;
     } else {
-        // completedOrders dizisi doluysa, dizideki elemanların en büyük id değerini bulup bir sonraki id değerini oluştur.
+        // If there is an order in the completedOrders array, find the largest id value of the orders in the array and create the next id value.
         newId = Math.max(...productStore.completedOrders.map(item => item.id)) + 1;
     }
     productStore.newId = newId
     console.log("productStore'daki new Id: " + productStore.newId)
+
     const newOrder = reactive({
         id:newId,
         userNote: userNote.value,
         howDidYouHear: howDidYouHear.value,
-        cartProducts: productStore.cartProducts,
+        cartProducts: productStore.cartProductsLS,
     })
     
-    productStore.orders.push(newOrder)
     
-    /* posting to json function */
+    /* posting to local storage function */
     const post = async () =>{
-        await axios.post("http://localhost:3000/orders", newOrder) /* newOrder were added to the address "http://localhost:3000/orders". */
-
-        .then((result)=>{
-            console.log(result)
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        localStorage.setItem('order', JSON.stringify(newOrder))
+        productStore.order = newOrder
     }
-    /* delete from json and post to json function */
+    /* delete from local storage and post to local storage new object*/
     const deleteAndPost = async () =>{
-        await axios.delete(`http://localhost:3000/orders/${newId}`)
-        .then(()=>{
-            post()
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        localStorage.removeItem('order')
+        productStore.order = null /* We deleted an element starting from index zero. */
+        post()
     }
     
-    if(productStore.orders.length > 1){
-        productStore.orders.splice(0,1) /* We deleted an element starting from index zero. */
-        
-        deleteAndPost()
-
-        console.log("axios.delete then axios.post worked")
-    } else{
-        post()
-        console.log("axios.post worked")
-    }
+    deleteAndPost()
     /* routing */
     router.push({ name: 'checkouts' })
     
     e.preventDefault()
     
-    console.log("productStore.cartProducts AFTER submit:" + JSON.stringify(productStore.cartProducts,null,2))
-    console.log("productStore.orders AFTER submit:" + JSON.stringify(productStore.orders, null, 2))
-    console.log("productStore.orders.length AFTER submit:" + productStore.orders.length)
 }
-console.log("productStore.cartProducts BEFORE submit:" + JSON.stringify(productStore.cartProducts,null,2))
-console.log("productStore.orders BEFORE submit:" + JSON.stringify(productStore.orders, null, 2))
-console.log("productStore.orders.length BEFORE submit:" + productStore.orders.length)
-
-console.log("calculateSubtotal: " + (productStore.calculateSubtotal).toFixed(2))
 </script>
 <style scoped>
 .main{

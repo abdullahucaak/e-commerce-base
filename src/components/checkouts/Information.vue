@@ -178,16 +178,7 @@
 </template>
 <script setup>
 /* imports */
-import { ref, reactive, computed, onMounted } from 'vue'
-import axios from 'axios';
-
-/* When the user refreshes the page, fetch the orders array from the database using the getOrders() function. */
-onMounted(()=>{
-  if(productStore.orders[0] == undefined){
-    productStore.getOrders()
-  }
-})
-
+import { ref, reactive, computed } from 'vue'
 
 /* pinia */
 import { useProductStore } from '../../stores/productStore'
@@ -273,12 +264,8 @@ if(country.value.length){
 const isValidPhoneNumber = computed (() => {
   return /^(\+90)?\s?[0-9]{3}\s?[0-9]{3}\s?[0-9]{2}\s?[0-9]{2}$/.test(phoneNumber.value)
 })
-
-
 /* changing component */
 const emit = defineEmits(['complete'])
-
-console.log('after completeForm productStore.orders[0]:', JSON.stringify(productStore.orders[0], null, 2));
 
 /* submission control for validity check */
 const submitted = ref(false)
@@ -303,33 +290,33 @@ const completeForm = () => {
       city: city.value,
       phoneNumber: phoneNumber.value
     })
-    console.log('after completeForm shippingInfo:', JSON.stringify(shippingInfo.value, null, 2));
     
-    /*add shippintInfo to productStore.orders */
-    productStore.orders[0].shippingInfo = shippingInfo; 
-    console.log('after Information.vue productStore.orders:', JSON.stringify(productStore.orders, null, 2));
+    /*add shippingInfo to productStore.orders */
+    productStore.order.shippingInfo = shippingInfo; 
 
     /* posting to json function */
     const post = async () =>{
-          await axios.post("http://localhost:3000/orders", productStore.orders[0])
+/*           await axios.post("http://localhost:3000/orders", productStore.orders[0])
           .then((result)=>{
               console.log(result)
           })
           .catch((error) => {
               console.error(error);
-          });
-      }
+          }); */
+          localStorage.setItem('order', JSON.stringify(productStore.order))
+    }
     /* delete from json and post to json function */
     const deleteAndPost = async () =>{
-
-      let newId = productStore.newId
-      await axios.delete(`http://localhost:3000/orders/${newId}`)
+      localStorage.removeItem('order')
+      post()
+     /*  let newId = productStore.newId */
+/*       await axios.delete(`http://localhost:3000/orders/${newId}`)
       .then(()=>{
           post()
       })
       .catch((error) => {
           console.error(error);
-      });
+      }); */
     }
 
     deleteAndPost()

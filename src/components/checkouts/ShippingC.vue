@@ -85,36 +85,38 @@ const completeForm = () => {
   productStore.shippingMethodView = true
 
   if(selectedShipping.value == "USPS First Class Package"){
-    productStore.orders[0].shippingMethod = shippingMethods[0]; 
+    productStore.order.shippingMethod = shippingMethods[0]; 
   }else{
-    productStore.orders[0].shippingMethod = shippingMethods[1]; 
+    productStore.order.shippingMethod = shippingMethods[1]; 
   }
-  console.log(JSON.stringify(productStore.orders[0], null, 2))
+  console.log(JSON.stringify(productStore.order, null, 2))
   console.log("selectedShipping: " + selectedShipping.value)
 
     productStore.discountView = true
 
     /* posting to json function */
     const post = async () =>{
-        await axios.post("http://localhost:3000/orders", productStore.orders[0])
+        localStorage.setItem('order', JSON.stringify(productStore.order))
+/*         await axios.post("http://localhost:3000/orders", productStore.orders[0])
         .then((result)=>{
             console.log(result)
         })
         .catch((error) => {
             console.error(error);
-        });
+        }); */
     }
   /* delete from json and post to json function */
   const deleteAndPost = async () =>{
-
-    let newId = productStore.newId
+    localStorage.removeItem('order')
+    post()
+/*     let newId = productStore.newId
     await axios.delete(`http://localhost:3000/orders/${newId}`)
     .then(()=>{
         post()
     })
     .catch((error) => {
         console.error(error);
-    });
+    }); */
   }
 
   deleteAndPost()
