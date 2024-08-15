@@ -52,7 +52,7 @@ export const useProductStore = defineStore('productStore', {
     async getProducts() {
       this.loading = true;
       try {
-        const response = await axios.get('https://json-server-vercel-3j5ltzwt7-abdullahs-projects-159d4553.vercel.app/products');
+        const response = await axios.get('https://json-server-vercel-vert-seven.vercel.app/products');
     
         if (response.status !== 200) {
           throw new Error('Failed to fetch products.');
@@ -68,7 +68,7 @@ export const useProductStore = defineStore('productStore', {
     async getCartProducts() {
       this.loading = true;
       try {
-        const response = await axios.get('https://json-server-vercel-3j5ltzwt7-abdullahs-projects-159d4553.vercel.app/cartProducts');
+        const response = await axios.get('https://json-server-vercel-vert-seven.vercel.app/cartProducts');
     
         if (response.status !== 200) {
           throw new Error('Failed to fetch cart products.');
@@ -84,7 +84,7 @@ export const useProductStore = defineStore('productStore', {
     async getOrders() {
       this.loading = true;
       try {
-        const response = await axios.get('https://json-server-vercel-3j5ltzwt7-abdullahs-projects-159d4553.vercel.app/orders');
+        const response = await axios.get('https://json-server-vercel-vert-seven.vercel.app/orders');
     
         if (response.status !== 200) {
           throw new Error('Failed to fetch orders.');
@@ -100,7 +100,7 @@ export const useProductStore = defineStore('productStore', {
     async getCompletedOrders() {
       this.loading = true;
       try {
-        const response = await axios.get('https://json-server-vercel-3j5ltzwt7-abdullahs-projects-159d4553.vercel.app/completedOrders');
+        const response = await axios.get('https://json-server-vercel-vert-seven.vercel.app/completedOrders');
     
         if (response.status !== 200) {
           throw new Error('Failed to fetch completedOrders.');

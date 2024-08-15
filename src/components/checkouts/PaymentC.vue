@@ -203,7 +203,7 @@ const payNow = () =>{
     }
 
     const post = async () => {
-      await axios.post('http://localhost:3000/completedOrders', productStore.order)
+      await axios.post('https://json-server-vercel-vert-seven.vercel.app/completedOrders', productStore.order)
         .then(response => {
             console.log('Order completed and added to completedOrders array:', response.data);
         })
