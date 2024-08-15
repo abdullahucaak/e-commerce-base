@@ -3,7 +3,7 @@
         <td class="cart-product-information">
             <div 
             class="cart-product-img"
-            :style="{ 'background-image':`url(../../public/images/${cartProduct.photo}`}"
+            :style="{ 'background-image':`url(/images/${cartProduct.photo}`}"
             >
                 
             </div>
@@ -117,9 +117,9 @@ const props = defineProps({
 .main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name{
     user-select: none;
     cursor: pointer;
-    &:hover{
+}
+.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name:hover{
         text-decoration: underline;
-    }
 }
 .main .main-inner form .cart-table tbody tr .cart-quantity .cart-quantity-input{
     width: 100px;

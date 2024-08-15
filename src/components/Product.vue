@@ -1,10 +1,10 @@
 <template>
     <RouterLink :to="{name:'product-page', params: { id: product.id } }">
         <div class="bs-item">
-            <div class="product-img" :style="{ 'background-image':`url(../../public/images/${product.photo[0]})`}">
+            <div class="product-img" :style="{ 'background-image':`url(/images/${product.photo[0]})`}">
 
             </div>
-            <div class="product-img-2" :style="{ 'background-image':`url(../../public/images/${product.photo[1]})`}">
+            <div class="product-img-2" :style="{ 'background-image':`url(/images/${product.photo[1]})`}">
 
             </div>
             <div class="product-name">

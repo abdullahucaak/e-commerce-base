@@ -1,6 +1,6 @@
 <template>
     <div class="cp-img"
-    :style="{ 'background-image':`url(../../public/images/${chosenProduct.photo}`}">
+    :style="{ 'background-image':`url(/images/${chosenProduct.photo}`}">
 
         <div class="cp-count">
             <div class="cp-count-inner">

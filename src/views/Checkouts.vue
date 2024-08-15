@@ -338,16 +338,16 @@ h1, h2{
   border: 1px solid #1B9C85;
   border-left: 25px solid #1B9C85;
   transition: 0.4s;
-  &:hover{
+}
+.validDiscountCodeButton:hover{
     font-size: 0.9rem;
     border-left: 35px solid #1B9C85;
     transition: 0.2s;
-  }
-  &:focus{
+}
+.validDiscountCodeButton:focus{
     color: rgb(86, 86, 251);
     border: 1px solid rgb(86, 86, 251);
     border-left: 35px solid rgb(86, 86, 251);
-  }
 }
 .button:focus-visible {
   background-color: #333;

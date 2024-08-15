@@ -300,11 +300,11 @@ watchEffect(()=>{
         font-size: 14px;
         letter-spacing: 3px;
         transition: 0.3s;
-        &:hover{
+    }
+    button:hover{
             background-color: #000;
             transition: 0.3s;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        }
     }
     .customer-service{
         width: 95%;

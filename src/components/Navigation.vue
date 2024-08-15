@@ -64,7 +64,7 @@
                   >
                     <div 
                       class="sp-product-img"
-                      :style="{ 'background-image':`url(../../public/images/${product.photo[0]}`}"
+                      :style="{ 'background-image':`url(/images/${product.photo[0]}`}"
                     >
 
                     </div>
@@ -267,9 +267,9 @@ const totalProductNumberOnCart = computed(() => {
     border-radius: 4px;
     font-size: 1rem;
     padding: 5px;
-    &:focus{
+  }
+  .announce-nav-container nav .sd-inner input:focus{
       border: 2px solid #4C4C6D;
-    }
   }
   .announce-nav-container nav .sd-inner .xmark-search{
     font-size: 1.5rem;
@@ -313,12 +313,10 @@ const totalProductNumberOnCart = computed(() => {
   .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content{
     margin-left: 20px;
   }
-  .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content .sp-product-name{
-    &:hover{
+  .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content .sp-product-name:hover{
       text-decoration: underline;
       user-select: none;
       cursor: pointer;
-    }
   }
 
   /* product number on cart */

@@ -13,7 +13,7 @@
             <div class="middle">
                 <div 
                 class="little-img"
-                :style="{ 'background-image':`url(../../public/images/${currentProduct.photo[0]})`}"
+                :style="{ 'background-image':`url(/images/${currentProduct.photo[0]})`}"
                 >
     
                 </div>
@@ -48,7 +48,7 @@
                 <div>
                     <div 
                     class="big-img" 
-                    :style="{ 'background-image':`url(../../public/images/${currentProduct.photo[0]})`}"
+                    :style="{ 'background-image':`url(/images/${currentProduct.photo[0]})`}"
                     >
 
                     </div>
@@ -57,7 +57,7 @@
                         v-for="(photo, index) in currentProduct.photo.slice(1, 4)" 
                         :key="index"
                         class="other-images-product" 
-                        :style="{ 'background-image':`url(../../public/images/${photo})`}"
+                        :style="{ 'background-image':`url(/images/${photo})`}"
                         @mouseover="handleImage(photo)"
                         @mouseout="leaveImage(photo)"
                         >
