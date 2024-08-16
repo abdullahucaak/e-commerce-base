@@ -240,4 +240,13 @@ body{
         overflow: hidden;
     } 
 }
+@media (max-width: 340px){
+    .home-container .c-banner .banner-message .bm-inner .bm-title{
+        font-size: 1.4rem;
+    }  
+    .home-container .c-banner .banner-message .bm-inner .bm-content{
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+}
 </style>

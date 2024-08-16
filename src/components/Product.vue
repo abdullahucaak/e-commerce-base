@@ -52,4 +52,17 @@ display: block;
     margin-top: 5px;
     font-weight: 700;
 }
+@media (max-width: 340px){
+    .product-name{
+        margin-top: 3px;
+        font-size: 0.8rem;
+    }
+    .product-price{
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: 500;
+}
+}
+
 </style>

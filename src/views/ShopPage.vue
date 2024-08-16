@@ -161,4 +161,21 @@ const sortedProducts = computed(() => {
          overflow: hidden;
       }
    }
+   @media (max-width: 340px){
+      .shop-container .sort-by-container{
+         display: flex;
+         font-size: 0.7rem;
+         justify-content: space-around;
+         align-items: center;
+         border-top: 0.5px solid rgb(182, 182, 182);
+         border-bottom: 0.5px solid rgb(182, 182, 182);
+      }
+      .shop-container .sort-by-container .sort-by select{
+         margin-left: 10px;
+         font-size: 0.8rem;
+      }
+      .s-products{
+
+      }
+   }
 </style>

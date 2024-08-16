@@ -477,5 +477,47 @@ h1, h2{
     outline: 0;
   }
 }
+@media (max-width: 340px){
+  .form-container {
+    padding: 20px 0;
+    margin: 0 auto;
+  }
+  .return-to-cart{
+    font-size: 13px;
+  }
+  .button {
+    background-color: #000;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 500;
+    display: block;
+    color: #fff;
+    width: 100%;
+    padding: 1rem 0.8rem;
+    border-radius: 0.25rem;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+  }
+  .field__input {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    font-weight: 300;
+    font-size: 0.8rem;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+  }
+  small{
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+  .invalid{
+    border: solid 1.5px rgb(228, 59, 59);
+  }
+}
 
 </style>

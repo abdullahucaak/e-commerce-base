@@ -247,11 +247,6 @@ h1, h2{
     padding-bottom: 40px ;
     border-bottom: solid rgb(168, 168, 168) 0.5px;
 }
-.form-container {
-  max-width: 40rem;
-  padding: 40px 2rem 0;
-  margin: 0 auto;
-}
 
 .form {
   display: grid;
@@ -455,6 +450,36 @@ h1, h2{
 @media (max-width: 399px){
   .small-shipping{
     font-size: 14px;
+  }
+}
+@media (max-width: 340px){
+  .form-wrapper{
+    padding-bottom: 10px ;
+    border-bottom: solid rgb(168, 168, 168) 0.5px;
+  }
+  .main-checkouts .main-inner .inner-left {
+      margin-top: 20px;
+  }
+  .main-checkouts .main-inner .inner-right .inner-right-wrapper{
+      width: 100%;
+      margin: 0 auto;
+      padding: 0px 0px 30px;
+      border-bottom: solid 0.5px #333;
+    }
+  .main-checkouts .main-inner .inner-right .inner-right-wrapper .chosen-product{
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    align-items: center;
+    margin-top: 15px;
+    padding: 0 0;
+    font-size: 0.7rem;
+  }
+  .main-checkouts .main-inner .inner-right .inner-right-wrapper .total-price-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 20px;
+    border-top: 0.5px solid gray;
+    font-size: 0.8rem;
   }
 }
 

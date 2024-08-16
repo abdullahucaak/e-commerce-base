@@ -419,4 +419,16 @@ const totalProductNumberOnCart = computed(() => {
       font-weight: 600;
     }
   }
+  @media (max-width: 340px){
+    .announce-nav-container nav .logo > img{
+      width: 150px;
+      height: 110px;
+    }
+    .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content .sp-product-name{
+        font-size: 0.7rem;
+    }
+    .announce-nav-container nav .results-wrapper .results-inner .searched-products .searched-product .sp-content .sp-product-price{
+        font-size: 0.9rem;
+    }
+  }
 </style>

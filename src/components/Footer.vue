@@ -253,6 +253,46 @@
 
     }
 
+    @media (max-width: 340px){
+        
+        .footer .f-container{
+            display: grid;
+            grid-template-rows: 170px 160px 200px 50px 150px;
+            grid-template-columns: 1fr;
+            grid-gap: 0px;
+            width: 95%;
+        }
+        .footer .f-container .f-item{
+            padding: 25px;
+            height: auto;
+        }
+        
+        .footer .f-container .f-item .f-item-inner .f-title{
+            font-size: 1rem;
+        }
+        .footer .f-container .f-item .f-item-inner .f-content ul li{
+            font-size: 0.7rem;
+            margin-top: 25px;
+        }
+        
+        .footer .f-container .f-item .f-item-inner .f-content .f-input{
+            width: 60%;
+            padding: 10px 0;
+            margin-right: 5px;
+            border-radius: 2px;
+            font-size: 0.6rem;
+            text-indent: 10px;
+        }
+        .footer .f-container .f-item .f-item-inner .f-content .alaya-tea{
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+        }
+        .footer .f-container .f-item:nth-child(2) .f-item-inner .f-content .subscription .f-btn{
+            padding: 10px 9px;
+            font-size: 0.7rem;
+        }
+    }
+
 
 
 </style>

@@ -71,7 +71,27 @@ import Navigation from '../components/Navigation.vue'
         overflow: hidden;
     }
     .main-container .main-inner-container .title h1{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+}
+@media (max-width:340px){
+    .main-container .main-inner-container{
+        display: grid;
+        width: 100%;
+        margin: 0 auto 50px;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+    }
+    .main-container .main-inner-container .paragraph{
+        margin: 25px auto;
+        width: 50%;
+    }
+    .p1{
+    letter-spacing: 0.5px;
+    line-height: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
 }
 }
 </style>

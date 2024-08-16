@@ -80,4 +80,10 @@ display: none;
     font-size: 9px;
   }
 }
+@media (max-width: 340px){
+  .main-checkouts .inner-navbar ul{
+    width: 80%;
+    margin: 30px auto 0;
+  }
+}
 </style>

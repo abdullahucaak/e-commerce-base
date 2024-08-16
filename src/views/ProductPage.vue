@@ -539,4 +539,54 @@ const totalProductNumberOnCart = computed(() => {
             font-size: 0.9rem;
         }
     }
+    @media (max-width: 340px){
+        .main .main-inner .main-inner-right .payout h1{
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .main .main-inner .main-inner-right .payout .product-price{
+            color: rgb(60, 60, 60);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        .main .main-inner .main-inner-right .payout .quantity .q-header{
+            display: inline-block;
+            color: rgb(65, 61, 61);
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .main .main-inner .main-inner-right .payout .quantity .q-input-div{
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .main .main-inner .main-inner-right .payout .quantity .q-input-div .q-input{
+            width: 100px;
+            padding: 10px 0;
+            font-size: 1rem;
+            text-indent: 15px;
+            border: solid rgb(188, 188, 188, 0.6) 1px;
+        }
+        .view-cart{
+            background-color: white;
+            border: 1px solid #ebebeb;
+            width: 96%;
+            position: fixed;
+            right: 0;
+            box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+        .view-cart .view-cart-button .cart-button{
+            width: 100%;
+            background-color: white;
+            line-height: 1.4;
+            border: solid #1B9C85 0.5px;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            color: #1B9c85;
+            padding: 12px 0;
+        }
+    }
 </style>

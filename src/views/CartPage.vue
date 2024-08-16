@@ -434,6 +434,16 @@ const postOrders = (e) =>{
     }
 }
 @media (max-width:340px){
+    .main .main-inner{
+        width: 100%;
+        padding: 5px;
+    }
+    .main .main-inner form .cart-table{
+        border-collapse: collapse;
+        margin: 25px 0;
+        width: 100%;
+        text-align: left;
+    }
     .main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-img{
         aspect-ratio: 1/1;
         width: 50px;

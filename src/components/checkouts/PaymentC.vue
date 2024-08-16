@@ -383,4 +383,76 @@ p.payment-info{
     font-size: 0.95rem;
     letter-spacing: 0.06rem;
 }
+@media(max-width:340px){
+    .form{
+        width: 100%;
+    }
+    .form-container {
+        width: 100%;
+    padding: 40px 0rem 0;
+    margin: 0 auto;
+    }
+    .payment-info-inner{
+      padding: 20px;
+      font-size: 0.7rem;
+  }
+  .field__label {
+  color: var(--color-gray);
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem
+}
+  .field__input {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  font-weight: 300;
+  font-size: 0.7rem;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
+.back-icon{
+    display: inline-block;
+    width: 0.4em;
+    height: 0.4em;
+    margin-bottom: 10px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    transform: rotate(225deg);
+    transition: transform 0.3s;
+}
+.r-btn{
+    display: inline;
+    width: 80px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    font-size: 0.7rem;
+    letter-spacing: 0.06rem;
+}
+.form-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 3px;
+}
+.button {
+  background-color: #000;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  display: block;
+  color: #fff;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+}
+}
 </style>
