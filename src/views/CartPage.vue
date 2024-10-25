@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="how-did-you-hear">
-                    <p>How did you hear about us?</p>
+                    <div class="head">How did you hear about us?</div>
                     <div class="options">
                         <select v-model="howDidYouHear">
                             <option>Please Make a Selection</option>
@@ -248,7 +248,7 @@ const postOrders = (e) =>{
     background-size: contain;
     background-repeat: no-repeat;
 }
-.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper p{
+.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper .remove{
     margin-top: 5px;
     color: rgb(203, 116, 107);
     text-decoration: underline;
@@ -328,7 +328,7 @@ const postOrders = (e) =>{
 .main .main-inner .how-did-you-hear {
     margin-bottom: 50px;
 }
-.main .main-inner .how-did-you-hear p {
+.main .main-inner .how-did-you-hear .head {
     color: rgba(27, 26, 26, 0.7);
     font-weight: 700;
 }
@@ -448,13 +448,14 @@ const postOrders = (e) =>{
         aspect-ratio: 1/1;
         width: 50px;
         height: auto;
-        background-image: url(../assets/products/assam-black-600x600.webp);
+        /* background-image: url(../assets/products/assam-black-600x600.webp); */
         background-size: contain;
         background-repeat: no-repeat;
     }
     .main .main-inner form .cart-table tbody tr td{
         font-size: 0.7rem;
     }
+
 }
 
 </style>

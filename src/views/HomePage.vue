@@ -8,7 +8,7 @@
             <div class="banner-message">
                 <div class="bm-inner">
                     <div class="bm-title">
-                        Meet Assam Golden Tippy Test
+                        Meet Assam Golden Tippy
                     </div>
                     <div class="bm-content">
                         A new, limited quantity, golden tipped black tea for the spring.

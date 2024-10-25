@@ -14,7 +14,7 @@
                 >
                     <div class="cart-product-name"> {{ cartProduct.name }}</div>
                 </RouterLink>
-                <p @click="productStore.deleteProduct(cartProduct.id)">Remove</p>
+                <div class="remove" @click="productStore.deleteProduct(cartProduct.id)">Remove</div>
             </div>
         </td>
         <td>
@@ -102,7 +102,7 @@ const props = defineProps({
     background-size: contain;
     background-repeat: no-repeat;
 }
-.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper p{
+.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper .remove{
     display: inline;
     margin-top: 5px;
     color: rgb(203, 116, 107);
@@ -110,7 +110,7 @@ const props = defineProps({
     cursor: pointer;
     user-select: none;
 }
-.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper p:hover{
+.main .main-inner form .cart-table tbody tr .cart-product-information .cart-product-name-wrapper .remove:hover{
     font-weight: 400;
     color: rgb(218, 75, 75);
 }
